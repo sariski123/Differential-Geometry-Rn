@@ -1,0 +1,336 @@
+\justifying
+\chapter{Variedades diferenciables}
+\section{Atlas y variedades diferenciables}
+\begin{defi}
+Sea $M$ un conjunto no vacío. Una \textbf{carta de $M$ $n$-dimensional},  con $n \in \mathbb{N}$, es un par $(U,\varphi)$ donde $U \subset M$ y $\varphi:\,U\longrightarrow\mathbb{R}^n$ es una aplicación inyectiva tal que $\varphi(U)$ es un abierto de $\mathbb{R}^n$.
+\end{defi}
+\begin{obs} \: 
+\begin{enumerate}
+    \item No se presupone ninguna topología en $M$, la topología de $\mathbb{R}^n$ es la usual, definida por la distancia euclídea.
+    \item Las cartas son sistemas de coordenadas locales que ponen en correspondencia subconjuntos de un conjunto con abiertos del espacio usual.
+    \item Ya que $\varphi: U \longrightarrow \varphi(U)$ es biyectiva; existe su inversa $\varphi^{-1}:\,\varphi(U)\longrightarrow U$ y se suele denominar \textbf{parametrización local de $M$}.
+    \item Por convenio, para $n=0$ las cartas son $\varphi:\,U\longrightarrow\{0\}$, lo que obliga a que $U = \{p\}\in M$ para que sean inyectivas.
+\end{enumerate}
+\end{obs}
+
+\begin{defi}
+Un \textbf{atlas de dimensión $n$ y clase $\mathcal{C}^k$}, con $k \in \mathbb{N}$, sobre un conjunto $M \neq \emptyset$ es una familia $\mathcal{A} = \left\{(U_i,\varphi_i)\right\}_{i \in I}$ de cartas $n$-dimensionales de $M$, que cumplen:
+\begin{itemize}
+    \item Los dominios de las cartas recubren $M$, es decir, $M = \underset{i \in I}{\bigcup} U_i$.
+    \item Las cartas son compatibles: si $i, j \in I$ cumplen $U_i \cap U_j \neq \emptyset$, entonces $\varphi_i(U_i \cap U_j)$ y $\varphi_j(U_i \cap U_j)$ son abiertos de $\mathbb{R}^n$, y las aplicaciones $$\varphi_j \circ \varphi_i^{-1}\,:\; \varphi_i(U_i \cap U_j) \longrightarrow \varphi_j(U_i \cap U_j)$$ 
+    $$\varphi_i \circ \varphi_j^{-1}\,:\; \varphi_j(U_i \cap U_j) \longrightarrow \varphi_i(U_i \cap U_j)$$son de clase $\mathcal{C}^k$ en el sentido usual de $\mathbb{R}^n$.
+\end{itemize}
+A estas composiciones las llamamos funciones de transición.
+\end{defi}
+
+\begin{obs} \:
+\begin{enumerate}
+    \item Si $U_i \cap U_j = \emptyset$, las cartas $(U_i, \varphi_i)$ y $(U_j, \varphi_j)$ son trivialmente compatibles.
+    \item Si el atlas es de clase $\mathcal{C}^0$, las funciones de transición son homeomorfismos.
+    \item Si el atlas es de clase $\mathcal C ^k \: \forall k \in \mathbb N$ se dice que es de clase $\mathcal C^{\infty}$.
+\end{enumerate}
+\end{obs}
+
+\begin{defi}
+Una \textbf{estructura diferenciable} de dimensión $n$ y clase $\mathcal{C}^k$ sobre un conjunto $M \neq \emptyset$ es un atlas $\mathcal{A}$ $n$-dimensional de clase $\mathcal{C}^k$ que es maximal para la condición de compatibilidad de cartas, es decir, si $(U,\varphi)$ es una carta de $M$ compatible con cualquier otra $(V,\psi) \in \mathcal{A}$, entonces $(U,\varphi)\in\mathcal{A}$.
+\end{defi}
+
+\begin{prop}
+Sea $\mathcal{A}$ un atlas $n$-dimensional de clase $\mathcal{C}^k$ sobre $M \neq \emptyset$. Entonces, siendo $(U,\varphi)$ las cartas de $M$ compatibles con cualquier otra de $\mathcal{A}$, tenemos que $\tilde{\mathcal{A}}=\{(U,\varphi)\}$ es una estructura diferenciable $n$-dimensional de clase $\mathcal{C}^k$ que cumple que $\mathcal{A} \subseteq \tilde{\mathcal{A}}$ y es la única estructura diferenciable con esta condici\'on.
+\end{prop}
+\begin{dem} \textcolor{red}{Ejercicio.}
+Es inmediato que $\mathcal{A} \subseteq \tilde{\mathcal{A}}$, ya que toda carta de $\mathcal{A}$ es compatible con las demás por ser un atlas. Debemos comprobar si $\tilde{\mathcal{A}}$ es un atlas, es decir, si sus cartas son compatibles entre ellas. Dadas $(U_1,\varphi_1),(U_2,\varphi_2)\in \tilde{\mathcal{A}}$ tales que $U_1 \cap U_2 \neq \emptyset$, estudiemos su compatibilidad. Debemos ver primero si $\varphi_2 \circ \varphi_1^{-1}\,:\; \varphi_1(U_1 \cap U_2) \longrightarrow \varphi_2(U_1 \cap U_2)$ es de clase $\mathcal{C}^k$. Para esto, consideremos las cartas $(V,\psi) \in \mathcal{A}$ tales que $V \cap (U_1 \cap U_2) \neq \emptyset$. Fijada una de ellas, las dos cartas de $\tilde{\mathcal{A}}$ son compatibles con ella por hipótesis. Luego:
+$$\psi \circ \varphi_1^{-1}: \varphi_1(U_1 \cap V) \to \psi(U_1 \cap V) \quad \text{es } \mathcal{C}^k$$
+$$\varphi_2 \circ \psi^{-1}: \psi(U_2 \cap V) \to \varphi_2(U_2 \cap V) \quad \text{es } \mathcal{C}^k$$
+por lo que sus restricciones $(\psi \circ \varphi_1^{-1})|_{\varphi_1(U_1 \cap U_2)}$ y $(\varphi_2 \circ \psi^{-1})|_{\psi(U_1\cap U_2)}$ también lo serán. Con esto, tenemos que: $$(\varphi_2 \circ \varphi_1^{-1})|_{\varphi_1(V)} = (\varphi_2 \circ \psi^{-1})|_{\psi(U_1\cap U_2)} \circ (\psi \circ \varphi_1^{-1})|_{\varphi_1(U_1 \cap U_2)}$$
+también es de clase $\mathcal{C}^k$ por ser composición de aplicaciones de esta clase. Ya que las cartas de $\mathcal{A}$ recubren $M$, en particular recubren $U_1 \cap U_2$, por lo que para cada punto de $U_1 \cap U_2$ existe una carta $(V,\psi)\in\mathcal{A}$ tal que $p \in V$ y $(\varphi_2 \circ \varphi_1^{-1})|_{\varphi_1(V)}$ es de clase $\mathcal{C}^k$. Con esto concluimos que $\varphi_2 \circ \varphi_1^{-1}$ es de esta clase en todo su dominio, $U_1 \cap U_2$. La comprobación de que la función de transición inversa $\varphi_1 \circ \varphi_2^{-1}$ es $\mathcal{C}^k$ es análoga, y nos lleva a concluir que las cartas de $\tilde{\mathcal{A}}$ son compatibles entre sí.
+
+Una vez visto que es un atlas, la condición maximal de $\tilde{\mathcal{A}}$ es inmediata por su definición, ya que si una carta $(W,\theta)$ es compatible con todas las de $\tilde{\mathcal{A}}$, en particular lo será con las de $\mathcal{A}$, luego $(W,\theta) \in \tilde{\mathcal{A}}$. Por tanto, es estructura diferenciable. Además, es única, ya que si $\mathcal{A}$ es otra estructura diferenciable con las mismas condiciones, toda carta de $\mathcal{A}'$ es compatible con las de $\mathcal{A}$ y por tanto pertenece a $\tilde{\mathcal{A}}$. 
+\end{dem}
+
+\begin{obs} \:
+\begin{itemize}
+    \item Dos atlas distintos pueden generar el mismo atlas maximal. Si se da esta situación, diremos que los dos atlas son equivalentes. Esta equivalencia de atlas quiere decir que toda carta de un atlas es compatible con todas las cartas del otro atlas.
+    \item Dado un atlas $\mathcal A$ en $M$, se dice que una carta $(U,\varphi)$ de $M$ se dice que es \textbf{admisible} si pertenece a la estructura diferenciable generada por $\mathcal A$. Salvo que se indique lo contario, de aquí en adelante toda carta que consideremos será admisible para el atlas que estemos trabajando.
+\end{itemize}
+\end{obs}
+\begin{defi}
+Una \textbf{variedad diferenciable} de dimensión $n\in \mathbb{N}$ y clase $\mathcal{C}^k$ es un conjunto no vacío $M$ dotado de una estructura diferencible $n$-dimensional de clase $\mathcal{C}^k$.
+\end{defi}
+\begin{obs} \:
+\begin{itemize}
+    \item Un mismo conjunto puede tener distintas estructuras diferenciables.
+    \item Usaremos la notación $M^n$ para indicar que la dimensión de $M$ como variedad diferenciable es $n$.
+    \item Las variedades diferenciables de clase $k=0$ se denominan \textbf{variedades topológicas}.
+\end{itemize}
+\end{obs}
+
+\begin{ejems} \:
+\begin{enumerate}
+    \item Consideremos $\{(M=\mathbb{R}^n,Id)\}$. Esto es un atlas de $\mathbb{R}^n$, ya que $Id:\,M \longrightarrow \mathbb{R}^n$ es carta ``global'' $n$-dimensional compatible con ella misma y de clase $\mathcal{C}^{\infty}$. Por tanto, genera una estructura diferenciable considerada la ``estructura diferenciable usual de $\mathbb{R}^n$''.
+    
+    Podemos estudiar la forma de las cartas compatibles con este atlas. Sea $\varphi:\,U\subseteq \mathbb{R}^n\longrightarrow\mathbb{R}^n$. $\varphi$ debe ser inyectiva, $\varphi(U)$ tiene que ser un abierto de $\mathbb{R}^n$, y además $\varphi(U \cap \mathbb{R}^n) = U$ y $\varphi(U\cap \mathbb{R}^n)= \varphi(U)$ deben ser abiertos de $\mathbb{R}^n$. Por último, tanto $\varphi \circ Id^{-1} = \varphi$ como $Id \circ \varphi^{-1} = \varphi^{-1}$ deben ser de clase $\mathcal{C}^{\infty}$. As\'i pues, $\varphi$ debe ser un difeomorfismo de un abierto $U \subset \mathbb R^n$ a otro abierto $\varphi(U)$.
+    \item Las curvas simples y superficies regulares de Geo Dif I
+    
+    \item Sea $\bold S^1=\{(x,y)\in\mathbb{R}^2 \;/\; x^2+y^2=1\}$ la circunferencia. Sabemos que $\rho \in S' \iff \exists \;\theta \in \mathbb{R}\;\; /\; \rho=(\cos{\theta}, \sin{\theta})$. \\
+    Definiremos $\mathcal{U}=\bold S^1 - \{1,0\}$ y $\mathcal{V} = \bold S^1 - \{-1,0\}$, así como las aplicaciones:$$\begin{tikzcd}
+    \mathcal{U} \arrow{r}{\varphi} & (0,2\pi) \subset \mathbb{R}\\[-5mm]
+    (\cos{\theta}, \sin{\theta}) \arrow{r} & \theta \in (0,2\pi)
+    \end{tikzcd} \qquad \begin{tikzcd}
+    \mathcal{V} \arrow{r}{\psi} & (-\pi, \pi) \subset  \mathbb{R}\\[-5mm]
+    (\cos{\theta}, \sin{\theta}) \arrow{r} & \theta \in (-\pi,\pi)
+    \end{tikzcd}$$
+    De esta forma, $(\mathcal{U}, \varphi)$ y $(\mathcal{V}, \psi)$ son dos cartas, por lo que tenemos que $\mathcal{U} \cup \mathcal{V} = \bold S^1$ y $\mathcal{U} \cap \mathcal{V} = \bold S^1-\{(\pm 1,0)\}$. Ya que la aplicaci\'on $$\psi \circ \varphi^{-1}(x)=\left\{\begin{array}{ll}
+         x & x\in (0,\pi)  \\
+         x-2\pi & x\in(\pi,2\pi) 
+    \end{array}\right.$$ es diferenciable $\mathcal C^{\infty}$ y de la misma forma, lo es la inversa $\varphi \circ \psi^{-1}$. As\'i pues, se comprueba que $\{(\mathcal{U}, \varphi), (\mathcal{V}, \psi)\}$ son cartas compatibles que forman un atlas en la circunferencia.
+    
+    \item Sea $E$ un $\mathbb{R}$-espacio vectorial de dimensión $n$, y sea $\mathcal{B}$ una base. Definimos $$\begin{tikzcd}
+    E \arrow{r}{\varphi_B} & \mathbb{R}^n\\[-5mm]
+    e \arrow{r} & (x_1(e), \dots, x_n(e)) \equiv (\lambda_1, \dots, \lambda_n)
+    \end{tikzcd}
+    $$la aplicación que manda un vector a sus coordenadas, que es inyectiva y cumple $\varphi_B(E) = \mathbb{R}^n$. $(E,\varphi_B)$ es una carta, y $\{(E,\varphi_B)\}$ es atlas $n$-dimensional $\mathcal{C}^{\infty}$, ya que con otra base $\mathcal{C}$, dada la carta $(E,\varphi_C)$, se cumple que $\varphi_B \circ \varphi_C^{-1}$ y $\varphi_C \circ \varphi_B^{-1}$ son lineales y $\mathcal{C}^{\infty}$, por ser las aplicaciones de cambios de base.
+    \end{enumerate}
+    \end{ejems}
+    \begin{ejer}
+        Sea $M^n$ una variedad diferenciable y $(U,\varphi)$ una carta. Si $V\subset U$ es tal que $\varphi(U)$ es abierto de $\mathbb R^n$, entonces $(V, \varphi_{|_V})$ es carta de $M$.
+    \end{ejer}
+    \begin{sol}
+        Supongamos que $(U,\varphi)$ es compatible con cualquier carta (por ser $M^n$ variedad dif., y por tanto tener estructura dif., esta existe).
+        Espec\'ificamente, es compatible con la carta dada:
+        $$\varphi(U\cap V)=\varphi(V) \qquad \varphi_{|_V}(U\cap V)=\varphi_{|_V}(V)$$ $$\varphi_{|_V}\circ \varphi^{-1}: \varphi(V) \longrightarrow \varphi_{|_V}(V) \qquad \varphi\circ \varphi_{|_V}^{-1}: \varphi_{|_V}(V) \longrightarrow \varphi(V)$$
+    \end{sol}    
+    
+
+\section{Aspectos topológicos}
+
+\begin{prop}
+Sea $M$ una variedad diferenciable y $\mathcal{A} = \{(U_i,\varphi_i)\}_{i\in I}$ un atlas. El conjunto $\mathcal{T} = \{A \subseteq M \;/\; \varphi_i(A\cap U_i) \text{ es abierto de } \mathbb{R}^n, \;\; \forall\; i \in I\}$ es una topología por abiertos de $M$ que llamaremos topolog\'ia inducida por la estructura diferenciable.
+\end{prop}
+\begin{demx} \textcolor{red}{Ejercicio.}
+Usaremos que, para toda aplicación inyectiva $f$, $f(A\cap B) = f(A) \cap f(B)$ y $f(A \cup B) = f(A) \cup f(B)$. Debemos comprobar:
+\begin{itemize}
+    \item $\emptyset, M \in \mathcal{T}$: para todo $i \in I$, $\varphi_i(\emptyset \cap U_i) = \varphi_i(\emptyset) = \emptyset$ (que es abierto). Además, $\varphi_i(M \cap U_i) = \varphi_i(U_i)$, que es abierto por definición de carta.
+    \item Las uniones de elementos de $\mathcal{T}$ están en $\mathcal T$:  sea $\{A_j\}_{j \in J}$ una familia de abiertos de $\mathcal{T}$. Para todo $i\in I, j \in J$, se tiene que $\varphi_i(A_j \cap U_i)$ es abierto. Por tanto, $\varphi_i((\underset{j\in J}{\bigcup} A_j) \cap U_i) = \varphi_i(\underset{j\in J}{\bigcup}(A_j \cap U_i)) = \underset{j\in J}{\bigcup}\varphi_i(A_j \cap U_i)$, abierto por ser unión de una familia de abiertos (hemos usado que cada $\varphi_i$ es inyectiva).
+    \item Intersecciones finitas de elementos de $\mathcal{T}$ están en $\mathcal T$: sean $A, B \in \mathcal T$. Para todo $i \in I$, sabemos que $\varphi_i(A \cap U_i)$ y $\varphi_i(B \cap U_i)$ son abiertos. Por tanto, $\varphi_i((A \cap B) \cap U_i) = \varphi_i((A \cap U_i) \cap (B \cap U_i)) = \varphi_i(A \cap U_i) \cap \varphi_i(B \cap U_i)$, abierto por ser intersección de abiertos (hemos usado que cada $\varphi_i$ es inyectiva).
+\end{itemize}
+\end{demx}
+\begin{obs} 
+\justifying Es destacable que si $(U, \varphi) \in \mathcal A$, se tiene que $U\in \mathcal{T}$ (es abierto) y $\varphi:\,U\to \mathbb{R}^n$ será un homeomorfismo sobre su imagen por definición.
+
+Igualmente, si $(V,\psi)$ es una carta admisible, se cumplirá que $V$ es abierto para esta topología y $\psi:\,V\longrightarrow \psi(V)$ es un homeomorfismo. Así, vemos que la topología $\mathcal T$ depende de la estructura diferenciable completa, y no solo del atlas $\mathcal A$ elegido. La llamaremos, por ello, topología inducida por la estructura diferenciable.
+\end{obs}
+
+\begin{prop}
+Sea $(M, \mathcal{T}_M)$ un espacio topológico sobre el que se define una estructura diferenciable. Entonces $\mathcal{T}_M$ y la topología $\mathcal T$ inducida por la estructura diferenciable serán iguales si y solo si toda carta $(U, \varphi_i)$ cumple que $\varphi_i:\,U_i \in \mathcal{T}_M \longrightarrow \mathbb{R}^n$ es un homeomorfismo sobre su imagen, considerando en $M$ la topología que tenía a priori.
+\end{prop}
+
+\begin{cor}
+En una variedad diferenciable $M$ tenemos la topología inducida por la estructura diferenciable.\end{cor}
+
+\begin{ejems}
+    Sea $M$ una variedad diferenciable y $U \subset M$ abierto. Restringiendo las cartas de $M$ a $U$ se obtiene un atlas de $U$ que proporciona una estructura diferenciable de la misma dimensi\'on y clase de diferenciabilidad. Adem\'as,  dada $\varphi: V \longrightarrow \mathbb R^n$ carta de $M$, podemos definir una carta en $U\cap V$ tal que $\varphi_{|_{U \cap V}}: U\cap V \longrightarrow \mathbb R^n$.
+\end{ejems}
+
+\begin{prop}
+La topología inducida por una estructura diferenciable: \vspace{-3mm}
+\begin{enumerate}
+    \item es $T_1$, i.e., $\forall p,q \in M, \, p \neq q, \, \exists \: U, V \in M \text{ abiertos con } p \in U, \, q \nin U, \, p \nin V, \, q \in V $.
+    \item Cumple el primer axioma de numerabilidad ($1AN$), es decir, todo punto tiene una base de entornos numerables.
+\end{enumerate} (remitirse a los apuntes de Topología \footnote{\url{https://www.overleaf.com/read/cbmrqypxsfpf}}).
+\end{prop}
+\begin{dem}
+    \textcolor{red}{Ejercicio.}
+\end{dem}
+Sin embargo, una variedad diferenciable no siempre es $T_2$ (no teniendo unicidad en los l\'imites) o $2AN$ (no tiene una base de abiertos numerable).
+\begin{ejem}
+Sea $M = \mathbb{R} \sqcup \{p\}$, con los abiertos $U=\mathbb{R}$ y $V = (\mathbb{R}-\{0\}) \sqcup \{p\}$, y las cartas $$\begin{tikzcd}
+U \arrow{r}{\varphi} & \mathbb{R}\\[-5mm]
+t \arrow[mapsto]{r} & t
+\end{tikzcd} \qquad \begin{tikzcd}
+V \arrow{r}{\psi} & \mathbb{R}\\[-5mm]
+x \arrow[mapsto]{r} & \begin{cases} 
+x \;\text{ si } x\in \mathbb{R}-\{0\}\\
+ 0 \;\text{ si } x = p \end{cases}
+\end{tikzcd}$$
+$(U,\varphi),(V,\psi)$ forman un atlas en $M$, con $U \cap V = \mathbb{R}-\{0\}$, y $\psi \circ \varphi^{-1} = \varphi \circ \psi^{-1} = Id_{\mathbb{R}-\{0\}}$. \\
+Luego $M$ es una variedad diferenciable que podemos llamar recta con dos orígenes, pero \underline{no} es $T_2$ como espacio topológico, pues no se puede separar $0 \in M$ de $p \in M$. Equivalentemente, no existen abiertos disjuntos de $M$ con uno conteniendo a $0$ y otro a $p$, o, de otra forma, para todo par de abiertos que contengan uno a cada punto, su intersección no es vacía.
+\begin{dem} \textcolor{red}{Ejercicio.}
+En efecto, sean $B(0,\varepsilon)=B_1 \subset U$ la bola de centro $0$ y radio fijado $\varepsilon > 0$ y $B(p,\delta)=B_2 \subset V$ la bola de centro $p$ y radio $\delta > 0$ variando. Supongamos que $B_1 \cap B_2 =\emptyset$. Entonces $\varphi(B_1 \cap B_2)$ y $\psi(B_1 \cap B_2)$ tienen que ser abiertos, de forma que 
+$$\psi(\emptyset) = \psi(B_1 \cap B_2) = \psi(B_1) \cap \psi(B_2) =\varphi(B_1) \cap \psi(B_2) =B_1 \cap (B_2 \cup 0) = 0 \neq \emptyset$$
+llegando a una contradicci\'on, ya que $\psi(\emptyset) \neq \emptyset$, teni\'endose que no ser\'ia continua. 
+\end{dem}
+\end{ejem}
+
+\begin{prop}
+Sea $M$ una variedad diferenciable que sea $T_2$. Entonces, para todo $p \in M$ y para todo $U\subset M$ abierto con $p \in U$, existe un $V\subseteq M$ abierto tal que $p \in V \subset \overline{V} \subset U$, de modo que $\overline{V}$ es compacto.
+\end{prop}
+\begin{dem}
+    \textcolor{red}{Ejercicio.} Si $p \in U \subset M$ cubierto por $(W, \varphi)$ con $p \in W$, en esas condiciones, $(U \cap W, \varphi_{U \cap W})$ es una carta tal que $\varphi(p)  \in U_{r/2} \subset \varphi(U\cap W)$ ((con $r$ radio de bola $B \subset \varphi(U\cap W)$), de forma que $\overline{B(\varphi(p),r/2)} \subset \varphi(U \cap W)$ y por tanto $W = \varphi^{-1}(B(\varphi(p), r/2))$ y entonces trabajando con $\Bar{V}$ cerrado de un $T_2$, $V \subset \bar{V} \subset \varphi^{-1}(B(\varphi(p), r/2))$, $\bar{V}$ es compacto.
+\end{dem}
+\begin{prop}
+Sea $M$ una variedad diferenciable. Entonces $M$ es $2AN$ si y solo si existe un atlas de $M$ con una cantidad numerable de cartas.
+\end{prop}
+\begin{dem} \textcolor{red}{Ejercicio.}
+\end{dem}
+
+\section{Aplicaciones diferenciables}
+\begin{defi}
+Sea $M^n$ una variedad diferenciable de clase $\mathcal{C}^k$, con $k \in \mathbb{N}$, y $f: M \to \mathbb{R}$ una función. Se dice que $f$ es \textbf{diferenciable} de clase $\mathcal{C}^k$ en $p \in M$ si existe una carta $(U,\varphi)$ de $M$ con $p \in U$ y verificando que $$f \circ \varphi^{-1}:\,\varphi(U) \,\longrightarrow \, \mathbb{R}$$es diferenciable de clase $\mathcal{C}^k$ en $\varphi(p)$.
+
+Se dice que $f$ es diferenciable si lo es en todos los puntos de $M$.
+\end{defi} 
+\begin{obss}\, 
+\begin{enumerate}
+\item Si $f$ es diferenciable en $p \in M$ usando una carta $(U,\varphi)$, lo será también para cualquier otra carta $(V,\psi)$ con $p \in V$. Decidir la diferenciabilidad de $f \circ \psi^{-1}$ en $\psi(p)$ o  la de $f \circ \varphi^{-1}$ en $\varphi(p)$ es equivalente, pues
+$$f\circ \varphi^{-1}=f \circ \varphi^{-1}\circ(\varphi \circ \psi^{-1}) \, / \, \varphi \circ \psi^{-1} \in \mathcal{C}^k$$ 
+y de la misma forma
+$$f\circ \psi^{-1}=(f \circ \psi^{-1})\circ(\psi \circ \varphi^{-1}) $$
+
+Se podría definir la aplicación diferenciable asociada a $f$ de clase $\mathcal{C}^l$ para todo $l \leq k$.
+\item Algebraicamente, el conjunto de las aplicaciones diferenciables de clase $\mathcal{C}^k$ definidas en $M$ (que denotaremos por $\mathcal{C}^k(M)$) forma un anillo.
+\item
+    Si $U \subset M$ abierto y $f: U \longrightarrow \mathbb R$ es una funci\'on, diremos que $f$ es diferenciable en $U$ como variedad diferenciable y hacemos uso de la definici\'on anterior.
+\item
+El conjunto $M$ cuenta de forma natural con la topología inducida por su estructura diferenciable. Si $U \subset M$ es un abierto, se puede construir un atlas de $U$ a partir de cualquier atlas $<(V_i,\varphi_i)>_{i\in I}$ de $M$:\begin{itemize}
+    \item Los abiertos serán de la forma $U_i = V_i \cap U$ para cada $i \in I$.
+    \item Las aplicaciones serán $$\tilde{\varphi}_i: U_i \longrightarrow \mathbb{R}^n,\quad \tilde{\varphi}_i = \varphi_i|_{U_i}$$
+\end{itemize}
+Verificándose que $<(U_i,\tilde{\varphi}_i)>$ es un atlas de $U$, y $U$ es una variedad diferenciable de la misma dimensión y clase que $M$.
+
+Si $U \subset M$ es un abierto, decir que una aplicación $f:U \to \mathbb{R}$ es diferenciable equivale a considerar $U$ como variedad diferenciable y aplicar la definición.
+\end{enumerate}
+\end{obss}
+
+\begin{ejem}
+En $S^1$ con el atlas $\{(U,\varphi),(V,\psi)\}$, sea la función $\begin{tikzcd} \, \\[-5mm]
+f:\,S^1 \rar & \mathbb{R}\\[-7mm]
+(x,y) \arrow[mapsto]{r} & xy
+\end{tikzcd}$ siendo
+$$U = S^1 - \{(1,0)\} \qquad V = S^1 - \{(-1,0)\}$$
+$$\begin{tikzcd}
+\varphi: \; U \rar & (0,2\pi)\\[-6mm]
+(\cos\theta, \sin\theta) \arrow[mapsto]{r} & \theta
+\end{tikzcd} \qquad \begin{tikzcd}
+\psi: \; V \rar & (-\pi,\pi)\\[-6mm]
+(\cos\theta, \sin\theta) \arrow[mapsto]{r} & \theta
+\end{tikzcd}$$
+Consideremos la aplicación $$\begin{tikzcd}
+f \circ \varphi^{-1}:\hspace{-12mm} & (0,2\pi) \rar & \mathbb{R}\\[-7mm]
+& \theta \arrow[mapsto]{r} & \cos\theta\:\sin\theta
+\end{tikzcd}$$ que es $\mathcal{C}^{\infty}$ en todos sus puntos. Igualmente con $f \circ \psi^{-1}(\theta) = \cos\theta\:\sin\theta$, con lo que se concluye que $f$ es diferenciable en $S^1$.
+\end{ejem}
+
+\begin{defi}
+Sea $(U,\varphi)$ una carta de una variedad diferenciable $M^n$. Se llamará \textbf{funciones coordenada de $(U,\varphi)$} a las aplicaciones $x_i = r_i \circ \varphi : U \to \mathbb{R}$ para cada $i= 1,\dots,n$, y donde $r_i$ representa la proyección $i$-ésima de $\mathbb{R}^n$.
+\end{defi}
+
+\begin{nota}
+Denotaremos a las funciones coordenada por $\varphi = (x_1,\dots,x_n)$ o, cuando estemos definiendo una carta, por $(U,\varphi\equiv(x_i))$.
+\end{nota}
+
+\begin{obs}
+Las $x_i:U \to \mathbb{R}$ son trivialmente diferenciables, ya que $x_i \circ \varphi^{-1} = r_i \circ \varphi \circ \varphi^{-1} = r_i$, que es siempre una aplicación diferenciable (coordenadas usuales de $\mathbb{R}^n$).
+\end{obs}
+
+\begin{defi}
+Sean $M^m$ y $N^n$ dos variedades diferenciables de clase $\mathcal{C}^k$, y $f: M \to N$ una aplicación. Se dice que $f$ es \textbf{diferenciable de clase $\mathcal{C}^k$ en $p \in M$} si existe una pareja de cartas $(U,\varphi)$ de $M$ con $p \in U$ y $(V,\psi)$ de $N$ con $f(p) \in V$ de forma que $$\begin{tikzcd}
+\psi \circ f \circ \varphi^{-1}: \hspace{-7mm} &  \mathbb{R}^m \rar & \mathbb{R}^n
+\end{tikzcd}$$es diferenciable de clase $\mathcal{C}^k$ en $\varphi(p)$. Se dice que $f$ es diferenciable si lo es en cada punto de $M$.
+\end{defi}
+\textbf{Representaci\'on gr\'afica.} Podemos entenderlo como un diagrama conmutativo:
+$$\begin{tikzcd}
+    M\supset U \arrow{dd}{\varphi} \hspace{10mm} \arrow[bend left=50]{r}{f} & \hspace{10mm} V\subset N \arrow{dd}{\psi} \\ \\
+    \mathbb R^m \supset \varphi(U) \hspace{10mm} \arrow[bend right=50, swap]{r}{\psi \, \circ f \circ \, \varphi^{-1}} & \mathbb R^n
+\end{tikzcd}$$
+\begin{obss} \, 
+\begin{enumerate}
+\item En esta definición se presupone que $\varphi(p)$ es un punto interior del dominio de $\psi \circ f \circ \varphi^{-1}$, que es $\varphi(U \cap f^{-1}(V)) \subset \mathbb{R}^m$.
+\item Si se cumplen las condiciones de la definición para una pareja de cartas $(U,\varphi),(V,\psi)$ concretas, también serán ciertas para cualquier pareja de cartas que cubran $p$ y $f(p)$ respectivamente. Es decir, aunque para definir la diferenciabilidad de aplicaciones usamos cartas, esta definici\'on no depende de las cartas.
+\item Se pueden considerar aplicaciones de clase $\mathcal C^l$ con $l \leq k$ o entre variedades de distinta clase de diferenciabilidad.
+\item A la composición $\psi \circ f \circ \varphi^{-1}$ la llamaremos \textbf{lectura de $f$ en coordenadas} o \textbf{representante local de }$f$, o \textbf{expresi\'on en coordenadas locales} de $f$.
+\item Si $N = \mathbb{R}$ y por tanto $f: M \to \mathbb{R}$ es una función, se recupera la definición anterior considerando en $\mathbb{R}^n$ la estructura diferenciable usual con la carta identidad.
+\end{enumerate}
+\end{obss}
+
+\begin{defi}
+Sean $M$ y $N$ dos variedades diferenciables de clase $\mathcal{C}^k$ y $f:M\longrightarrow N$ una aplicación. Se dice que $f$ es un \textbf{difeomorfismo} si $f$ es diferenciable, biyectiva y $f^{-1}$ es diferenciable. En tal caso, se dice que $M$ y $N$ son variedades difeomorfas.
+\end{defi}  
+\begin{obs}
+    La condici\'on de que dos variedades diferenciables sean difeomorfas es una relaci\'on binaria de equivalencia, en el conjunto de todas las variedades diferenciables.
+\end{obs}
+\begin{prop}
+Sean $M$ y $N$ dos variedades diferenciables.
+\begin{itemize}
+    \item Si $f:M\to N$ es diferenciable, entonces es continua.
+    \item Si $f:M \to N$ es diferenciable y $U \subset M$ es un abierto, entonces $f|_U :U \to N$ es diferenciable.
+     \item La composición de aplicaciones diferenciables es diferenciable.
+    \item Las cartas de una variedad son aplicaciones diferenciables. En particular cada funci\'on coordenada.
+\end{itemize}
+\end{prop}
+\begin{demx}
+\textcolor{red}{Ejercicio.}
+\end{demx}
+
+
+\section{Particiones diferenciables de la unidad}
+\begin{teo}
+Sea $M$ una variedad diferenciable que sea $T_2$ y $2AN$, y $\{U_i\}_{i\in I}$ un recubrimiento por abiertos de $M$. Entonces, existe una partición de la unidad diferenciable, con soporte compacto, subordinada al recubrimiento con soportes compactos. Es decir, existen para todo $n\in \mathbb{N}$ funciones $\{f_n:\,M\longrightarrow [0,1]\}$ diferenciables, cumpliendo que:
+\begin{enumerate}[1)]
+    \item $\forall\; n\in \mathbb{N}, \, sop(f_n) = \overline{\{p \in M\; / \; f_n(p) \neq 0\}}$ es compacto y $\exists\; i(n) \in I$ tal que $sop(f_n)\subset U_{i(n)}$
+    \item La familia $\{sop(f_n)\}_{n\in\mathbb{N}}$ es localmente finita, es decir, $\forall p \in M,\;\;\exists\; V \subset M$ abierto, $p \in V$ tal que $V$ interseca tan solo a un número finito de soportes.
+    \item $\forall \; p \in M$, se tiene que $\underset{n \in \mathbb{N}}{\sum} f_n(p) = 1$
+\end{enumerate}
+\begin{dem}
+    Ver \textbf{Frank W. Warner}: \textit{Foundations of differentiable manifolds and Lie groups (Graduate Texts in Mathematics, 94)}. Springer-Verlag, 1983. Págs. 9-11. 
+\end{dem}
+\end{teo}
+\begin{obss} \, 
+    \begin{enumerate}[a)]
+        \item Una partici\'on de la unidad es una familia de funciones en $[0,1]$ que cumple 2) y 3)
+        \item Por la propiedad 2), la suma de 3) es finita.
+        \item Que la partici\'on est\'e subordinada al recubrimiento quiere decir que $sop(f_n) \subset U_{i(n)}$.
+        \item Con la hip\'otesis de ``paracompacidad'', que es m\'as general que $T_2$ y $2AN$ se obtiene un resultado similar, donde la partici\'on tal vez no sea numerable.
+    \end{enumerate}
+\end{obss}
+
+\begin{cor}
+Sea $M$ una variedad diferenciable $T_2$ y $2AN$. Dado $U \subset M$ abierto y $C$ cerrado tal que $C \subset U$, entonces existe $f:\,M\longrightarrow[0,1]$ diferenciable de modo que\begin{enumerate}
+    \item $sop(f) \subset U$ (en particular $f_{|_{M-U}}\equiv 0$)
+    \item $f_{|_{G}} \equiv 1$
+\end{enumerate}
+\end{cor}
+\begin{dem}
+Sea el recubrimiento abierto $\{U,M-C\}$ de $M$. Por el teorema anterior $\exists \{f_n: M \to [0,1]\}_{n\in\mathbb{N}}$ partición de la unidad con las condiciones dadas, y $\forall n\in \mathbb{N}$, $sop(f_n) \subset U$ o $sop(f_n) \subset M-C$. Sea $\displaystyle f = \underset{n \,/\, sop(f_n) \subset U}{\sum} f_n$, que es la que cumple los requisitos. 
+\end{dem}
+
+\begin{cor}[Existencia de funciones meseta]
+Sea $M$ una variedad diferenciable $T_2$ y $2AN$, y sea $U \subset M$ un abierto con $p \in U$. Entonces existe $h:M\to [0,1]$ diferenciable y un abierto $V$ con $p \in V \subset \overline{V} \subset U$ con $\overline{V}$ compacto tales que:
+\begin{enumerate}
+    \item $sop(h) \subset U$ (en particular $h|_{M-U}\equiv 0$)
+    \item $h|_{\overline{V}}\equiv 1$
+\end{enumerate}
+Llamaremos a estas aplicaciones funciones meseta.
+\end{cor} 
+\begin{dem}
+Por ser $M$ $T_2$, dado $p \in U$ abierto hemos visto que existe un abierto $V$ con $p \in V \subset \overline{V} \subset U$ y $\overline{V}$ compacto. Basta aplicar el corolario anterior al abierto $U$ y el cerrado $\overline{V} \subset U$.
+\end{dem}
+
+
+
+\begin{teo}
+Sea $M$ una variedad diferenciable $T_2$ y $2AN$, y $f: U\subset M \to \mathbb{R}$ una aplicación diferenciable con $U$ abierto. Entonces, dado $p \in U$, existe un abierto $V$ con $p \in V \subset \overline{V} \subset U$, $\overline{V}$ compacto y $F: M \to \mathbb{R}$ diferenciable de modo que $f|_{\overline{V}} = F|_{\overline{V}}$. Es decir, podemos extender cada aplicación definida localmente en un abierto a una aplicación diferenciable global.
+\end{teo}
+\begin{dem}
+Con $p \in U$ y $U$ abierto, consideremos una función meseta $h: M\to [0,1]$ diferenciable, y un abierto $V$ con $p \in V \subset \overline{V} \subset U$ y $\overline{V}$ compacto, cumpliéndose que $sop(h) \subset U$ y $h|_{\overline{V}}\equiv 1$. Definamos $f$ de la forma $$F(q) = \begin{cases}
+h(q) \, f(q) \quad \;\text{si } q \in U\\
+0 \qquad \qquad \quad \text{si } q \in M - sop(h)
+\end{cases}$$
+Se verifica que $U$ y $M - sop(h)$ son dos abiertos que recubren $M$. La definición de $F$ es correcta ya que en $U \cap (M - sop(h))$, $h \equiv 0$, por lo que $hf \equiv F \equiv 0$. Además, en cada abierto $F$ es diferenciable, por lo que lo es en $M$ en el grado en que lo sea $f$.
+\end{dem} 
+
+\begin{obs}
+En el resto de estas notas, por convenio, si no se especifica lo contrario la diferenciabilidad será de clase $\mathcal{C}^{\infty}$ y las variedades diferenciables serán $T_2$ y $2AN$.
+\end{obs}
+
+

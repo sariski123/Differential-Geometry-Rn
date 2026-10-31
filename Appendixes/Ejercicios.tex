@@ -1,0 +1,847 @@
+\justifying
+\chapter{Ejercicios}
+\section{Tema 1. Variedades diferenciables}
+\begin{ejer}
+    [1.5] \textit{Proyecciones ortogonales de} $\bold{S}^2$. Considera la esfera de $\mathbb R^3$, $\bold{S}^2 = \{(x_1, x_2, x_3) \, / \,  x_1^2 + x_2^2 + x^2_3 = 1\}$, y para $i = 1, 2, 3$ los subconjuntos $U^+_i = \{(x_1, x_2, x_3) \in \bold{S}^2 \, / \, x_i > 0\}$ y $U^-_i =\{(x_1, x_2, x_3) \in \bold{S}^2 \, / \,  x_i < 0\}$. Para $i = 1, 2, 3$, se definen las aplicaciones $\psi^+_i$ y $\psi^-_i$ de $U^+_i$ y $U^-_i$, respectivamente, a $\mathbb R^ 2$ mediante:
+    $$\psi^{\pm}_1(x_1, x_2, x_3) = (x_2, x_3)$$
+    $$\psi^{\pm}_2(x_1, x_2, x_3) = (x_1, x_3)$$
+    $$\psi^{\pm}_3(x_1, x_2, x_3) = (x_1, x_2)$$
+Demuestra que $\{(U^+_i, \psi^+_i), (U^-_{i} , \psi^-_i)\}^{3}_{i=1}$ determina una estructura diferenciable sobre $\bold{S}^2$. ¿Cu\'antas cartas tendr\'ia un atlas construido de la misma forma en $\bold{S}^n \subset \mathbb R^{n+1}$? \textit{Indicaci\'on: Intuitivamente, estamos ``chafando'' cada hemisferio en un c\'irculo sin borde.}
+\end{ejer}
+\begin{sol}
+    Haremos el caso en que usamo el hemisferio norte. De esta forma, tenemos que 
+    $$\psi_3^+(U_3^+)=\{(x,y \in \mathbb R^3 \, / \, x^2+y^2 < 1)\}$$
+    y la inversa de esta aplicaci\'on, usando la condici\'on de que tenemos que deschafar cada punto a la propia esfera, es decir, usando la ecuaci\'on de $\bold{S}^2$, viene dada por
+    $$\begin{array}{rrcl}
+         (\psi_3^+)^{-1}: & \mathbb R^2 \supset \psi_3^+(U_3^+) & \longrightarrow & U_3^+  \\
+         & (x,y) & \longmapsto & (x,y,\sqrt{1-x^2-y^2})
+    \end{array}$$
+    Para comprobar que es la inversa, ver\'iamos que $(\psi_3^+)^{-1} \circ \psi_3^+ = Id$ y $\psi_3^+ \circ(\psi_3^+)^{-1}=Id$. En particular, se tiene que $\psi_3^+(U_3^+)$ es abierto de $\mathbb R^2$, y que $\psi_3^+$ es trivialmente epiyectiva sobre su imagen, de forma que podemos asegurar que $(U_3^+, \psi_3^+)$ es carta 2-dimensional de $\bold{S}^2$.
+
+    An\'alogamente, demostramos que el resto de pares $(U_i^{\pm}, \psi_i^{\pm})$ son cartas. Veamos ahora si forman un atlas. En primer lugar, comprobaremos la compatibilidad de las cartas. Por ejemplo, la de $(U_3^+, \psi_3^+)$ y $(U_2^-, \psi_2^-)$. Veamos que su intersecci\'on es
+    $$U_2^-\cap U_3^+ = \{(x_1, x_2, x_3) \, / \, x_2 < 0, \, x_3 >0\} \neq \emptyset$$
+    y por tanto, los conjuntos
+    $$\psi_3^+ (U_2^-\cap U_3^+) = \{(x,y) \, / \, x^2 + y^2 < 1, \, y< 0\}$$
+    $$\psi_2^- (U_2^-\cap U_3^+) = \{(x,y) \, / \, x^2 + y^2 < 1, \, y> 0\}$$
+    son ambos abiertos de $\mathbb R^2$, por las desigualdades estrictas. Entonces
+    $$\psi_2^- \circ (\psi_3^+)^{-1} (x,y) = \psi_2^-\left(x,y,\sqrt{1-x^2-y^2}\right)= \left(x,\sqrt{1-x^2-y^2}\right) \in \mathcal{C}^{\infty}$$
+    $$\psi_3^+ \circ (\psi_2^-)^{-1} (x,y) = \psi_3^+\left(x,y,\sqrt{1-x^2-y^2}\right)= \left(x,-\sqrt{1-x^2-y^2}\right)\in \mathcal{C}^{\infty}$$
+    por ser composici\'on de aplicaciones $ \mathcal{C}^{\infty}$. La comprobaci\'on de la compatibilidad del resto de cartas es an\'alogo o bien son trivialmente compatibles ($U_3^+ \cap U_3^- = \emptyset$). As\'i pues, todas las cartas son compatibles de clase $\mathcal{C}^{\infty}$. 
+
+    Adem\'as, $\bold{S}^2 = \displaystyle \bigcup_{i=1}^3 (U_i^+ \cup U_i^-)$, por tanto $\{U_i^{\pm}, \psi_i^{\pm}\}_{i=1}^3$ es un atlas 2-dimensional de clase $\mathcal{C}^{\infty}$ de $\bold{S}^2$. 
+\end{sol}
+\begin{ejer}
+    [1.7] \textit{Espacio proyectivo}. El espacio proyectivo real $\mathbb RP^n$ es el conjunto cociente de la relaci\'on de equivalencia en $\mathbb R^{n+1} - \{0\}$ dada por $x \sim y \iff \, \exists \lambda \in \mathbb R^*$ tal que $x = \lambda y$. Para $i = 0,\ldots , n$. 
+    
+    En este caso, trabajaremos sobre $\mathbb RP^2$, es decir, $[x_o,x_1,x_2] = \{(\lambda x_o,\lambda x_1,\lambda x_2) \, / \, \lambda \in \mathbb R^*\}$. Definimos $V_i=\{[x_o,x_1,x_2] \in \mathbb RP^n \, / \, x_i \neq 0\}$. Este conjunto est\'a bien definido y no depende del representante elegido. Definimos tambi\'en las aplicaciones
+    $$\begin{array}{rrcl}
+        \phi_i: & V_i & \longrightarrow & \mathbb R^2  \\
+         & [x_o,x_1,x_2] & \longrightarrow & \left( \dfrac{x_1}{x_o}, \dfrac{x_2}{x_o}\right) 
+    \end{array}$$
+    que est\'an bien definida, pues $\phi_i[x_o,x_1,x_2] = \phi_i[\lambda x_o,\lambda x_1,\lambda x_2]$. Demuestra que $\{(V_i, \phi_i)\}_{i=0}^2$ define una estructura diferenciable sobre $\mathbb RP^n$.
+\end{ejer}
+\begin{sol}
+    Buscaremos la inversa de $\phi_o$. Veamos si, dado $(u_1,u_2) \in \mathbb R^2, \, \exists \, [x_o,x_1,x_2] \in V_o \, / \, \phi_o [x_o,x_1,x_2]=(u_1,u_2)$. 
+
+    Es claro que, dado $[1,u_1,u_2] \in V_o$, entonces $\phi_o([1,u_1,u_2]) = (u_1,u_2)$, es decir, que 
+    $$\phi_o^{-1}(u_1,u_2) = [1,u_1,u_2]$$
+    As\'i pues, se verifica que 
+    $$\phi_o \circ \phi_o^{-1}(u_1,u_2) = (u_1,u_2)$$
+    $$\phi_o^{-1} \circ \phi_o[x_o,x_1,x_2] = [x_o,x_1,x_2]$$
+    As\'i que en particular $\phi_o$ es inyectiva, y $\phi_o(V_o) = \mathbb R^2$, que es abierto, luego $(V_o, \phi_o)$ es una carta. 
+
+    Lo an\'alogo para $(V_1, \phi_1)$ y $(V_2, \phi_2)$. Para comprobar la compatibilidad, veamos que 
+    $$\phi_1 \circ \phi_o^{-1}(0 \neq u_1,u_2) = \phi_1[1,u_1,u_2] = \left(\dfrac{1}{u_1}, \dfrac{u_2}{u_1}\right) \in \mathcal{C}^{\infty}$$
+    y as\'i, $\phi_o(V_o\cap V_1) = \{ (u_1,u_2) \in \mathbb R^2 \, /\, u_1 \neq 0\}$ es abierto. An\'alogo para el resto, verificando entonces las condicicones de variedad diferenciable.
+\end{sol}
+\begin{ejer} [1.11]
+    Para cada n\'umero real $r > 0$, considera la aplicaci\'on $\phi_r : \mathbb R \to \mathbb R$ definida por:
+$$\phi_r(t) = \begin{cases}
+t & \text{ si } t \leq  0\\
+rt & \text{ si } t > 0 
+\end{cases}$$
+Prueba que los atlas $\{(\mathbb R, \phi_r)\}_{r>0}$ definen una familia no numerable de estructuras diferenciables en $\mathbb R$. Compara la topolog\'ia de estas estructuras diferenciables con la topolog\'ia usual de $\mathbb R^n$.
+\end{ejer}
+\begin{sol}
+   $\phi_r$ es claramente inyectiva y $\phi_r(\mathbb R) = \mathbb R$ que es abierto, luego  $\{(\mathbb R, \phi_r)\}_{r>0}$ es una carta de $M=\mathbb R$. Como es una carta cuyo dominio es global, esta carta sola es un atlas. En particular, para $r=1$ tenemos la carta usual de $\mathbb R$. 
+
+   Veamos ahora si para $r \neq s$, entonces $\phi_s$ es compatible con $\phi_r$. El dominio coincide en ambas, veamos las funciones de transici\'on. Se tiene que 
+    $$\phi_r^{-1}(t) = \begin{cases}
+t & \text{ si } t \leq  0\\
+\frac{1}{r} t & \text{ si } t > 0 
+\end{cases}$$entonces
+   $$\phi_s \circ \phi_r^{-1}(t) = \begin{cases}
+t & \text{ si } t \leq  0\\
+\frac{s}{r}t & \text{ si } t > 0 
+\end{cases}  \qquad \phi_r \circ \phi_s^{-1}(t) =\begin{cases}
+t & \text{ si } t \leq  0\\
+\frac{r}{s}t & \text{ si } t > 0 
+\end{cases} $$
+que no son compatibles, es decir, que no generan el mismo atlas maximal.
+
+  Hablemos ahora de la topolog\'ia inducida por $\{(\mathbb R, \phi_r)\}$. Podemos asegurar que $\phi_r$ es un homeomorfismo, de forma que la topolog\'ia inducida es la usual. Estamos cambiando la diferenciabilidad, no la topolog\'ia. 
+\end{sol}
+\begin{ejer}
+    [1.19] Demuestra que las estructuras diferenciables de $\mathbb R$ del problema 1.11 son todas difeomorfas.
+\end{ejer}
+\begin{sol}
+    Sea $M \equiv \mathbb R$ con la estructura diferenciable del atlas $\{(\mathbb R, \phi_r)\}$. Consideramos para $r \neq s$, queremos establecer el difeomorfismo
+    $$\begin{array}{rcl}
+         M_r &\overset{f}{\longrightarrow} & M_s  \\
+    \end{array} \Rightarrow \phi_s \circ f \circ \phi_r (t) = \phi_s(f(\nicefrac{1}{r}t)) =\phi_s(\nicefrac{r}{s}(\nicefrac{1}{r}t)) = s \dfrac{1}{s} t =t$$
+    habiendo definido $$f(t)=\begin{cases}
+        t & \text{ si } t \leq 0 \\ \frac{r}{s} t & \text{ si } t>0
+    \end{cases}$$
+     de forma que $\phi_s \circ f \circ \phi_r = Id$ es diferenciable en el sentido usual ($f$ nos est\'a corrigiendo esos picos que se crean y no dejan ser diferenciable a las $\phi$).
+
+     Para la aplicaci\'on inversa, obtendremos el miso resultado, asegurando que $f$ es un difeomorfismo. A pesar de que hemos visto que las estructuras no son compatibles, son difeomorfas, pudiendo transformas un sentido de diferenciabilidad en el otro. 
+\end{sol}
+\begin{ejer}
+    [1.16] Sean $\{U_i, \varphi_i\}_{i\in I}$ y $\{V_j, \psi_j\}_{j\in J}$ atlas diferenciables para las variedades $M^m$ y $N^n$ respectivamente. Prueba que: 
+    \begin{enumerate}[a)]
+        \item $\{U_i \times V_j, \varphi_i \times \psi_J\}_{i\in I, j\in J}$ es un atlas diferenciable para $M \times N$.
+        \begin{sol}
+            Es decir, 
+            $$\begin{array}{rrcl}
+                 \varphi_i \times \psi_j :& U_i \times V_j & \longrightarrow & \mathbb R^{m+n} \\
+                 & (p,q) & \longmapsto & (\varphi_i(p), \psi_j(q))
+            \end{array}$$
+            Est\'a bien definida, es inyectiva y $(\varphi_i \times \psi_j)(U_i \times V_j) = \varphi_i (U_i) \times \psi_j (V_j)$ y por ser ambos abiertos, el producto tambi\'en de $\mathbb R ^{m+n}$.
+
+            Para estudiar las funciones de transici\'on necesitamos las aplicaciones inversas, que son 
+            $(\varphi_i \times \psi_j)^{-1} = \varphi_i^{-1} \times \varphi_j^{-1}$ como se puede comprobar de manera sencilla. Entonces, dado $(i_1,j_1), (i_2,j_2) \in I \times J$, 
+            $$(U_{i_1} \times V_{j_1}) \cap (U_{i_2} \times V_{j_2}) = (U_{i_1} \cap U_{i_2}) \times (V_{j_1} \cap V_{j_2})$$ y haciendo sus im\'agenes por las cartas
+            $$\varphi_{i_1}(U_{i_1} \cap U_{i_2}) \times \psi_{j_1}(V_{j_1} \cap V_{j_2})$$
+            y an\'alogamente para $\varphi_{i_2} \times \psi_{j_2}$, que son respectivamente abiertos por ser ya cartas, luego el producto de ellos tambi\'en. 
+            
+            As\'i, las funciones de transici\'on son 
+            $$(\varphi_{i_2} \times \psi_{j_2})\circ (\varphi_{i_1} \times \psi_{j_1})^{-1} (x_1, \ldots, x_m, y_1, \ldots, y_n) = $$$$=\varphi_{i_2} \times \psi_{j_2}\left(\varphi_{i_1}^{-1}(x_1, \ldots, x_m), \psi_{j_1}^{-1}(y_1, \ldots, y_n) \right) = $$
+            $$= \left(\varphi_{i_2} \circ \varphi_{i_1}^{-1} (x_1, \ldots, x_m), \psi_{j_2} \circ \psi_{j_1}^{-1} (y_1, \ldots, y_n)\right)$$
+            que son diferenciables, concluyendo que  $\{U_i \times V_j, \varphi_i \times \psi_J\}_{i\in I, j\in J}$ es un atlas de clase $\mathcal C^{\infty}$ y dimensi\'on $m+n$ por ser $\{U_i , \varphi_i\}_{i\in I}$ atlas de $M$ con $\varphi_{i_2} \circ \varphi_{i_1}^{-1}$ son diferenciables.
+
+            Esta es la estructura diferenciable usual en la variedad producto.
+        \end{sol}
+        \item  Las proyecciones $\pi_1 : M \times N \to M$ y $\pi_2 : M \times N \to N$ son aplicaciones diferenciables.
+        \begin{sol}
+            Dada esta, hacemos la carta asociada que expl\'icitamente en coordenadas es 
+            $$\varphi_i \circ \pi_1 \circ (\varphi_i \times \psi_j)^{-1} (x_1, \ldots, x_m , y_1, \ldots y_n)= $$ $$= \varphi_i \circ \pi_1 (\varphi_i^{-1}(x_1, \ldots, x_m), \psi_j^{-1}(y_1, \ldots y_n)) =$$ $$=\varphi_i\left( \varphi_i^{-1}(x_1, \ldots, x_m)\right) = (x_1, \ldots, x_m)$$
+            de la misma forma para $\pi_2$. Es decir, estudiar la diferenciabilidad de las proyecciones es estudiar la diferenciabilidad de las cartas. 
+        \end{sol}
+        \item Para una variedad diferenciable $P$ y $f : P \to M \times N$ una aplicaci\'on, entonces $f$ es diferenciable si y solo si $\pi_1 \circ f$ y $\pi_2 \circ f$ son diferenciables.
+        \item $\mathcal C^{\infty}(P, M \times N) =\mathcal C^{\infty}(P, M) \times \mathcal C^{\infty}(P, N)$
+    \end{enumerate}
+    
+\end{ejer}
+\begin{ejer}
+    [1.14] \textit{Entorno c\'ubico centrado}. Sea $M$ una variedad diferenciable de dimensi\'on $n$. Demuestra que para cada $p \in M$ existe una carta $(U, \varphi)$ tal que $\varphi(p) = 0 \in \mathbb R^n$ y $\varphi(U) = \{(x_1, \ldots , x_n) \in \mathbb R^n \, / \, |x_i| < a\}$, donde $a \in 
+\mathbb R^+$.
+\end{ejer}
+\begin{sol}
+    Dado $p \in M$, existir\'a $(V,\psi)$ carta de $M$, $p \in V$. Definimos la traslaci\'on $t_{\psi(p)}$ que lleva $\psi(p)$ a $0 \in \mathbb R^n$. Este es un difeomorfismo por ser diferenciable, que algebraicamente es $t_{\psi(p)} (x_1, \ldots , x_n) = (x_1, \ldots , x_n) - \psi(p)$. en particular $t_{\psi(p)}(\psi(p)) = 0$ y $t_{\psi(p)}(\psi(V))$ es abierto.
+
+    En particular, existir\'a $a > 0$, de forma que $W=\{(x_1, \ldots , x_n) \, / \, |x_i| < a\} \subset V$. Basta ahora considerar $U=(t_{\psi(p)} \circ \psi(p))^{-1} (W)$ y $\varphi = (t_{\psi(p)} \circ \psi)|_U$. As\'i, $(U, \varphi)$ es la carta buscada, que ser\'a diferenciable por ser composici\'on e inversa de difeomorfismo. 
+\end{sol}
+\begin{ejer}
+    [1.17] Demuestra que la aplicaci\'on antipodal de $\bold S ^2$ y la reflexi\'on sobre el plano $z = 0$ son aplicaciones diferenciables.
+\end{ejer}
+\begin{sol}
+    Las aplicaciones son
+    $$\begin{array}{rrcl}
+         f: & \bold S ^2 & \longrightarrow & \bold S ^2 \\
+         & (x,y,z) & \longrightarrow & (-x,-y,-z) 
+    \end{array} \qquad \begin{array}{rrcl}
+         g: & \bold S ^2 & \longrightarrow & \bold S ^2 \\
+         & (x,y,z) & \longrightarrow & (x,y,-z) 
+    \end{array}$$
+    Veamos que $f$ es diferenciable en todos los puntos. Usamos las cartas del atlas de las coordenadas esterogr\'aficas $\{\bold S ^2-\{N,S\}, \varphi_{N}=(u_1,u_2), \varphi_S=(v_1,v_2)\}$. Sea $p \in \bold S ^2-\{N\}$, sabemos que $f(p) \neq S=(0,0,-1)$, podemos usar $\varphi_S$ para $f(p)$. Consideramos la expresi\'on en coordenadas de la composici\'on:
+    $$\varphi_S \circ f \circ \varphi_N^{-1} (u_1, u_2)= \varphi_S \circ f \left( \dfrac{2u_1}{1+u_1^2+u_2^2}, \dfrac{2u_2}{1+u_1^2+u_2^2}, \dfrac{u_1^2+u_2^2-1}{1+u_1^2+u_2^2} \right) =  $$
+    $$= \varphi_S \left(- \dfrac{2u_1}{1+u_1^2+u_2^2}, -\dfrac{2u_2}{1+u_1^2+u_2^2}, -\dfrac{u_1^2+u_2^2-1}{1+u_1^2+u_2^2} \right) = \left(-u_1, -u_2 \right) \in \mathcal{C}^{\infty}$$
+
+    An\'alogamente, para $\varphi_N \circ f \circ \varphi_S^{-1}(v_1,v_2)$.
+\end{sol}
+\begin{ejer} [1.20]
+    Sea $T : \mathbb R^3 \to \mathbb R^3$ una aplicaci\'on lineal biyectiva. Demuestra que el paso al
+cociente induce una aplicaci\'on $\tilde{T} : \mathbb RP^n \to \mathbb RP^n$ que es un difeomorfismo.
+\end{ejer}
+\begin{sol}
+    La aplicaci\'on $\tilde{T}$ es 
+    $$\begin{array}{rcl}
+          \mathbb R P^2 & \longrightarrow & \mathbb RP^2  \\
+         \left[(x_o,x_1,x_2)\right] & \longrightarrow & \left[T(x_o,x_1,x_2)\right]  
+    \end{array}$$
+    con la matriz asociada $A=(a_{ij})$ de forma que 
+    $$T(x_o,x_1,x_2) = A \begin{pmatrix}
+        x_o \\ x_1 \\ x_2 
+    \end{pmatrix}= (\sum a_{oi} x_i , \sum a_{1i} x_i , \sum a_{21} x_i)$$
+    
+    Veamos que est\'a bien definido. Sean dos elementos relacionados, $[x_o,x_1,x_2]=[\lambda x_o, \lambda x_1, \lambda x_2]$, entonces $T(\lambda x_o, \lambda x_1, \lambda x_2) = \lambda T(x_o,x_1,x_2)$ por ser $T$ lineal, de forma que $[T(x_o,x_1,x_2)] = [\lambda T(x_o,x_1,x_2)]$. Por ser $T$ isomorfismo, $ker\, T = \{(0,0,0)\}$, por lo que $\forall [(x_o,x_1,x_2)] \in \mathbb R P^2 $ se tiene que $T(x_o,x_1,x_2) \neq 0$ y puedo considerar $[T(x_o,x_1,x_2)]$. As\'i pues, $\tilde{T}$ est\'a bien definido. 
+
+    Para demostrar la diferenciabilidad, usamos las coordenadas usuales de $\mathbb RP^2$ con $V_o = \{[x_o,x_1,x_2] / x_o \neq 0\}$ y $\phi_o([x_o,x_1,x_2])=\left(\dfrac{x_1}{x_o}, \dfrac{x_2}{x_o}\right)$. 
+    
+    Sea $[x_o,x_1,x_2] \in V_o$ tal que $\tilde{T}([x_o,x_1,x_2]) \in V_1$, entonces
+    \[\begin{split}
+        \phi_1 \circ \tilde T \circ \phi_o^{-1}(u_1,u_2) & = \phi_1 \circ \tilde T ([1,u_1,u_2]) = \\ & = \phi_1\left( [a_{00}+a_{01}u_1 + a_{02} u_2, a_{10} + a_{11}u_1+a_{12}u_2, a_{20} + a_{21} u_1 + a_{22} u_2 ]\right)=\\ & = \left( \dfrac{a_{00}+a_{01}u_1 + a_{02} u_2}{a_{10} + a_{11}u_1+a_{12}u_2}, \dfrac{a_{20} + a_{21} u_1 + a_{22} u_2}{a_{10} + a_{11}u_1+a_{12}u_2}\right)
+    \end{split}\]
+    y el \'ultimo paso ha sido posible por estar en $V_1$, es decir, la coordenada $u_1$ es no nula. Es diferenciable $\mathcal C^{\infty}$ pues es suma y cocientes de diferenciables. 
+
+    An\'alogamente en el resto de casos.
+\end{sol}
+\section{Tema 2. Espacio tangente}
+\begin{ejer}
+    [2.3] En $\bold S^2$ considera las coordenadas estereogr\'aficas $\{(\bold S^2 - \{N\}, \varphi_N=(u_1,u_2)), \, (\bold S^2 - \{S\}, \varphi_S=(v_1,v_2))\}$ donde $N$ y $S$ son, respectivamente, el polo norte y sur de la esfera. Sean los puntos $p=(\nicefrac{\sqrt{2}}{2}, \nicefrac{\sqrt{2}}{2}, 0) \in \bold S^2$ y $q=(\nicefrac{\sqrt{3}}{2}, 0, \nicefrac{1}{2}) \in \bold S^2$ y los vectores
+    $$\pd{}{u_1} \Big|_p, 2\pd{}{u_1} \Big|_p - \pd{}{u_2} \Big|_p \in T_p \bold S^2 \qquad \pd{}{u_2} \Big|_q , \pd{}{u_1} \Big|_q + \sqrt{3} \pd{}{u_2} \Big|_q \in T_q \bold S^2$$
+    Expresa dichos vectores en funci\'on de $\pd{}{v_1}$ y $\pd{}{v_2}$.
+\end{ejer}
+\begin{sol}
+    En coordenas, las aplicaciones de las cartas son
+    $$\varphi_N(x,y,z)=\left(u_1 = \dfrac{x}{1-z},u_2 = \dfrac{y}{1-z}\right) \, / z \neq 1 \quad \varphi_S(x,y,z)=\left(v_1 = \dfrac{x}{1+z},v_2 = \dfrac{y}{1+z}\right) \, /  z \neq-1$$
+    Sea $p = (x,y,z) \in \bold S^2$ con $z \neq \pm 1$, $T_p\bold S^2$ tiene $\left\{ \pd{}{u_1} \Big|_p,  \pd{}{u_2} \Big|_p \right\}$ y $\left\{ \pd{}{v_1} \Big|_p,  \pd{}{v_2} \Big|_p \right\}$ como bases. Realizaremos los siguientes pasos:
+    \begin{enumerate}
+        \item Calcular la matriz de cambio de base, por la f\'ormula de cambio de coordenadas
+        $$\pd{}{u_i} \Big|_p = \left( \pd{}{u_i} \Big|_p v_1\right)\pd{}{v_1} \Big|_p + \left( \pd{}{u_i} \Big|_p v_2\right)\pd{}{v_2} \Big|_p$$
+        de forma que
+        $$\varphi_S \circ \varphi_N^{-1}(u_1,u_2) = (v_1(u_1,u_2), v_2(u_1,u_2))=\left( v_1=\dfrac{u_2}{u_1^2+u_2^2}, v_2=\dfrac{u_2}{u_1^2+u_2^2}\right)$$
+        por las construcciones que ya vimos anteriormente. Con esto, podemos derivar y encontrar la f\'ormula de cambio variable:
+        $$\pd{}{u_1} \Big|_p v_1 = \dfrac{(u_1^2+u_2^2) - u_1(2u_1)}{(u_1^2+u_2^2)^2} = \dfrac{-u_1^2+u_2^2}{(u_1^2+u_2^2)^2}$$
+        $$\pd{}{u_1} \Big|_p v_2 = \dfrac{- u_2(2u_1)}{(u_1^2+u_2^2)^2} =  \dfrac{-2u_1u_2}{(u_1^2+u_2^2)^2}$$
+        $$\pd{}{u_2} \Big|_p v_1 = \dfrac{-2u_1u_2}{(u_1^2+u_2^2)^2} \quad \pd{}{u_2} \Big|_p v_2 =\dfrac{u_1^2-u_2^2}{(u_1^2+u_2^2)^2} $$
+        de forma que 
+        $$\pd{}{u_1} \Big|_p = \dfrac{-u_1^2+u_2^2}{(u_1^2+u_2^2)^2}\pd{}{v_1} \Big|_p +\dfrac{-2u_1u_2}{(u_1^2+u_2^2)^2}\pd{}{v_2} \Big|_p \in T_p\bold S^2$$
+        $$\pd{}{u_2} \Big|_p =\dfrac{-2u_1u_2}{(u_1^2+u_2^2)^2} \pd{}{v_1} \Big|_p +\dfrac{u_1^2-u_2^2}{(u_1^2+u_2^2)^2}\pd{}{v_2} \Big|_p \in T_p\bold S^2 $$
+        y escribiendo las operaciones en funci\'on de $v_1$ y $v_2$ obtendr\'iamos el resultado.
+
+        \item Tomar los puntos y los vectores y expresar en la base pedida.
+
+        Sea $p$, en las otras cordenadas el punto ser\'ia 
+        $$\varphi_N(p)=(u_1(p), u_2(p))=\left(\dfrac{\nicefrac{\sqrt{2}}{2}}{1-0}, \, \dfrac{\nicefrac{\sqrt{2}}{2}}{1-0}\right) = \left( \dfrac{\sqrt{2}}{2}, \dfrac{\sqrt{2}}{2}\right)$$
+        As\'i, 
+        $$\pd{}{u_1} \Big|_p = \dfrac{\cancelto{0}{-\frac{\sqrt{2}^2}{2^2}+\frac{\sqrt{2}^2}{2^2}}}{\left( (\nicefrac{\sqrt{2}}{2})^2+(\nicefrac{\sqrt{2}}{2})^2 \right)} \pd{}{v_1} \Big|_p - \cancelto{1}{\dfrac{2\frac{\sqrt{2}}{2}\frac{\sqrt{2}}{2}}{(\nicefrac{\sqrt{2}}{2})^2+(\nicefrac{\sqrt{2}}{2})^2}} \pd{}{v_2} \Big|_p =(0,-1)$$
+        $$\pd{}{u_2} \Big|_p = - \cancelto{1}{\dfrac{2\frac{\sqrt{2}}{2}\frac{\sqrt{2}}{2}}{(\nicefrac{\sqrt{2}}{2})^2+(\nicefrac{\sqrt{2}}{2})^2}} \pd{}{v_1} \Big|_p + \dfrac{\cancelto{0}{\frac{\sqrt{2}^2}{2^2}}-\frac{\sqrt{2}^2}{2^2}}{\left( (\nicefrac{\sqrt{2}}{2})^2+(\nicefrac{\sqrt{2}}{2})^2 \right)} \pd{}{v_2} \Big|_p = (-1,0)$$
+        y con $q=(\nicefrac{\sqrt{3}}{2}, 0, \nicefrac{1}{2})$, 
+        $$\varphi_N(q) = \cdots = (\sqrt{3}, 0) $$
+        y 
+        $$\pd{}{u_1} \Big|_q = \cdots = (-\nicefrac{1}{3},0) \qquad \pd{}{u_2} \Big|_q = \cdots = (0, \nicefrac{1}{3})$$
+        pues la matriz de cambio de base de $\left\{ \pd{}{u_i} \Big|_p\right\}_{i=1}^2$ a $\left\{ \pd{}{v_i} \Big|_p\right\}_{i=1}^2$ es
+        $$\dfrac{1}{(u_1^2+u_2^2)^2} \begin{pmatrix}
+            -u_1^2+u_2^2 & -2u_1u_2 \\  u_1^2-u_2^2& -2u_1u_2
+        \end{pmatrix}$$
+    \end{enumerate}
+\end{sol}
+\begin{ejer}
+    [2.6] Considera la curva $\sigma : (0, +\infty) \to \mathbb R P^n$  dada por la expresi\'on $\sigma(t) = [(\log t, t, \nicefrac{1}{1+t})]$. Demuestra $\sigma$ es diferenciable en todos sus puntos y calcula su vector tangente.
+\end{ejer}
+\begin{sol}
+    En primer lugar, la aplicaci\'on est\'a bien definida, pues en ning\'un punto $\sigma(t) = [(0,0,0)]$, la cual no existir\'a. 
+
+    A la vista de $\sigma$, sabemos que $\sigma(t) \in V_1 \cap V_2 \, \forall y \in (0, \infty)$. Utilizaremos por ejemplo $(V_1, \varphi_1=(v_1,v_2))$. Recordemos que $\phi_1[(x_o, x_1, x_2)] = \left( \frac{x_o}{x_1}, \frac{x_2}{x_1}\right)$ y $\phi_1^{-1}(v_1, v_2) = [(v_1, 1, v_2)]$. De esta forma, ya podemos comprobar la diferenciabilidad de $\sigma$:
+    $$(\phi_1 \circ \sigma)(t) = \phi_1[\log(t), t, \nicefrac{1}{1+t}] = \left(\dfrac{\log(t)}{t}, \dfrac{1}{t(1+t)}\right)$$
+    Finalmente, esta funci\'on es diferenciable tanto como se desee, por lo que $\sigma \in \mathcal C^{\infty}$. Este proceso se har\'ia an\'alogamente en las dem\'as cartas (aunque en este caso no proceda ya que $\phi_1$ vale para todo $\mathbb RP^2$ en este caso). 
+
+    Entonces, $\forall t \in (0, \infty)$, $\sigma'(t) \in T_{\sigma(t)}\mathbb RP^2$, por lo que $\left\{ \frac{\partial}{\partial u_i} \big|_{\sigma(t)}\right\}$ es base, en la que calculamos el vector tangente a $\sigma$:
+    \[\begin{split} \sigma'(t) & = (\sigma'(t))(u_1) \pd{}{u_1} \Big|_p + (\sigma'(t))(u_2) \pd{}{u_2} \Big|_p = \dfrac{d}{dt} \Big|_t (u_1 \circ \sigma) \pd{}{u_1} \Big|_p + \dfrac{d}{dt} \Big|_t (u_2 \circ \sigma) \pd{}{u_2} \Big|_p =\\[3mm]
+    & = \dfrac{d}{dt} \Big|_t (r_1 \circ \phi_1 \circ \sigma) \pd{}{u_1} \Big|_p + \dfrac{d}{dt} \Big|_t (r_2 \circ \phi_1 \circ \sigma) \pd{}{u_2} \Big|_p = \\[3mm]
+    & =\dfrac{d}{dt} \Big|_t \left( \dfrac{\log(t)}{t}\right) \pd{}{u_1} \Big|_p + \dfrac{d}{dt} \Big|_t \left( \dfrac{1}{t(1+t)}\right) \pd{}{u_2} \Big|_p \\[3mm]
+    & = \dfrac{1-\log(t)}{t^2} \pd{}{u_1} \Big|_p - \dfrac{2t+1}{\left(t+t^2\right)^2} \pd{}{u_2} \Big|_p\end{split} \]
+\end{sol}
+\begin{ejer}
+    [2.9] Considera en el espacio vectorial $Mat_{2\times 2}(\mathbb R)$ las coordenadas $\{x, y, z, t\}, A = \left(\begin{smallmatrix} x & y \\ z & t \end{smallmatrix}\right)$. Sea $T_{\theta} : Mat_{2\times 2}(\mathbb R) \to Mat_{2\times 2}(\mathbb R)$  dada por: $T_{\theta}(A) = A_{\theta} \cdot A$ donde 
+    $$A_{\theta} =  \begin{pmatrix}
+         \cos  \theta  & -\sin \theta \sin \theta &  \cos  \theta  
+    \end{pmatrix} \qquad \theta \in \mathbb R$$
+Prueba que $T_{\theta}$ es diferenciable, calcula su matriz jacobiana y halla $(T_{\theta})_{*,A}(v)$,
+siendo:
+$$v = \cos \theta \pd{}{x} \Big|_A - \sin\theta \pd{}{y} \Big|_A + \cos  \theta \pd{}{z} \Big|_A - \sin\theta \pd{}{t} \Big|_A$$
+\end{ejer}
+\begin{sol}
+    $$T_{\theta} \begin{pmatrix}
+        x & y \\ z & t 
+    \end{pmatrix} =  \begin{pmatrix}
+        \cos  \theta  & -\sin \theta \sin\theta & \cos  \theta  
+    \end{pmatrix} \begin{pmatrix}
+        x & y \\ z & t 
+    \end{pmatrix} =  \begin{pmatrix}
+        x \cos  \theta-z \sin\theta & y \cos  \theta-t \sin\theta \\ x \sin\theta + z  \cos  \theta & y \sin\theta + t  \cos  \theta 
+    \end{pmatrix} $$
+    y la lectura en coordenadas de $T_{\theta}$ es $$\varphi \circ T_{\theta} \circ \varphi^{-1} (x,y,z,t) = (x \cos  \theta-z \sin\theta , \, y \cos  \theta-t \sin\theta,  \, x \sin\theta + z  \cos  \theta, \,  y \sin\theta + t  \cos  \theta )$$
+    que es diferenciable, por lo que $T_{\theta}$ es diferenciable.
+
+    As\'i, $\forall A \in M$, $\left\{\pd{}{x} \Big|_A, \pd{}{y} \Big|_A, \pd{}{z} \Big|_A, \pd{}{t} \Big|_A \right\}$ es base de $T_AM$. Entonces se tiene la aplicaci\'on $T_{*,A}: T_AM \longrightarrow T_{T_{\theta}A} M$, de forma que la matriz jacobiana de $T_{\theta}$ en el punto $A$ es 
+    $$(JT_{\theta})_A = \begin{pmatrix}
+        \pd{}{x} \Big|_{(x,y,z,t)} (x  \cos  \theta ) &  \cdots & & \\
+        \vdots \\ \\ 
+    \end{pmatrix} = \begin{pmatrix}
+         \cos  \,  \theta  & 0 & -\sin \theta & 0\\ 
+        0 &  \cos  \, \theta & 0 & -\sin \theta \\
+       \sin \, \theta & 0 &  \cos  \, \theta & 0 \\ 
+        0 &\sin \, \theta & 0 &  \cos  \, \theta
+    \end{pmatrix}$$
+    por tanto, $(T_{\theta})_{*,A}(v)$ es en estas coordenadas
+    \[\begin{split} (JT_{\theta})_A \begin{pmatrix}
+         \cos  \theta \\ -\sin \theta \\  \cos  \theta \\ -\sin \theta  
+    \end{pmatrix}= &   \cos  \theta ( \cos  \theta -\sin  \theta ) \pd{}{x}  \Big|_{T_{\theta}(A)} -\sin \theta ( \cos  \theta+ \sin  \theta ) \pd{}{y}  \Big|_{T_{\theta}(A)}+ \\ &  +  \cos  \theta ( \cos  \theta -\sin  \theta ) \pd{}{z}  \Big|_{T_{\theta}(A)} +\sin \theta ( \cos  \theta +\sin  \theta ) \pd{}{t}  \Big|_{T_{\theta}(A)}\end{split}\]
+\end{sol}
+\begin{ejer}[2.16] Sea $T : \mathbb R^3 \to \mathbb R^3$ el automorfismo cuya matriz asociada en la base can\'onica es:
+$$\begin{pmatrix} 1&  0 & -1 \\ 0 & 1 & 3 \\ -1&  3 & 2\end{pmatrix}$$
+y considera el difeomorfismo inducido $\tilde{T}: \mathbb RP ^2 \to \mathbb RP^ 2$. Si $V_o = \{[(x_o, x1, x2)] \in \mathbb RP^2 \, / x_o \neq 0\}$ y $\varphi_o = (u_1, u_2) : V_o \longrightarrow \mathbb R^2$ es la carta del atlas usual, calcula, con $p=[(2,1,2)]$
+$$\tilde{T}_{*,[(2,1,2)]} \left( 3 \pd{}{u_1} \Big| _{p} + \pd{}{u_2} \Big|_{p}\right)$$
+\end{ejer}
+\begin{sol}
+    En las condiciones dadas, el automorfismo induce el morfismo
+    $$\begin{array}{rrcl}
+         \tilde{T} : &  \mathbb R P^2 & \longrightarrow &\mathbb R P^2  \\
+         & [x_o,x_1,x_2] & \longmapsto & [T(x_o,x_1,x_2)]
+    \end{array}$$
+    que sabemos que es diferenciable. Entonces $\tilde{T}[x_o, x_1, x_2]=[x_o-x_2, x_1+3x_2,-x_o+3x_1+2x_2]$.
+
+    De esta forma, $\tilde{T}(v) = [0,7,5] \in V_1 \cap V_2 $ pero $\tilde{T}(p)\nin V_o$, luego escogemos coordenadas $(V_1\varphi_1)$. La lectura en coordenadas entonces de $\tilde T$ utilizando las cartas $(V_o, \varphi_o)$ para $p$ y $(V_1, \varphi_1)$ para $\tilde{T} (p)$ es
+    $$\varphi_1 \circ \tilde T \circ \varphi_o^{-1}(u_1,u_2)=\varphi_1 \circ \tilde T([1,u_1,u_2]) = \varphi_1([1-u_2, u_1+3u_2,-1+3u_1+2u_2])=
+    $$
+    $$=\left( \dfrac{1-u_2}{u_1+3u_2},\dfrac{-1+3u_1+2u_2}{u_1+3u_2}\right)$$
+    por lo que 
+    $$(J\tilde T)_q = \dfrac{1}{(u_1+3u_2)^2} \begin{pmatrix}
+        - (1-u_2) & - (u_1+3u_2)-(1-u_2)3\\ 
+        3(u_1+3u_2) - (-1 +3u_1+3u_2) & 2(u_1+3u_2) - (-1 + 3u_1 + 2u_2) 3
+    \end{pmatrix}= $$
+    $$=\dfrac{1}{(u_1+3u_2)^2} \begin{pmatrix}
+        u_2-1 & -3-u_1\\ 
+       1+6u_2 & 3-7u_1
+    \end{pmatrix} $$
+    de forma que para $\varphi_o([2,1,2])=(u_1(p)=\nicefrac{1}{2}, u_2(p)=1)$, entonces
+    $$(J\tilde T)_{[2,1,2]} = \dfrac{1}{(\nicefrac{7}{2})^2}\begin{pmatrix}
+        0 & -\nicefrac{7}{2} \\ 7 & - \nicefrac{1}{2}
+    \end{pmatrix}$$
+    luego $\tilde T_{*,p} (v)$ es
+    $$\dfrac{4}{49} \begin{pmatrix}
+        0 & -\nicefrac{7}{2} \\ 7 & - \nicefrac{1}{2}
+    \end{pmatrix} \begin{pmatrix}
+        3 \\ 1 
+    \end{pmatrix} =\dfrac{4}{49} \begin{pmatrix}
+        -\nicefrac{2}{7} \\ \dfrac{2 \cdot 41}{49} 
+    \end{pmatrix} \Rightarrow \tilde T_{*,p} (v) = -\dfrac{2}{7 } \pd{}{u_1} \Big|_{[0,7,5]} + \dfrac{2 \cdot 41}{49} \pd{}{u_2} \Big|_{[0,7,5]}$$
+
+    Alternativamente, podemos resolver el ejercicio haciendo que 
+    $$\tilde T_{*,p} (v) = (\tilde T_{*,p} (v))(v_1) \pd{}{v_1} \Big|_{[0,7,5]}+(\tilde T_{*,p} (v))(v_2) \pd{}{v_2} \Big|_{[0,7,5]} \quad / \quad (\tilde T_{*,p} (v))(v_1) = v(v_1 \circ \tilde T) = v(v_1\circ \tilde T \circ \phi_o^{-1}) $$
+\end{sol}
+\begin{ejer}
+    [2.23] Considera las coordenadas esf\'ericas $\{r,\varphi, \theta\}$ en el dominio correspondiente $U \subset \mathbb R^3$ y $f : U \longrightarrow \mathbb R$ la funci\'on diferenciable dada por $f(r,\varphi, \theta)=r\tan \varphi$, calcula las coordenadas de $d_pf \in T_p^*\mathbb R^3$ en la base $\{d_px,d_py,d_pz\}$ (que generan las cartesianas de $\mathbb R^3$) en el punto $p_o = (r, \varphi, \theta)=(1\nicefrac{\pi}{4}, \nicefrac{\pi}{3})$ 
+\end{ejer}
+\begin{sol}
+    Recordemos que las coordenadas esf\'ericas son $x=r \cos  \varphi\sin \theta$, $y =r\sin \varphi\sin \theta$, $z=r \cos  \theta$, y del rev\'es $r=\sqrt{x^2+y^2+z^2}$, $\varphi=\arctan \nicefrac{y}{x}$ y $\theta = \arccos  \frac{z}{\sqrt{x^2+y^2+z^2}}$. Supongamos siempre que estamos en el abierto $\{x>0,y>0,z>0\}$, que se corresponde con el abierto $\{r>0, \varphi \in(0,\pi), \theta \in (0, \nicefrac{\pi}{2})\}$.
+
+    Dada las bases $\left\{\pd{}{x}\Big|_p, \pd{}{y}\Big|_p, \pd{}{z}\Big|_p\right\}$ $\left\{\pd{}{r}\Big|_p, \pd{}{\varphi}\Big|_p, \pd{}{\theta}\Big|_p\right\}$ de $T_p\mathbb R^3$,tiene como bases duales $\{d_px,d_py,d_p,z\}, \{d_pr, d_p\varphi, d_p\theta\}$ de $T_p^*\mathbb R^3$. Por tanto,
+    $$d_pf= \underbrace{(d_pf) \left(\frac{\partial}{\partial r}\Big|_p\right)}_{\frac{\partial}{\partial r}|_p(f)}d_pr + \pd{}{\varphi}\Big|_p(f) d_p\varphi + \pd{}{\theta}\Big|_p (f) = \tan(\varphi) d_pr + r(1+\tan^2\varphi) \, d_p\varphi$$
+    con $p_o=(r(p_o), \varphi(p_o), \theta(p_o) ) = (1, \nicefrac{\pi}{4}, \nicefrac{\pi}{3})$. Por tanto, 
+    $$d_pf = \tan (\nicefrac{\pi}{4}) d_{p_o}r + (1+\tan^2(\nicefrac{\pi}{4})) d_{p_o}\varphi = d_{p_o}r+2d_{p_o}\varphi$$
+    Tenemos ahora dos opciones
+    \begin{enumerate}
+        \item Escribir $f$ en coordenadas cartesianas y operar de manera an\'aloga:
+        $$f(x,y,z) = f\left(\sqrt{x^2+y^2+z^2}, \arctan \frac{y}{x}, \arccos  \frac{z}{\sqrt{x^2+y^2+z^2}}\right) $$luego 
+        $$\pd{}{x} \Big|_p (f)= \dfrac{-y(y^2+z^2)}{x^2\sqrt{x^2+y^2+z^2}} \quad \pd{}{y} \Big|_p (f)= \dfrac{x^2+2y^2+z^2}{x\sqrt{x^2+y^2+z^2}}\quad \pd{}{z} \Big|_p (f)= \dfrac{yz}{x\sqrt{x^2+y^2+z^2}}$$
+        de forma que 
+        $$d_pf = \pd{}{x}\Big|_p(f) d_px + \pd{}{y}\Big|_p(f) d_py + \pd{}{z}\Big|_p(f) d_pz
+        $$
+        por tanto, como $p_o=(x(p_o),y(p_o),z(p_o))=(\nicefrac{\sqrt{6}}{4}, \nicefrac{\sqrt{6}}{2}, \nicefrac{1}{2})$, 
+        $$d_{p_o}f =-\dfrac{5\sqrt{6}}{12} d_{p_o}x+\dfrac{11\sqrt{6}}{12} d_{p_o}y+\dfrac{1}{2} d_{p_o}z$$
+        \item La matriz de cambio de base de $\{d_pr,d_p\varphi, d_p \theta\}$ a $\{d_px,d_py,d_pz\}$ es la traspuesta de la matriz de cambio de base de $\left\{\pd{}{x}\Big|_p, \pd{}{y}\Big|_p, \pd{}{z}\Big|_p\right\}$ a $\left\{\pd{}{r}\Big|_p, \pd{}{\varphi}\Big|_p, \pd{}{\theta}\Big|_p\right\}$, de forma que 
+        $$\pd{}{x} \Big|_p = \pd{}{x} \Big|_p (r) \pd{}{r} \Big|_p  + \pd{}{x} \Big|_p (\varphi) \pd{}{\varphi} \Big|_p + \pd{}{x} \Big|_p (\theta) \pd{}{\theta} \Big|_p \qquad \pd{}{y} \Big|_p=\cdots $$
+        y la matriz es 
+        $$\begin{pmatrix}
+            \cos  \varphi\sin \theta &\sin \varphi\sin \theta & \frac{1}{r} \cos  \theta \\ \frac{-\sin \varphi}{r\sin \theta} & \frac{ \cos \varphi}{r\sin \theta} & 0 \\ \frac{1}{r} \cos  \theta \cos  \varphi & \frac{1}{r}  \cos  \theta\sin \varphi & -\frac{1}{r}\sin \theta
+        \end{pmatrix}$$
+    \end{enumerate}
+\end{sol}
+\begin{ejer}
+    [2.24] Sean $M^m$ y $N^n$ dos variedades diferenciables, consideramos $(p,q) \in M \times N$ de forma que
+    $$\bt T_{(p,q)}(M \times N) \arrow{r}{f} & T_pM \oplus T_qN \\[-5mm] v \arrow{r} & ((\pi_1)_{*,(p,q)}(v), (\pi_2)_{*,(p,q)}(v))\et$$
+    donde $\pi_1: M\times N \longrightarrow M$ y $\pi_2: M \times N \longrightarrow N$ son las proyecciones naturales. Demostrar que es isomorfismo para todo $(p,q)$. 
+\end{ejer}
+\begin{sol}
+    Recordemos que si $(U,\varphi \equiv (x_i))$ es carta de $M$ y $(V, \psi \equiv (y_j))$ es carta de $N$, constru\'iamos una carta de $M\times N$ $(U \times V, \varphi \times \psi \equiv (z_k))$ tal que $(z_1,\ldots, z_{m+n}) = (x_1, \ldots, x_m, y_1, \ldots, y_n)$. As\'i pues $\left\{\frac{\partial}{\partial z_k}|_{(p,q)} \right\}_{k=1}^{m+n}$ es bse de $T_{(p,q)}(M\times N)$ por serlo las $x_i, y_i$. 
+    
+    $f$ est\'a bien definida y es lineal, pues por c\'omputo de dimensiones es isomorfismo, solo falta probar que es inyectiva. Sea $v\in T_{(p,q)} (M\times N)$, tal que $f(v) = 0$ y veamos si $v=0$. Por ser $v$ en el tangete,
+    $$v = \sum_{k=1}^{m+n} \lambda_i \pd{}{z_i}\Big|_{(p,q)} = \sum_{k=1}^{m} \lambda_i \pd{}{x_i}\Big|_{(p,q)}+\sum_{j=1}^{n} \lambda_{m+j} \pd{}{y_i}\Big|_{(p,q)}$$
+    luego $f(v)=0$ implica que $(\pi_i)_{*,(p,q)}(v)=0$, que es 
+    $$\Big((\pi_i)_{*,(p,q)}(v)\Big)(x_i)=v (x_i \circ \pi_i) = \sum_{k=1}^{m+n} \lambda_k \pd{}{z_k}\Big|_{(p,q)} (x_i \circ \pi_i) = \lambda_i$$
+    y como $f(v)=0$, $\lambda_i=0 \forall i$, entonces $v=0$. 
+\end{sol}
+\begin{ejer}
+    [2.31] Considera la funci\'on $f(x, y, z) = \frac{x}{\sqrt{1-z}}$ definida sobre $\bold S^2 -\{ (0, 0, 1)\}$. Determina si $f$ puede formar parte de un sistema local de coordenadas en $\bold S^2$.
+\end{ejer}
+\begin{sol}
+    Como para que $f$ forme un sistema local de coordenadas sus diferenciales deben ser l.i., calcularemos $d_pf$ y veamos es l.i. en $T_p^* \bold S^2$, por lo que existir\'a carta $(U, \varphi\equiv(f,g))$, en la que tendremos que hallar $g$. Usamos coordenadas estereogr\'aficas $\varphi_N=(u,v)$, $f\circ \varphi^{-1}_N$, luego 
+    $$d_pf = \pd{}{u}\Big|_p(f) d_pu + \pd{}{v} \Big|_p (f) d_pv$$
+    \textcolor{red}{examen}
+\end{sol}
+\section{Tema 3. Subvariedades y sumersiones}
+\begin{ejer}
+    [3.7] \textit{El toro de revoluci\'on}. Considera la aplicaci\'on $f : \mathbb R^2 \to \mathbb R^3$ dada por: 
+    $$f(u, v) = ((a + b  \cos  (u))  \cos (v), (a + b  \cos (u)) \sin(v), b\sin (u) ), \quad a > b > 0$$
+Prueba que:
+\begin{enumerate}[a)]
+    \item $f$ es una inmersi\'on en todos sus puntos. 
+    \begin{sol}
+        Llamamos $f=(f_1,f_2,f_3)$, de forma que 
+        $$(Jf)_{p=(u,v)} = \begin{pmatrix}
+            -b\sin(u) \cos (v) &  -(a+b \cos (u))\sin(v) \\ -b \sin(u) \sin(v) & (a+b \cos (u)) \cos (v)\\ b  \cos (u) & 0
+        \end{pmatrix}_p$$
+        y para que sea inmersi\'on buscamos que $f_{*,p}$ sea inyectiva, es decir, $rang(Jf)_p =2$. Veamos los determinantes de los menores
+        $$\Delta_{12} = \begin{vmatrix}
+             -b\sin(u) \cos (v) &  -(a+b \cos (u))\sin(v) \\ -b \sin(u) \sin(v) & (a+b \cos (u)) \cos (v)
+        \end{vmatrix}=-b(a+b \cos (u))(\sin(u))\cancelto{1}{\begin{vmatrix}
+             \cos  b & -\sin v \\  \cos  v &\sin v  
+        \end{vmatrix} } = $$
+        $$= -b(a+b \cos (u))(\sin(u)) = 0 \iff $$
+        $$\begin{cases}
+            -1 \leq  \cos (u) \leq 1 \iff 0 < a-b \leq a+b \cos  u \leq a+b \Rightarrow a+b \cos  u \neq 0 \\ \sin(u)=0 
+        \end{cases}$$
+        es decir, $\Delta_{12} = 0\iff\sin u =0$. 
+
+        Si $\sin u =0$, entonces 
+        $$(Jf)_p = \begin{pmatrix}
+            0 &  -(a\pm b)\sin(v) \\ 0 & (a\pm b)  \cos (v)\\ \pm b & 0
+        \end{pmatrix}$$
+
+        Por otra parte, $\Delta_{13} = -b(a+b \cos  u)\sin v  \cos  u$ y $\Delta_{23}=b (a+b \cos  u) \cos  v  \cos  u$, y por tando todos los menores no pueden ser 0 a la vez, pues si $\sin u =0$, $ \cos  u =\pm 1$, y viceversa. 
+
+        Concluimos as\'i que $rang(Jf)_p=2$, entonces $f$ es inmersi\'on, pero como $f$ no es inyectiva, no podemos decir que $f$ sea subvariedad. 
+
+        Si tomamos $U_1 = (0,2\pi)\times (0,2\pi)$, $f|_{U_1}$ s\'i es inyectiva, y si tomamos $U_2 = (-\pi , \pi )\times (-\pi, \pi)$, de forma que $f(U_1) \cup f(U_2)$ es casi todo el toro excepto $f(\pi, 0)$ y $f(0,\pi)$. Eligiendo entornos de estos puntos, donde $f$ es inyectiva podemos elegir un tercer dominio disconexo, cubriendo todo el toro, que falta ver que es un atlas. 
+
+        En ese caso, $f$ es subvariedad en $U_1,U_2,U_3$.
+    \end{sol}
+    \item $f(\mathbb R^2)$ es una variedad diferenciable difeomorfa al toro bidimensional que se obtiene por rotaci\'on sobre el eje vertical de la circunferencia $(y - a)^2 + z^2 = b^2, \, x = 0$.
+\end{enumerate}
+\end{ejer}
+\begin{ejer}
+    [3.8] \textit{Superficie de Veronese}. Sea $f : \bold S^2 \to \mathbb R^6$ la aplicaci\'on dada por: 
+    $$f(x, y, z) = (x^2, y^2, z^2, \sqrt{2}yz, \sqrt{2}xz, \sqrt{2}xy )$$ Demuestra que $f$ es una inmersi\'on. Sea $f$ la aplicaci\'on inducida por $f$ a $\mathbb RP^2= \bold S^2/\sim$. Demuestra que $f$ es una subvariedad.
+\end{ejer}
+\begin{sol}
+    Como $i : \bold S^2 \hookrightarrow \mathbb R^6$ es subvariedad, y es claro que $g: \mathbb R^3 \to \mathbb R^6$ dada por la misma expresi\'on, y es diferenciable, de forma que podemos asegurar que $f=g\circ i$. Veamos si $\forall p \in \bold S^2, \, f_{*,p}:T_p\bold S^2 \longrightarrow T_{f(p)}\mathbb R^6$ es inyectiva, para lo cual, $\forall p \in \bold S^2$, $f_{*,p} = g_{*,i(p)} \circ i_{*,p}$. Si $g_{*,p}$ fuera inyectiva, entonces $f_{*,p}$ ser\'ia inyectiva. El jacobiano es pues
+    $$(Jg)_p = \begin{pmatrix}
+        2x & 0 & 0 \\ 0 & 2y & 0 \\ 0 & 0 & 2z \\ 0 & \sqrt{2}z & \sqrt{2}y \\ \sqrt{2}z & 0 & \sqrt{2}x \\ \sqrt{2}y & \sqrt{2}x & 0
+    \end{pmatrix}$$
+    y entonces $\Delta_{122} = 8xyz$, as\'i que si $x\neq 0, t\neq 0, z\neq0$, $(Jf)_p$ tiene rango 3. Si $x=0$, elegimos un menor, que es $\Delta = 4z^3$, y de la misma forma, con $y=0$ y $z=0$ similar, pero como $(0,0,0) \nin \bold S^2$, sigue siendo inyectiva, y confirmamos que es inmersi\'on.
+
+    $f$ induce 
+    $$\bt \tilde f : \mathbb RP^2 \arrow{r} & \mathbb RP^5 \\ \left[x,y,z\right] \arrow[mapsto]{r} & \left[f(x,y,z)\right] \et$$
+    que est\'a bien definida, y tambi\'en $\forall (x,y,z) \neq 0$ y $f(x,y,z)\neq 0$. Hacemos la lectura en coordenadas de $f$, vemos si es diferenciable y hallamos su jacobiano.
+\end{sol}
+\begin{ejer}
+    [3.10]  Sea $M$ la banda de Moebius y $f : M \to \mathbb R^4$ la aplicaci\'on dada, para $a, b \in \mathbb R$ con $a > b > 0$, mediante la expresi\'on:
+\[\begin{split} f[(x, y)] = & (\cos (2\pi x)(a + b \cos (2\pi y)),\sin (2\pi x)(a + b \cos (2\pi y)),  \\ & b \cos (\pi x)\sin (2\pi y), b\sin (\pi x)\sin (2\pi y)) \end{split}\]
+Demuestra que $f$ es una inmersi\'on en todos sus puntos. Si $p = [( 1/
+2 , 1/4 )] \in M$ , calcula una base del espacio tangente $f_{*,p}(T_pM)\subset T_{f(p)}\mathbb R^4$. Determina si $v$ pertenece a $f_{*,p}(T_pM)$, donde $\{x_i\}_{i=1}^4$ son las coordenadas usuales de $\mathbb R^4$.
+\end{ejer}
+\begin{sol}\, 
+    \begin{itemize}
+        \item $f$ est\'a bien definida. \\ 
+        Las \'unicas clases de equivalecia en $M$ con m\'as de 1 elemento son las del tipo $[(0,y)]=[(1,1-y)]$, luego 
+        $$f([0,y]) = (a+b\cos(2\pi y), 0 , b \sin(2\pi y), 0)$$ 
+        $$f([1,1-y]) = (a+b\cos(2\pi-2\pi y), 0, -b (-\sin(2\pi y)), 0)$$
+        de forma que $f([0,y])=f([1,1-y])$.
+        \item $f$ diferenciable. \\ 
+        Si $[x,y]\in M$, consideremos la lectura en coordenadas
+        $$(Id \circ) f \circ \varphi^{-1}(x,y) = f([x,y]) = (\cos (2\pi x)(a + b \cos (2\pi y)),\ldots)$$ que es diferenciable en $U$. Si $[x,y] \in V$, consideramos su lectura en coordenadas
+        $$f\circ \psi^{-1}(x,y) = f[x,y] = \cos (2\pi x)(a + b \cos (2\pi y)),\ldots) \quad x< \nicefrac{1}{2}$$
+        $$f\circ \psi^{-1}(x,y) = f[x+1,1-y] = f[x,y]\qquad x>-\nicefrac{1}{2}$$
+        haciendo los c\'alculos, de forma que tambi\'en es diferenciable. 
+        \item $f$ es inmersi\'on. \\ 
+        Para decidir si $f_{*,p}$ veremos el rango de $(Jf)_p$ en los sistemas de coordenadas que hemos visto, y si es m\'aximo, ser\'a inyectiva y por tanto inmersi\'on. Derivando respecto de $x$ e $y$ las 4 funciones coordenadas descritas antes se obtiene
+        $$(Jf)_p = \begin{pmatrix}
+            -2\pi \sin(2\pi x)(a+b\cos(2\pi y)) & -2\pi b \cos(2\pi y)\sin(2\pi y) \\ 2\pi \cos(2\pi x)(a+b\cos(2\pi y)) & -2\pi b \sin(2\pi x)\sin(2\pi y) \\\ -b\pi \sin(\pi x)\sin(2\pi y) & 2\pi b \cos(2\pi x) \cos(2\pi y)\\ b \pi  \cos(\pi x)\sin(2\pi y)) & 2\pi b\sin(\pi x) \cos(2\pi y) 
+        \end{pmatrix}$$
+        que es la misma para ambas lecturas en coordenadas. As\'i, un menor es
+        $$\Delta_{12} = 4\pi^2b (a+b\cos 2\pi y) \sin(2\pi y) \cancelto{1}{\begin{vmatrix}
+            -\sin(2\pi x) & -\cos(2\pi x) \\ \cos(2\pi x) & -\sin(2\pi x)
+        \end{vmatrix}} = 4\pi^2b (a+b\cos 2\pi y) \sin(2\pi y)$$
+        y dado que $4\pi^2 b> 0 $ y de la misma forma $ (a+b\cos 2\pi y) > 0$, de forma que el determinante es 0 si $\sin(2\pi y) = 0 \iff y =\nicefrac{1}{2}$, pues $y \in (0,1)$. As\'i que $f$ es inmersi\'on en $[x,y] \in M, \, \forall y \neq \nicefrac{1}{2}$. 
+
+        El caso en que $y=\nicefrac{1}{2}$, 
+        $$(Jf)_{p} = \begin{pmatrix}
+            -2\pi \sin(2\pi x)(a-b) & \\ 2\pi \cos(2\pi x)(a-b) & \\ 0 & -2\pi b \cos(\pi x)\\ 0 & 2\pi b \sin(\pi x) 
+        \end{pmatrix}$$
+        de forma que 
+        $$\Delta_{13}= 4\pi^2b \sin(2\pi x)(a-b)(\cos(\pi x)) = 0 \iff \cos(\pi x)=0 = \sin(2\pi x) \iff  \begin{cases}
+            x=\nicefrac{1}{2} \\ x=0
+        \end{cases}$$
+        y por \'ultimo, $\Delta_{23} = 4\pi^2 b\cos(2\pi x)(a-b) \cos(\pi x) = 0 (x=\nicefrac{1}{2}, \nicefrac{1}{4}, \nicefrac{3}{4})$, $\Delta_{24} =  4\pi^2 b\cos(2\pi x)(a-b) \sin(\pi x) = 0 (x=0, \nicefrac{3}{4})$, de forma que los dos \'ultimos no pueden ocurrir a la vez. En conclusi\'on, en todo punto el jacobiano tiene rango m\'aximo $\forall p$ y por tanto $f$ es inmersi\'on. 
+        \item Base de $f_{*,p}(T_pM)$ \\ Por c\'alculo de dimensiones, $f_{*,p}(T_pM)$ tiene $dim \, 2$, una base de $f_{*,p}(T_pM)$ es \\ $\left\{ f_{*,p}\left(\pd{}{x}\Big|_p\right), f_{*,p}\left(\pd{}{y}\Big|_p\right)\right\}$,
+        $$-2\pi \sin(2\pi x)(a+b\cos(2\pi y )) \pd{}{x_1}\Big|_{f(p_1)} + 2\pi \cos(2\pi x) (a+b\sin(2\pi y)) \pd{}{x_2}\Big|_{f(p)} - $$
+        $$-b \pi \sin (\pi x) \sin(2\pi y) \pd{}{x_3}\Big|_{f(p)} + \cdots$$
+        y an\'alogamente con la 2a columna del jacobiano.
+
+        \item $p=[(\nicefrac{1}{2}, \nicefrac{1}{4})] \in M$,
+        $$(Jf)_p \begin{pmatrix}
+            \lambda \\ \mu
+        \end{pmatrix} = \begin{pmatrix}
+            1 \\ 1 \\ 1 \\ 0
+        \end{pmatrix}$$
+        y sale que no.
+    \end{itemize} 
+\end{sol}
+\begin{ejer}
+    [3.17] Demuestra que los siguientes subconjuntos de $Mat_{3\times 3}(\mathbb R)$ son subvariedades, indicando su dimensi\'on. Adem\'as, calcula el espacio tangente a cada subvariedad en el punto $Id_3$.
+    \begin{itemize}
+        \item El grupo especial lineal $SL(3) = \{A \in Mat_{3\times 3}(\mathbb R) | det A = 1\}$.
+        \begin{sol}
+            Sea 
+            $$\bt f: Mat_{3 \times 3}(\mathbb R) \arrow{r} & \mathbb R \\[-5mm] A \arrow[mapsto]{r} & det(A)-1 \et$$
+            en coordenadas que proporcionan la base est\'andar de $ Mat_{3 \times 3}(\mathbb R)$ como espacio vectorial
+            $$f(a_{11}, a_{12}, \cdots a_{33}) = f \begin{pmatrix}
+                a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} &  a_{33} 
+            \end{pmatrix} = a_{11}a_{22}a_{33}+a_{12}a_{23}a_{32}+\cdots - a_{23}a_{22}a_{31} -1$$
+            que es diferenciable, por lo que $f$ es diferenciable. As\'i, podemos definir $SL(3)=f^{-1}(0)$ y si $\forall A\in SL(3)$, $\{d_Af\}$ es l.i. en $T_A^*( Mat_{3 \times 3}(\mathbb R))$, entonces $SL(3)$ ser\'a subvariedad regular.
+            $$d_Af=\sum_{i,j=1}^3 \pd{}{a_{ij}}\Big|_A (f) \, d_Aa_{ij} = (a_{22}a_{33}-a_{23}a_{32}) d_A a_{11} + (a_{23}a_{31}-a_{21}a_{33}) d_Aa_{12} + \cdots $$ $$+ (a_{11}a_{22}-a_{12}a_{21})d_Aa_{33}$$
+            de forma que $d_Af=0 \iff $ todos los coeficientes son nulos, es decir, si todos los menores de orden 2 de $A$ son nulos, si y solo si $rg(A) \leq 1$ y esto no puede ocurrir en $SL(3)$ ya que $A\in SL(3) \iff det(A)=1 \iff rg(A)=3$.
+            
+            As\'i, $i : SL(3) \hookrightarrow  Mat_{3 \times 3}(\mathbb R)$ es subvariedad embebida de dimensi\'on $dim\, (SL(3)) = dim \,  Mat_{3 \times 3}(\mathbb R)-1=8$.
+
+            Para $Id_3\in SL(3)$, 
+            $$T_{Id}(SL(3))=\{v \in T_{Id}( Mat_{3 \times 3}(\mathbb R)) \, / \, v(f)=0\}$$
+            donde
+            $$v=\sum_{i,j=3}^3 \lambda_{ij} \pd{}{a_{ij}}\Big|_{Id}$$
+            $$v(f)=\sum_{i,j=3}^3 \lambda_{ij} \pd{}{a_{ij}}\Big|_{Id}(f)=\lambda_{11}+\lambda_{22}+\lambda_{33}$$
+            y  por tanto
+            $$T_{Id}(SL(3)) = \left\{ \sum_{i,j=3}^3 \lambda_{ij} \pd{}{a_{ij}}\Big|_{Id} \, \Big/ \, \lambda_{11}+\lambda_{22}+\lambda_{33} =0  \right\}$$
+        \end{sol}
+        \item El grupo ortogonal $O(3) = \{A \in Mat_{3\times 3}(\mathbb R) \, | \,A \cdot A^t = Id_3\}$.
+        \item El grupo especial ortogonal $SO(3) = \{A \in O(3) \, | \, det\,  A > 0\}$.
+    \end{itemize}
+\end{ejer}
+\begin{ejer}
+    [3.20] Sea $a\in \mathbb R^*$ y $F = \{(x, y) \in \mathbb R^2 \, | \, x^3 + y^3 = 3axy\}$. Demuestra que $F$ es una subvariedad de $\mathbb R^2 - \{(0, 0)\}$. Considera $U = \mathbb R - \{-1\}$ y $f : U \to \mathbb R^2$ la aplicaci\'on dada por: 
+    $$f(t) = \left( \dfrac{3at}{1+t^3}, \dfrac{3at^2}{a+t^3} \right)$$
+Demuestra que $f$ es una subvariedad y que $f(U) \subset F$. Asume que $f(U) = F$,
+¿genera esta subvariedad la misma estructura diferenciable en $F$?
+\end{ejer}
+\begin{sol}
+    Sea la aplicaci\'on
+    $$ \bt g:\mathbb R^2 \arrow{r} & \mathbb R \\[-5mm] (x,y) \arrow[mapsto]{r} &  x^3 + y^3 - 3axy\et $$
+    y como $g$ es diferenciable y $F=g^{-1}(0)\neq \emptyset$, con $(0,0), (\frac{3a}{2}, \frac{3a}{2}) \in f^{-1}(0)$. Veamos si $\{d_pf\}$ es l.i. $\forall p \in F$. Como
+    $$d_pf=(3x^2-3ay)d_px+(3y^2-3ax)d_py$$
+    entonces
+    $$d_pf=0\iff \begin{cases}
+        3x^2-3ay=0 & \Rightarrow y =\frac{1}{a} x^2 \\ 
+        3y^2-3ax=0 & \Rightarrow 3 (\nicefrac{x^2}{a})^2-3ax=0 \Rightarrow \frac{x^4}{a^2}-ax=0 \Rightarrow x\left(\dfrac{1}{a^2}x^3-a\right)=0 \\ & \Rightarrow\begin{cases}
+            x=0 \Rightarrow y=0 \Rightarrow p=(0,0) \in F\\ 
+            \frac{1}{a^2} x^3 - a=0 \Rightarrow x=\sqrt[3]{a^3}\Rightarrow x=a \Rightarrow y=a \Rightarrow p=(a,a)
+        \end{cases}
+    \end{cases}$$
+    y veamos si $p=(a,a)\in F$. Como debe verificar la ecuaci\'on, $a^3+a^3=3aaa \equiv 2a^3=3a^3 \iff a=0$ por lo que $(a,a)\nin F$. Entonces $F$ no es subvariedad de $\mathbb R^2$ pero $M=\mathbb R^2 - \{(0,0)\}$ (abierto), $F\cap M$ s\'i ser\'a subvariedad de $M$ (regular)
+
+    Como $f$ era diferenciable, calculamos su jacobiano
+    $$(Jf) = \begin{pmatrix}
+        \pd{}{t} \left(\dfrac{3at}{1+t^3}\right) \\ \pd{}{t} \left(\dfrac{3at^2}{1+t^3}\right)
+    \end{pmatrix}$$
+    se desarrolla y se concluye que los dos t\'erminos no se pueden anular a la vez, de forma que $f$ es inmersi\'on. Se comprueba adem\'as que $f$ es inyectiva, por lo que $f$ es subvariedad. Es f\'acil ver que $f(U)\subset F$ y menos f\'acil que $f(U)\supset F$, es decir, que $f(U)=F$. 
+\end{sol}
+\begin{ejer}
+    [3.28] Dado $a \in \mathbb R$, sea $M_a =\{ (x, y, z) \in \mathbb R^3 \, |\, x^2 + (z - 1)^2 = 1,\, ax^2 + y^2 + z^2 = 1\}$.\begin{enumerate}[a)]
+    \item Determina, en funci\'on de $a$, en qu\'e puntos $M_a$ es una subvariedad diferenciable. ¿Cual es la dimensi\'on de $M_a$? 
+    \item Calcula el espacio tangente a $M_a$ en un punto arbitrario.
+    \end{enumerate} 
+\end{ejer}
+\begin{sol}
+    Observemos que si $a>0$ la segunda ecuaci\'on define un elipsoide, si $a=0$ un cilindro, y si $a<0$, es un hiperboloide. Definimos $f(x,y,z)=x^2+(z-1)^2-1$ y $g(x,y,z) = ax^2+y^2+z^2-1$ de forma que $f,g : \mathbb R^3 \to \mathbb R$ que son diferenciables por su lectura en coordenadas, entonces se define $M_a = f^{-1}(0) \cap g^{-1}(0)$ y si $\{d_pf, d_pg\}$ son linealmente independientes $\forall \, p \in M_a$, entonces $M_a$ ser\'a una subvariedad regular de dimensi\'on 3-2=1. 
+
+    La expresi\'on en coordenadas de $d_pf, d_pg$:
+    $$d_pf=\pd{}{x} \Big|_p(f) d_px + \pd{}{y} \Big|_p (f) d_py + \pd{}{z} \Big|_p (f) d_pz = 2xd_px+2(z-1)d_pz$$
+    $$d_pg=2ax d_px + 2yd_py + 2z d_pz$$
+    en $T_p^* \mathbb R^3$. La matriz de coeficientes es
+    $$\begin{pmatrix}
+        2x & 0 & 2(z-1) \\ 2ax & 2y & 2z
+    \end{pmatrix}$$
+    de forma que si encontramos alg\'un menor no nulo, ser\'an l.i. En efecto, $\Delta_{12}=4xy$, de forma que si $xy \neq 0$ el rango es 2 y $\{d_pf,d_pg\}$ son l.i. En caso contrario, si $x=0$, la matriz ser\'a  $$\begin{pmatrix}
+        0 & 0 & 2(z-1) \\ 0 & 2y & 2z
+    \end{pmatrix} \qquad \Delta_{23} = -4y(z-1)$$
+    y si $y(z-1)\neq 0$ el rango es 2 y ser\'ian $\{d_pf, d_pg\}$ l.i.
+
+    Si $y=0$, el rango es $<2$ en los puntos $(0,0,z)$ y si $z=1$, el rango $<2$ en los puntos $(0,y,1)$. Veamos si esos puntos pertenecen a $M_a$. No verifican las ecuaciones as\'i que no pertenecen. 
+
+    Si $x \neq 0$ pero $y=0$, 
+     $$\begin{pmatrix}
+        2x & 0 & 2(z-1) \\ 2ax & 0 & 2z
+    \end{pmatrix}\qquad \Delta_{13} = 4x(z-a(z-1))=4x((1-a)z+a)$$
+    y entonces $\Delta_{13}=0$ sii
+    $$(1-a)z+a=0 \iff \begin{cases}
+        a\neq 1 & z=\frac{-a}{1-a} = \frac{a}{a-1}\\ a=1 & \Delta_{13} \neq 0 (\text{l.i.})
+    \end{cases}$$
+    y veamos si los puntos $(x,0,\nicefrac{a}{a-1})$ para los que rango $<2$ est\'an en $M_a$. En la primera, 
+    $$f(x,0,\nicefrac{a}{a-1}) = 0 \iff x^2=\dfrac{a(a-2)}{(a+1)^2}$$\
+    $$g(x,0,\nicefrac{a}{a-1}) = 0 \iff ax^2+\left( \dfrac{a}{a-1}\right)^2 = 1 \iff a\left( \dfrac{a(a-2)}{(a-1)^2}\right) + \dfrac{a^2}{(a-1)^2} = 1 \iff a^2-a-1=0$$
+    lo cual no tiene soluciones reales, luego no puede cumplir las ecuaciones $f(x,0,\nicefrac{a}{a-1})=0=g(x,0,\nicefrac{a}{a-1})$ a la vez, y por tanto, no est\'a en $M_a$.
+
+    As\'i pues, una base de $T_p(M_a)$ es una $v \in T_p\mathbb R^3$ tal que $v(f)=0, \, v(g)=0$. Sea $$v=\lambda_1 \pd{}{x} \Big|_p +\lambda_2 \pd{}{y} \Big|_p + \lambda_3 \pd{}{z} \Big|_p$$
+    verificando
+    $$\begin{cases}
+        \lambda_1(2x)+\lambda_2(0)+\lambda_3(2(z-1)) = 0\\ \lambda_1(2ax)+\lambda_2(2y)+\lambda_3(2z)=0
+    \end{cases} \overset{x\neq 0}{\Longrightarrow} \lambda_1 = \dfrac{1-z}{x} \lambda_3 \Rightarrow \dfrac{a(1-z)\cancel{x}y}{\cancel{x}} \lambda_3  + y \lambda_2 + z\lambda_3 = 0$$
+    y si adem\'as $y \neq 0$
+    $$\lambda_2 = \dfrac{1}{y}(-z-a(z-1))\lambda_3 = \dfrac{-a+(a-1)z}{y} \lambda_3$$
+\end{sol}
+\begin{ejer}
+    [3.33] Demuestra que la proyecci\'on $\pi : \mathbb R^{n+1} - {0} \longrightarrow \mathbb RP^n$ que a cada elemento $x \in \mathbb R^{n+1}$ le asocia su clase de equivalencia, bajo la relaci\'on $x \sim y \iff$ existe $λ \in \mathbb R^*$ tal que $x = \lambda \cdot y$, es una sumersi\'on. Demuestra adem\'as que la restricci\'on de $\pi$ a $\bold S^2$ es tambi\'en una sumersi\'on.
+\end{ejer}
+\begin{sol}
+    Hagamos la lectura en coordenadas en un punto $p=(x,y,z)\in \mathbb R^3-\{(0,0,0)\}$. Sea $\pi(p)\in V_o$, 
+    $$\phi_o \circ \pi \circ Id(x,y,z) = \phi_o([x,y,z]) = \left(\nicefrac{y}{x} , \nicefrac{z}{x}\right)$$
+    que es claramente diferenciable, y an\'alogamente para el resto de cartas, demostrando que $\pi$ es diferenciable.
+
+    Sea $p=(x,y,z)\in \mathbb R^3-\{(0,0,0)\}=M$, $\pi_{*,p}: T_pM \longrightarrow T_{[p]}\mathbb RP^2$ y veamos si es epiyectiva. La matriz de $\pi_{*,p}$ asociada las bases de las coordenadas que estamos usando es la matriz jacobiana de $\phi_o \circ \pi \circ Id^{-1}$, y si su rango es m\'aximo, ser\'a epiyectiva. Esto es, para $[p]\in V_o$,
+    $$(Jf)_p= \begin{pmatrix}
+        -\nicefrac{y}{x^2} & \nicefrac{1}{x} & 0 \\ -\nicefrac{z}{x^2} & 0 & \nicefrac{1}{x}
+    \end{pmatrix}\qquad \Delta_{32} = \dfrac{1}{x^2} \neq 0$$
+    y an\'alogamete para el resto de cartas, de forma que $\pi$ es sumersi\'on.
+
+    Sea ahora $$\bt f=\pi|_{\bold S^2}: \bold S^2 \arrow{r} & \mathbb RP^2 \\[-5mm] (x,y,z) \arrow[mapsto]{r} & \left[(x,y,z)\right] \et$$
+    ser\'a diferenciable pues es la restricci\'on de $\pi$ que es diferenciable a una subvariedad, $\bold S^2$. Entoces, $\forall \, p \in \bold S^2$, 
+    $$f_{*,p}:T_p\bold S^2 \subset T_pM \longrightarrow T_{[p]}\mathbb R^2$$
+    tiene por lectura en coordenadas estereogr\'aficas de $\bold S^2$ y $(V_o,\phi_o)$ de $\mathbb RP^2$
+    $$\phi_o \circ f \circ \varphi^{-1}_N(u,v) = \left( \dfrac{v}{u}, \dfrac{u^2+v^2-1}{2u} \right)$$
+    que tiene por jacobiana
+    $$(Jf)_p=\begin{pmatrix}
+        \frac{-v}{u^2} & \frac{1}{u} \\ \frac{4u^2-(u^2+v^2-1)2}{4u^2} & \frac{v}{u}
+    \end{pmatrix}= \begin{pmatrix}
+        \frac{-v}{u^2} & \frac{1}{u} \\ \frac{u^2-v^2+1}{2u^2} & \dfrac{v}{u}
+    \end{pmatrix} \Rightarrow |Jf| = \dfrac{1}{u^3} (-u^2-v^2-1) \neq 0$$
+    pues $(u,v)=0$ es $\varphi^{-1}_N(u,v) = (0,0,-1) \nin V_o$. An\'alogamente para el resto de lecturas en coordenadas. 
+\end{sol}
+\begin{ejer}
+    [3.36] 
+\end{ejer}
+\section{Tema 4. Campos vectoriales}
+\begin{ejer}
+    [4.2] Sobre $\bold S^2 \subset \mathbb R^3$ considera el sistema de coordenadas de las proyecciones estereogr\' aficas desde el polo norte $\varphi_N = (u_1, u_2)$ y desde el polo sur $\varphi_S = (v_1, v_2)$ respectivamente. Sean $a, b \in \mathbb R$ y los campos que en tales coordenadas se expresan mediante:
+    $$X = (au_1,-bu_2) \pd{}{u_1} + (bu_1,au_2) \pd{}{u_2} \in\mathfrak X(\bold S^2 -N)$$
+    $$Y = (-av_1,-bv_2) \pd{}{v_1} + (bv_1,-av_2) \pd{}{v_2} \in\mathfrak X(\bold S^2 -S)$$
+    Comprueba que $X$ e $Y$ definen un campo global sobre $\bold S^2$.
+\end{ejer}
+\begin{sol}
+    Comprobaremos que el campo est\'a definido en $U \cap V$, es decir, que $X|_{U \cap V} = Y|_{U\cap V}$. Recordemos las funciones de transici\'on. 
+
+    En $U \cap V$, 
+    \[ \begin{split} \pd{}{u_1}& = \pd{}{u_1}(v_1) \pd{}{v_1} + \pd{}{u_1}(v_2) \pd{}{v_2} =  \pd{(v_1\circ \varphi^{-1}_N)}{r_1} \pd{}{v_1} + \pd{}{u_1}(v_2) \pd{}{v_2}= \\[3mm] & = \pd{(r_1\circ \varphi_S \circ \varphi^{-1}_N)}{r_1} \pd{}{v_1} + \pd{}{u_1}(v_2) \pd{}{v_2} = \dfrac{(u_1^2+u_2^2)-u_1(2u_1)}{(u_1^2+u_2^2)^2} \pd{}{v_1} - \dfrac{2u_1u_2}{(u_1^2+u_2^2)^2} \pd{}{v_2} = \\[3mm] & = \dfrac{-u_1^2+u_2^2}{(u_1^2+u_2^2)^2} \pd{}{v_1} - \dfrac{2u_1u_2}{(u_1^2+u_2^2)^2} \pd{}{v_2} = (-v_1^2 + v_2^2) \pd{}{v_1} - 2v_1 v_2 \pd{}{v_2}    \end{split} \]
+    An\'alogamente para $\pd{}{u_2}$, que es 
+    $$\pd{}{u_2} = -2v_1v_2 \pd{}{v_1} + (v_1^2- v_2^2) \pd{}{v_2}$$
+    de forma que 
+    \[ \begin{split}X|_{U\cap V} & = \dfrac{av_1-bv_2}{v_1^2+v_2^2} \left( (-v_1^2+v_2^2) \pd{}{v_1} - 2v_1v_2 \pd{}{v_2}\right) + \dfrac{bv_1+av_2}{v_1^2+v_2^2} \left(2v_1v_2 \pd{}{v_1} + (v_1^2- v_2^2) \pd{}{v_2} \right) \\
+    & = \dfrac{1}{\cancel{(v_1^2+v_2^2)}} \left[ (-av_1-bv_2)\cancel{(v_1^2+v_2^2)} \pd{}{v_1} + (bv_1-av_2) \cancel{(v_1^2+v_2^2)} \pd{}{v_2}   \right]
+    \end{split}\]
+    que es $Y$.
+\end{sol}
+\begin{ejer}
+    [4.5] En $\mathbb RP^2$ considera el atlas usual $\{(V_i, \varphi_i)\}_{i=0}^2$ donde denotamos las funciones coordenadas de cada carta por $\varphi_o = (u_1, u_2), \varphi_1 = (v_1, v_2)$ y $\varphi_2 = (w_1, w_2),$. Considera el campo $X \in \mathfrak X(V_o)$ dado por $$X=u_1 \pd{}{u_1}-u_2\pd{}{u_2}$$
+    Sea $X_1$ la restricci\'on de $X$ a $V_o \cap V_1$
+y $X_2$ la restricci\'on de $X$ a $V_o \cap V_2$. Escribe $X_1$ y $X_2$ en coordenadas de \textcolor{red}{HOLA} respectivamente. ¿Genera esto un campo de vectores global? 
+\end{ejer}
+\begin{sol}
+    Comprobar que $X_1=X|_{V_o \cap V_1} = X_2 = X|_{V_1\cap V_2}$ cambiando de una a otra en coordenadas.
+\end{sol}
+\begin{ejer}
+    [4.3] Considera el toro de revoluci\'on $M \subset \mathbb R^3$ y su parametrizaci\'on local $\varphi : (0, 2\pi) \times (0, 2\pi)\to M$ dada por: 
+    $$\phi(u, v) = (a + b \cos u) \cos v, (a + b \cos u) \sen v, b \sen u $$ donde $a > b > 0$ son n\'umeros reales. Sea $X$ el campo vectorial tangente a $M$ dado por $$X = \frac{v}{b} \cos u \pd{}{u} - \frac{u}{a} \cos v \pd{}{v}$$
+    \begin{enumerate}[a)]
+        \item Calcula $Xf$ donde $f$ es la funci\'on $f(u, v) = ab \cos u \cos v$.
+        \item Expresa en coordenadas $\{u, v\}$ las funciones $Xh$ y $Xg$ donde $h$ es la funci\'on altura de $\mathbb R^3, h(x, y, z) = z$, y $g$ es la norma al cuadrado en $\mathbb R^3, g(x, y, z) = x^2 + y^2 + z^2$.
+    \end{enumerate}
+\end{ejer}\begin{sol}\, \begin{enumerate}[a)]
+    \item Sea $\tilde U = \phi(U) \subset M$, entonces como $f:\tilde U \longrightarrow \mathbb R$, la expresi\'on de $f$ es la lectura en coordenadas, que es claramente diferenciable. As\'i
+    \[\begin{split} Xf & =\frac{v}{b} \cos u \pd{}{u}(f) - \frac{u}{a} \cos v \pd{}{v}(f) = \frac{v}{b} \cos u (-ab\sin u \cos v) - \frac{u}{a} \cos v (-ab\cos v \sin u) = \\ & = -av \sin u \cos u \cos v - bu \cos u \sin v \cos v\end{split}\]
+    \item Tendremos que calcular ahora la lectura en coordenadas:
+    $$h \circ \phi(u,v) = h(a + b \cos u) \cos v, (a + b \cos u) \sen v, b \sen u) = b\sin u$$
+    $$Xh  = \frac{v}{b} \cos u \pd{}{u}(h) - \frac{u}{a} \cos v \pd{}{v}(h)=\frac{v}{b} \cos u (b \cos u)=v \cos^2(u)$$
+    $$g\circ \phi(u,y) = g(a + b \cos u) \cos v, (a + b \cos u) \sen v, b \sen u) = a^2+b^2+2ab \cos u$$
+    $$Xg =\frac{v}{b} \cos u \pd{}{u}(g) - \frac{u}{a} \cos v \pd{}{v}(g) =\frac{v}{b}(-2ab \sin u) = -2av\sin u \cos u = -av \sin 2u$$
+\end{enumerate}
+\end{sol}
+\begin{ejer}
+    [4.6] Sobre el abierto $U =\mathbb R^3 - \{(0, 0, 0)\}$ considera el campo
+    $$X=y\pd{}{y}-2z\pd{}{y}+3x \pd{}{z} \in \mathfrak (U)$$
+    \begin{enumerate}[a)]
+        \item Expresa en coordenadas locales de $\mathbb RP^2$ los  vectores $\pi_{*,p}(Xp), p \in U$, donde
+$\pi : U \to \mathbb RP^2$ es la proyecci\'on usual $\pi(p) = [p] \in \mathbb RP^2$.
+    \end{enumerate}
+\end{ejer}
+\begin{sol}
+    \begin{enumerate}[a)]
+        \item Para la carta ($V_o,\phi_o=(u_1,u_2)$), de forma que $\pi_{*,p}$ ir\'a en las bases $\pd{}{u_1}, \pd{}{u_2} \in \mathfrak X(V_o)$. As\'i
+        $$\pi_{*,p}(X_p) = \pi_{*,p}(X_p)(u_1) \pd{}{u_1}\Big|_{[p]} + \pi_{*,p}(X_p)(u_2) \pd{}{u_2}\Big|_{[p]} = \left(-\frac{y^2}{x^2}-2\frac{z}{x} \right) \pd{}{u_1}\Big|_{[p]}+\left( -\frac{y^2}{x^2}+3\right) \pd{}{u_2}\Big|_{[p]}$$
+        pues $ \pi_{*,p}(X_p)(u_i) = X_p(u_i\circ \pi)$. Observemos que $p\sim q$, $\pi_{*,\lambda p}(X_{\lambda p})= \pi_{*,p} (X_p)$, es decir, que podemos definir
+        $$X_{[p]} = \pi_{*,p} (X_p)$$
+        es decir, hemos construido campos globales a partir de campos de $\mathbb R^3$, que se verifica por ser lineal.
+    \end{enumerate}
+\end{sol}
+\begin{ejer}
+    [4.19] Sea $M = \{(x, y, z) \in \mathbb R^3 | x > 0, x \neq  1\}$ y $X$ el campo sobre dado por:
+    $$X=\dfrac{x}{log(x)} \pd{}{x}+y^2\pd{}{y}+z\pd{}{z} \in \mathfrak X(M)$$ Calcula el grupo local uniparam\'etrico de $X$.
+ \end{ejer}
+ \begin{sol}
+     Buscamos curvas integrales de $X$. Dado $p=(x_o,y_o,z_o) \in M$, 
+     $$\sigma(t)=(x(t),y(t),z(t)) \qquad \begin{cases}
+         \sigma'(t)=X_{\sigma(t)} \\ \sigma(0)=p
+     \end{cases}\iff \begin{cases}
+         x'=\dfrac{x}{log(x)} \\ y'=y^2 \\ z'=z \\ x(0)=x_o \\ y(0)=y_o \\ z(0)=z_o
+     \end{cases}$$ 
+     y resolviendo
+     $$\dfrac{x' log(x)}{x}=1 \iff \dfrac{1}{2} log^2(x) = t + k \overset{x(0)=x_o}{\implies} k = \dfrac{1}{2} log^2(x_o) \Rightarrow log(x) = \pm \sqrt{2t+log^2(x_o)}$$
+     $$x(t)=\begin{cases}
+         e^{\sqrt{2t+log^2(x_o)}} \quad x_o> 1\\e^{-\sqrt{2t+log^2(x_o)}} \quad 0 < x_o < 1
+     \end{cases}$$y est\'a definida en cuando $2t+log^2(x_o) > 0 \iff t>-\frac{1}{2}log^2(x_o)$, es decir, $t\in (-\frac{1}{2}log^2(x_o), +\infty) $
+     $$y'=y^2 \iff \dfrac{y'}{y^2}=1 \iff -\dfrac{1}{y} = t+k \overset{y(0)=y_o}{\implies} k = -\frac{1}{y_o} (\text{ si } y_o\neq 0) \Rightarrow -\dfrac{1}{y}=t-\dfrac{1}{y_o} = \dfrac{y_ot-1}{y_o} \Rightarrow$$
+     $$y=-\dfrac{y_o}{y_ot-1}=\dfrac{y_o}{1-y_o t} \qquad \text{ vale para } y_o=0 $$
+     y est\'a definida cuando $1-y_ot\neq 0 \Rightarrow t\neq \dfrac{1}{y_o} \Rightarrow y_o\neq 0$. Si $y_o=0$, $y(t)=0$ definida $\forall t \in \mathbb R$.
+    $$z'=z \iff z(t)=z_oe^t \qquad \text{ definida } \forall t\in \mathbb R$$
+    As\'i que $\sigma(t)=\left( e^{\sqrt{2t+log^2(x_o)}}, \frac{y_o}{1-y_ot},z_oe^t\right)$ cuando $x_o>1$, definida en $(-\frac{1}{2}log^2(x_o), +\infty) - \{\nicefrac{1}{y_o}\}$ y an\'alogamente para el resto de casos.
+
+    El flujo de $X$: $\forall p \in M$ existe $\Psi_p: I_p \times U_p\subset \mathbb R \times M \longrightarrow M$ tal que $\Psi(t,q)=\sigma_q(t)=\left( e^{\sqrt{2t+log^2(x_o)}}, \frac{y_o}{1-y_ot},z_oe^t\right)$. 
+
+    Buscamos el grupo local uniparam\'etrico de transformaciones, que gen\'ericamente es
+    $$\bt \tau_t : D_t \subset M \rar & M\\[-5mm] p \arrow[mapsto]{r} & \sigma_p(t) =  \left( e^{\sqrt{2t+log^2(x)}}, \frac{y}{1-yt},ze^t\right) \et$$
+    As\'i que fijado $t$, $D_t=\{(x,y,z) / t \text{ pertenezca al dominio de def. de } \sigma_p\}$ verificando $2t+log^2(x)>0$ y $1-y t\neq 0$. Esto es, $y\neq \frac{1}{t}$ y $x > e^{\sqrt{-2t}}$. As\'i que
+    $$D_t = \begin{cases}
+        t > 0 \qquad \{(x,y,z)/ y \neq \frac{1}{t}\} \\ t=0 \qquad M \\ t< 0 \qquad  \{(x,y,z)/ y \neq \frac{1}{t}, x> e^{\sqrt{-2t}}\}
+    \end{cases}$$
+ \end{sol}
+ Otro ejercicio similar es comprobar que $\tau_t : D_t \longrightarrow M$ es grupo local uniparam\'etrico, por ejemplo, 4.23 y 4.24. Hag\'amoslo con este:
+ \begin{enumerate}
+     \item $D_t$ es abierto.
+     \item $\displaystyle M=\bigcup_{t>0}D_t = \bigcup_{t<0} D_t$.
+     \item $\tau_t$ es diferenciable en el abierto $D_t$.
+     \item $\tau_o=Id: M \longleftarrow M$.
+     \item $\tau_s \circ \tau_t = \tau_{s+t}$.
+     \begin{sol}
+         $$\tau_s\circ \tau_t (x,y,z) = \tau_s\left( e^{\sqrt{2t+log^2(x)}}, \frac{y}{1-t},ze^t\right) = \left( e^{\sqrt{2s+log^2\left(e^{\sqrt{2t+log^2(x)}}\right)}}, \frac{\frac{y}{1-yt}}{1-\left(\frac{1}{1-yt} \right)s}, z e^{t} e^s\right) =$$
+         $$=\left( e^{\sqrt{2s+\left(\sqrt{2t+log^2(x)}\right)^2}}, \frac{y}{(1-yt)-ys}, z e^{t+s} \right) =\left( e^{\sqrt{2s+2t+log^2(x)}}, \frac{y}{1-y(t+s)}, z e^{t+s} \right) =$$
+         $$=\left( e^{\sqrt{2(s+t)+log^2(x)}}, \frac{y}{1-y(t+s)}, z e^{t+s} \right) = \tau_{t+s}(x,y,z) $$
+
+         Obsérvese que si $t=-1$ y $s=2$, $dom \, (\tau_2 \circ \tau_{-1}) \subsetneqq dom \, (\tau_{-1})$.
+     \end{sol}
+ \end{enumerate}
+ \section{Tema 5. C\'alculo diferencial en variedades.}
+ \begin{ejer}
+     [5.12] Sea $f: \mathbb R^2\longrightarrow \mathbb R^3$, dada por $f(x,y)=(x,y,x^2+y^2)$. Considera los tensores:
+     $$x=\sin(y)\pd{}{x} + \sin(x) \pd{}{y} \in \mathfrak X(\mathbb R^2)$$
+     $$Y = (x+y+z) \pd{}{x} + xyz \pd{}{z} \in \mathfrak X(\mathbb R^3)$$
+     $$\omega = (1+y^2)dx + (1+x^2)dx+xdz \in \Lambda_1(\mathbb R^3)$$
+     $$g = dx \otimes dx + dy \otimes dy + dz  \otimes dz \in \mc T_2^0 (\mathbb R^3)$$
+     Calcular $(f^*\omega)$, $(f^*\omega)(X)$, $f^*g$, $(f^*g)(X,X)$, $d\omega$ y $L_Y\omega$.
+ \end{ejer}
+ \begin{sol}
+     Todas las aplicaciones est\'an bien definidas y son diferenciables, de forma que $f^*\omega\in \Lambda_1(\mathbb R^2)$ y como $f^*\omega$ es lineal y por las propiedades que conocemos, 
+     $$(f^*\omega) = \left((1+y^2)\circ f \right) \cdot \underbrace{f^*(dx)}_{d(x\circ f)} + \left((1+x^2)\circ f\right) \underbrace{f^*(dy)}_{d(y\circ f)}  + (x\circ f) \cdot \underbrace{f^*(dz)}_{d(z\circ f)}= (*)$$
+     donde $d(x\circ f)=dx$ pues $(x\circ f)(x,y)=x$ y de la misma forma $d(y\circ f)=dy$. Para $z$, $(z\circ f)(x,y) = x^2+y^2$, luego $d(z\circ f) = 2xdx+2ydy$ y continuando en $(*)$
+     $$(*)=(1+y^2)dx + (1+x^2)dy + x(2xdx+2ydy)=(1+2x^2+y^2)dx + (1+x^2+2xy)dy $$
+
+     Ahora, $$(f^*\omega)(X)=(1+2x^2+y^2)dx(X) + (1+x^2+2xy)dy (X) = \left(1+2x^2+y^2 \right) \sin(y) + \left(1+x^2+2xy\right) \sin(x) $$
+     que es $\mc C^{\infty}(\mathbb R^2)$. 
+
+     Por otro lado, podemos usar la propiedad $f^*(dx\otimes dx)=f^*dx \otimes f^*dx = dx \otimes dx$ y $f^*(dy \otimes dy) = dy \otimes dy$, pero $f^*(dz\otimes dz) = (f^*dz) \otimes (f^*dz) = (2xdx +2y dy )\otimes(2xdx+2ydy) = $ $4x^2dx \otimes dx + 4xy (dx \otimes dy +dy\otimes dx) + 4y^2 dy\otimes dy$
+     y por tanto,
+     \[\begin{split} f^*g & = dx \otimes dx + dy \otimes dy + 4x^2dx \otimes dx + 4xy (dx \otimes dy +dy\otimes dx) + 4y^2 dy\otimes dy = \\ & = (1+4x^2)dx\otimes dx + 4xy(dx\otimes dy + dy \otimes dx) + (1+4y^2) dy \otimes dy\end{split}\]
+
+     \[\begin{split}
+         (f^*g)(X,X) & = (1+4x^2) dx(X) \cdot dx(X) + 4xy(dx(X)dy(X)+dy(X)dx(X)) + (1+4y^2)dy(X)dy(X) = \\ & = (1+4x^2) \sin^2(y)+ 4xy(2\sin(y)\sin(x)) + (1+4y^2)\sin^2(x) = \\ & = 4\left(x\sin(y)+y \sin(x)\right)^2 + \sin^2(y)+\sin^2(x)
+     \end{split}\]
+
+        Se tiene que
+        $$d((1+y^2)dx)=d(1+y^2)\wedge dx = (2ydy)\wedge dx$$
+        $$d((1+x^2)dy) =d(1+x^2)\wedge dy = (2xdx)\wedge dy$$
+        $$d(xdz)=dx \wedge dz$$
+        as\'i que con todo, calculamos y ordenamos
+     \[\begin{split}
+         d\omega & = 2ydy \wedge dx+2xdx\wedge dy + dx\wedge dz = \\ & = -2ydx\wedge dy + 2xdx\wedge dy + dx\wedge dz = \\ & = (2x-2y) dx\wedge dy + dx \wedge dz + 0 dy \wedge dz
+     \end{split}\]
+     
+ \end{sol}
+ \begin{ejer}
+     [5.13] En $\mathbb R^3$ se tiene la 1-forma $\omega_1 = xdx + (x + y)dy + ydz$ y la 2-forma $\omega_2 = zdx \wedge dy$. Considera la inclusi\'on $i : \bold S^2 \longrightarrow \mathbb R^3$ y las coordenadas estereogr\'aficas (desde el polo
+norte) $\{u_1, u_2\}$ en la esfera. Calcula $\theta_1 = i^*\omega_1$ y $\theta_2 = i^*\omega_2$ expres\'andolas en t\'erminos de $\{du_1, du_2\}$. Calcula adem\'as $d\omega_1, d\omega_2, d\theta_1$ y $d\theta_2$.
+ \end{ejer}
+ \begin{sol}
+     Se tendr\'a que $i^*\omega_1 \in \Lambda_1(\bold S^2)$ y $i^*\omega_2 \in \Lambda_2(\bold S^2)$. Respectivamente, $\Lambda_1(\bold S^2)=\{du,dv\}$ y $\Lambda_2(\bold S^2)=\{du\wedge dv\}$, por lo que $(i^*\omega)_p \left(\pd{}{u} \right) = \omega_1 \left(i_{*,p} \left( \pd{}{u}\right)\right)$ podr\'iamos seguir, pero es m\'as pr\'actico:
+     $$(i^* \omega_1) = i^*(x dx)+i^*((x+y)dy) + i^*(ydz) = (x\circ i) d(x\circ i) + (x+y) \circ i d(y+i) + (y \circ i) d(z\circ i)$$
+     y la lectura en estas coordenadas de estas aplicaciones on
+     $$i \circ \varphi_N^{-1}(u,v) = \left( \dfrac{2u}{1+u^2+v^2}, \dfrac{2v}{1+u^2+v^2}, \dfrac{-1+u^2+v^2}{1+u^2+v^2} \right)$$
+     y por tanto
+     $$d(x\circ i) = d \left( \dfrac{2u}{1+u^2+v^2}\right) = \dfrac{2}{1+u^2+v^2} \left((1-u^2+v^2)du-2uvdv\right)$$
+     de forma que 
+     $$d(y\circ i) = \dfrac{2}{1+u^2+v^2} \left(-2uvdu+(1+u^2-v^2)vdv\right)$$ 
+    $$d(z\circ i) = d\left( \dfrac{-1+u^2+v^2}{1+u^2+v^2}\right) = \dfrac{4}{1+u^2+v^2} \left( udu+vdv \right)$$
+    y juntando todo,
+    $$i^*\omega_1 = dsjgh;lhf du + ;dgj;ld dv$$
+    y para $i^*\omega _2$ usamos que $i^*(dx\wedge dy) = (i^*dx )\wedge (i^*dy)$.
+ \end{sol}
+ \begin{ejer}
+     [5.16]  En $M = \{(x, y) \in \R^2 \, | \, x > 0, y > 0\}$ se tiene la conexi\'on que cumple:
+     $$\nabla_{\frac{\partial }{\partial x}} \pd{}{x} = \nabla_{\frac{\partial }{\partial y}} \pd{}{y} = 0 \qquad \nabla_{\frac{\partial }{\partial x}} \pd{}{y} = \nabla_{\frac{\partial }{\partial y}} \pd{}{x} = \pd{}{x}$$
+     En particular $\Gamma_{12}^1 = \Gamma_{21}^1 = 1$ y el resto son nulos.
+
+     Considera las coordenadas polares $(\rho, \theta) \in (0,\infty)\times(0, \nicefrac{\pi}{2})$ dadas por $\rho= \sqrt{ x^2 + y^2},\theta = \arctan \nicefrac{y}{x} \in (0, \nicefrac{\pi}{2})$ cuyo cambio inverso es $x = \rho \cos \theta, y = \rho \sin \theta$. Calcula los coeficientes
+de esta conexi\'on en las coordenadas $\{\rho, \theta\}$.
+ \end{ejer}
+ \begin{sol}
+     Los coeficientes de esta conexi\'on en coordenadas polares se llaman $\Gamma_{\rho\rho}^{\rho}, \Gamma_{\rho\theta}^{\rho}$, etc.
+
+     Calculemos
+     $$\nabla_{\frac{\partial}{\partial \rho}} \pd{}{\rho}=\Gamma_{\rho\rho}^{\rho} \pd{}{\rho} + \Gamma_{\rho \rho}^{\theta} \pd{}{\theta}$$
+     y 
+     $$\pd{}{\rho} = \pd{}{\rho} (x) \pd{}{x} + \pd{}{\rho} (y) \pd{}{y} = \cos \theta \pd{}{x} +\sin \theta \pd{}{y} $$
+     $$\pd{}{\theta} = -r \sin \theta \pd{}{x} + r \cos \theta \pd{}{y}$$
+     luego la matriz de cambio de base es 
+     $$A = \begin{pmatrix}
+         \cos \theta & -\rho \sin \theta \\ \sin \theta & \rho \cos \theta
+     \end{pmatrix}$$
+     y la matriz del cambio inverso ser\'a 
+     $$A^{-1} = \dfrac{1}{r}\begin{pmatrix}
+         \rho \cos \theta & \rho \sin \theta \\ -\sin \theta & \cos \theta 
+     \end{pmatrix}$$
+     luego 
+     $$\pd{}{x} = \cos \theta \pd{}{\rho} - \dfrac{1}{\rho} \sin \theta \pd{}{\theta}$$
+     $$\pd{}{y} = \sin \theta \pd{}{\rho}+ \dfrac{1}{\rho} \cos \theta \pd{}{\theta}$$
+     y por tanto,
+     \[ \begin{split}\nabla_{\frac{\partial}{\partial \rho}} \pd{}{\rho} & = \nabla_{\frac{\partial}{\partial \rho}} \left(\cos \theta \pd{}{x} + \sin \theta \pd{}{y} \right) = \\ & = \pd{}{\rho} (\cos \theta ) \pd{}{x} + \cos \theta \nabla_{\frac{\partial}{\partial \rho}} \pd{}{x} + \pd{}{\rho} \sin \theta \pd{}{y} + \sin \theta \nabla_{\frac{\partial}{\partial \rho}} \pd{}{y} = \\ & = \cos \theta \left( \nabla_{\cos\theta \frac{\partial}{\partial x} +\sin \theta \frac{\partial}{\partial y}} \pd{}{x} \right)+  \sin \theta \left( \nabla_{\cos\theta \frac{\partial}{\partial x} +\sin \theta \frac{\partial}{\partial y}} \pd{}{y} \right) = \\ & = 2\cos \theta \sin \theta \pd{}{x} = 2\cos \theta \sin \theta \left( \cos \theta \pd{}{\rho} - \dfrac{1}{\rho} \sin \theta \pd{}{\theta}\right)  \end{split}\]
+      de forma que 
+      $$\Gamma_{\rho \rho}^{\rho} = 2\cos^2\theta \sin \theta \quad \Gamma_{\rho \rho}^{\theta} = -\dfrac{2}{\rho} \cos \theta \sin^2 \theta$$
+      y as\'i se procede. El resto son 
+      $$\Gamma_{\rho \theta}^{\rho} = -\rho \cos \theta \cos 2\theta \quad \Gamma_{\rho \theta}^{\theta} = \dfrac{1}{\rho} - \cos 2\theta$$
+      $$\Gamma_{\theta \theta}^r = -r \quad \Gamma_{\theta \theta}^{\theta}=0$$
+      y por simetr\'ia se tienen las restantes.
+ \end{sol}
+ \begin{ejer}
+     [5.18] En $\R^2$ con el sistema de coordenadas cartesiano $\{u, v\}$ considera la conexi\'on sim\'etrica cuyos coeficientes son:
+     $$\Gamma_{uu}^u=\Gamma_{vv}^u = \dfrac{4u}{1+4u^2+4v^2} \qquad \Gamma_{uu}^v=\Gamma_{vv}^v = \dfrac{4v}{1+4u^2+4v^2} \qquad \Gamma_{uv}^u=\Gamma_{uv}^v=\Gamma_{vu}^u=\Gamma_{vu}^v=0$$
+        \begin{enumerate}[a)]
+            \item Calcula el transporte paralelo de un vector $D_{\sigma(0)}$ a lo largo de la curva $\sigma(t) = (t + x_o, y_o)=(u(t),v(t))$ ($\sigma(0)=(x_o,y_o)$).
+            \item Plantea las ecuaciones de las geod\'esicas.
+        \end{enumerate}
+\end{ejer}
+\begin{sol}
+    Se tiene que 
+    $$X(0)=X_{\sigma(0)} = u_o \pd{}{u}\Big|_{\sigma(t)}+v_o \pd{}{v}\Big|_{\sigma(t)} \in T_{\sigma(0)}\R^2$$
+    y, por los coeficientes de la conexi\'on,
+    $$\con{u}{u} = \dfrac{4u}{1+4u^2+4v^2} \pd{}{u} + \dfrac{4v}{1+4u^2+4v^2} \pd{}{v} = \con{v}{v}$$
+    $$\con{u}{v} = 0 = \con{v}{u}$$
+    Y buscamos 
+    $$X(t)=X_{\sigma(t)} = \mu_1(t) \pd{}{u}\Big|_{\sigma(t)} + \mu_2(t) \pd{}{v}\Big|_{\sigma(t)}$$
+    verficando que sea diferenciable, $X(0)$ igual al daod y paralelo a lo largo de $\sigma$. Se tiene que $\sigma'(t)=\pd{}{u}\Big|_{\sigma(t)}$, de forma que
+    \[\begin{split}
+        \nabla_{\sigma'}X & = \nabla_{\sigma'} \left( \mu_1 \pd{}{u} \right)+  \nabla_{\sigma'} \left( \mu_2 \pd{}{v} \right) = \\ & = \mu_1' \pd{}{u} + \mu_1  \nabla_{\sigma'} \pd{}{u} + \mu_2' \pd{}{v} + \mu_2 \nabla_{\sigma'} \pd{}{v} = \\ & = \mu_1' \pd{}{u} + \mu_1  \con{u}{u} + \mu_2' \pd{}{v} + \mu_2 \cancelto{0}{\con{u}{v}}=\\&= \mu_1' \pd{}{u} + \mu_1 \left( \dfrac{4u}{1+4u^2+4v^2} \pd{}{u} + \dfrac{4v}{1+4u^2+4v^2} \pd{}{v}  \right) + \mu_2' \pd{}{v} = \\ & = \left( \mu_1' + \mu_1 \dfrac{4u}{1+4u^2+4v^2}  \right) \pd{}{u} + \left( \mu_2' + \mu_1 \dfrac{4v}{1+4u^2+4v^2}  \right) \pd{}{v}
+    \end{split}\]
+    y como $X$ es parelelo a la curva, $\nabla_{\sigma'}X=0\iff$
+    $$\begin{cases}
+        \mu_1' + \mu_1 \dfrac{4u}{1+4u^2+4v^2}=0 \\ \mu_2' + \mu_1 \dfrac{4u}{1+4u^2+4v^2}=0
+    \end{cases}$$
+    y denotando $u(t)=t+x_o, \, v(t)=y_o$, se tiene el problema de Cauchy
+    $$\begin{cases}
+         \mu_1' + \dfrac{4t + 4x_o}{1+4(t+x_o)^2+4y_o^2} \mu_1 = 0\\ \mu_2' + \dfrac{4y_o}{1+4(t+x_o)^2+4y_o^2} \mu_1=0 \\ \mu_1(0)=u_o \\ \mu_2(0)=v_o
+    \end{cases}$$
+    De la primera ecuaci\'on,
+    $$\dfrac{\mu'_1}{\mu_1} = -\dfrac{4t+4x_o}{1+4(t+x_o)^2 + 4y_o^2} \iff (log \mu_1)'= - \dfrac{1}{2} \left( log(1+4(t+x_o)^2 + 4y_o^2) \right)' $$
+    $$log \mu_1 = -\dfrac{1}{2} log(1+4(t+x_o)^2 +4y_o^2) + k = log(1+4(t+x_o)^2 +4y_o^2)^{-\nicefrac{1}{2}} + k  $$
+    $$\mu_1 = k \dfrac{1}{\sqrt{1+4(t+x_o)^2 +4y_o^2}}\quad \mu_1(0)=u_o=\dfrac{k}{\sqrt{1+4x_o^2 +4y_o^2}} \Rightarrow k =u_o\sqrt{1+4x_o^2 +4y_o^2}$$
+    $$\mu_1(t)=\dfrac{u_o\sqrt{1+4x_o^2 +4y_o^2}}{\sqrt{1+4(t+x_o)^2 +4y_o^2}}$$
+    De la segunda ecuaci\'on tenemos que
+    $$\mu_2' = \dfrac{4 y_o u_o \sqrt{1+4x_o^2 +4y_o^2}}{\left(\sqrt{1+4(t+x_o)^2 +4y_o^2}\right)^3}$$
+    $$\mu_2 = -\dfrac{4 y_o u_o \sqrt{1+4x_o^2 +4y_o^2}(t+x_o)}{(1+4y_o^2)\sqrt{1+4(t+x_o)^2 +4y_o^2}} + \dfrac{4u_ox_oy_o}{1+4y_o^2} + v_o$$
+\end{sol}

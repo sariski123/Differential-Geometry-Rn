@@ -1,0 +1,465 @@
+
+\justifying  \setcounter{page}{52} \setcounter{chapter}{4}
+\chapter{Cálculo diferencial en variedades}
+\section{Campos de covectores}
+\begin{defi}
+Sea $M$ una variedad diferenciable y $U \subset M$ un abierto. Un \textbf{campo de covectores} en $U$ es una asignación de a cada $p \in U$ un elemento de $T_p^*M$.
+\end{defi}
+
+\begin{obs}
+Como en campos de vectores, si $U = M$, el campo será global, y en otro caso se dice que es local. La notación usual para campos de covectores será $\omega$ o $\theta$, y la evaluación en $p\in U$ se escribirá $\omega_p,\theta_p \in T_p^*M$.
+\end{obs}
+
+Si $\omega$ es un campo de covectores en $U \subset M$ y $(V,\varphi\equiv(x_i))$ es una carta de $M$ sabemos que $\{d_px_i\}_{i=1}^n$ es base de $T_p^*M$. Entonces, para todo $p \in U \cap V$ se tiene que $$\omega_p =  \sum_{i=1}^n \lambda_i(p) d_px_i \qquad \text{con } \lambda_i: U\cap V \to \mathbb{R}$$
+
+\begin{defi}
+Sea $M$ una variedad diferenciable y un \textbf{campo de covectores} en el abierto $U \subset M$. Se dice que $\omega$ es \textbf{diferenciable} si para todo $p \in U$ existe una carta $(V,\varphi)$ de $M$ con $p \in V$ de modo que las funciones coordenada de $\omega|_{U\cap V}$ en la base que genera $(V,\varphi)$ son diferenciables. Al conjunto de campos de covectores diferenciables en $U$ lo denotaremos por $\Lambda_1(U)$.
+\end{defi}
+
+\begin{obs} \, \vspace{-3mm} \begin{enumerate}[a)] \item Si la condici\'on de diferenciabilidad se cumple para $(V,\psi)$ con $p\in V$, se cumplir\'a para c
+ualquier otra carta que cubra a $p$. 
+\item En algunos textos se denota por $\Omega_1(U)$ en lugar de $\Lambda_1(U)$. \item A los campos de covectores diferenciables tambi\'en pueden ser llamados campos de 1-formas.
+\end{enumerate}
+\end{obs}
+
+\begin{ejem} \,
+\begin{enumerate}
+    \item Si $(U,\varphi\equiv(x_i))$ es una carta de $M$, $\pd{}{x_i} \in \mathfrak X (U), \, dx_i \in \Lambda_1(U)$.
+    \item Si $f\in \mathcal C^{\infty}(U), \, U\subset M$ abierto, entonces $df \in \Lambda_1(U)$. 
+    \item Si $(U,\varphi\equiv(x_i))$ es carta de $M$,  entonces $dx_i \in  \Lambda_1(U)$, pues dado $p \in U$ este campo valora como $(dx_i)_p = d_px_i \in T_p^*M$. 
+    
+    También, si $f\in \mathcal{C}^{\infty}(V)$, se tiene que $df\in \Lambda_1(V)$, pues para todo $p \in V$ se valora como $(df)_p = d_pf \in T_p^*M$ y $$df|_{U\cap V} = \sum_{i=1}^n \dfrac{\partial}{\partial x_i}(f) dx_i|_{U\cap V}$$
+\end{enumerate}
+
+\end{ejem}
+
+\begin{prop}
+Si $U\subset M$ es un abierto de una variedad diferenciable $M$, entonces $\Lambda_1(U)$ es un $\mathcal{C}^{\infty}(U)$-módulo con las operaciones definidas para todo $p\in U$:
+\begin{itemize}
+    \item $(\omega+\theta)_p = \omega_p + \theta_p \in T_p^*M \qquad \forall\;\omega,\theta \in \Lambda_1(U)$
+    \item $(\lambda\omega)_p=\lambda \cdot \omega_p \in T_p^*M \qquad \qquad \forall \; \omega\in \Lambda_1(U), \, \lambda \in \mathbb R^*$ 
+    \item $(f\,\omega)_p = f(p)\cdot \omega_p \in T_p^*M \qquad \forall\; \omega\in \Lambda_1(U), f\in\mathcal{C}^{\infty}(U)$
+\end{itemize}
+\end{prop}
+\begin{dem}
+\textcolor{red}{Ejercicio, no lo va a hacer ni dios}
+\end{dem}
+
+Si $\omega$ es un campo de covectores en $U$, entonces para todo $p \in U$ las formas $\omega_p$ actúan sobre elementos de $T_pM$, que a su vez pueden venir de un campo de vectores $X$ sobre $U$. Esta actuación es de la forma $$\begin{tikzcd}
+\omega(X):\hspace{-13mm} & U \rar & \mathbb{R}\\[-5mm]
+& p \arrow[rightsquigarrow]{r} & \omega_p(X_p)
+\end{tikzcd}$$
+
+\begin{prop}
+Sea $\omega$ un campo de vectores en un abierto $U \subset M$ de una variedad diferenciable. Entonces 
+$$\omega \in \Lambda_1(U) \iff \;\forall\; X \in \mathfrak{X}(U),\;\; \omega(X) \in \mathcal{C}^{\infty}(U)$$
+\end{prop}
+\begin{dem}
+\textcolor{red}{Ejercicio sencillo, parecido al de vectores}
+\end{dem}
+\begin{obs}
+Si $Y$ es otro campo de vectores en $U$ y $X_p = Y_p$, entonces $\omega(X)(p) = \omega(Y)(p)$ para todo $\omega \in \Lambda_1(U)$. Esto no suced\'ia con campo de vectores, pues que $(Xf)$ y $(Xg)$ coinciden en $p$, \underline{no} implica que $(Xf)=(Xg)$ pues la derivada es local, no puntual.
+\end{obs}
+
+\begin{defi}
+Sean $M,N$ variedades diferenciables, $f:M\to N$ una aplicación diferenciable y $\omega$ un campo de covectores en $N$. Se llama \textbf{pull-back} o \textbf{retroacción de} $\omega$, y se denota por $f^*\omega$, al campo de covectores de $M$ dado por 
+$$\forall\; p \in M \qquad (f^*\omega)_p = f^*_p(\omega_{f(p)}) \in T_p^*M$$
+donde $f_{,p}^*: T_{f(p)}^*N \longrightarrow T_p^*M$ es la aplicaci\'on cotangente de $f$ en $p\in M$.
+\end{defi}
+\begin{obs}
+    Si $\omega$ est\'a definido en $V \subset N$ abierto, entonces $f^*\omega$ estar\'a definido en $f^{-1}(V)$.
+\end{obs}
+\begin{prop}
+Si $f:M\to N$ es diferenciable y $\omega\in \Lambda_1(N)$, entonces $f^*\omega \in \Lambda_1(M)$.
+\end{prop}
+\begin{dem}
+\textcolor{red}{Ejercicio.} Usar que dada la carta de $N$: $(V,\psi\equiv(y_j))$, entonces si $\displaystyle \omega|_V=\sum_{i=1}^n \lambda_i dy_j$, $\forall p \in f^{-1}(V)$
+\[ \begin{split}(f^*\omega)_p & =f_p^*(\omega_{f(p)})=f^*(\omega|_V)= f^*(\sum \lambda_i(f(p)) d_{f(p)}y_j) = \sum \lambda_i(f(p)) f^*_p (d_{f(p)}y_j) = \\ & =\sum(\lambda_i \circ f)(p) d_p(y_i \circ f) \end{split} \]
+y si $(U,\varphi\equiv(x_i))$ es carta de $M$, $f(U)\subset V$, las coordenadas de $f^*_p\omega$ en esta base, viene determinada por 
+$$d_p(y_i\circ f) \left( \pd{}{x_i}\Big|_p \right)= \pd{}{x_j}\Big|_p(y_i\circ f)$$
+y as\'i comprobamos que es diferenciable.
+\end{dem}
+
+\begin{obs}
+\textcolor{blue}{Comprobar si la asignación $M \to \Lambda_1(M)$, $f \to f^*$ es funtorial.}
+\end{obs}
+
+\section{Campos de tensores} \footnote{En el examen final entra todo sobre campos de tensores, no el recordatorio de tensores en espacios vectoriales. Las demostraciones de los dos \'ultimos apartados no se pedir\'an debido a su complejidad y longitud (las de campos de tensores s\'i). Sin embargo, s\'i se pedir\'an definiciones y manejo de las derivadas de Lie y diferencial exterior}
+Lo estudiado en esta secci\'on se encuentra en los ap\'endices que se enlazan a continuaci\'on
+
+\hyperref[ap1]{Tensores. Espacios vectoriales.}
+
+\hyperref[ap2]{Campos de tensores}
+
+\hyperref[ap3]{Derivada de Lie}
+
+\hyperref[ap4]{Diferencial exterior}
+\begin{defi}
+    Sea $M$ una variedad diferenciable y $T\in \mc T_s^r(M)$, sea $k \in \{1,\ldots, r\}, \, l\in \{1,\ldots, s\}$. Se llama \textbf{contracci\'on tensorial} del $k$-\'esimo \'indice contravariante y $l$-\'esimo \'indice covariante de $T$ al campo tensorial:
+    $$(C_l^kT)_p=C_l^k(T_p) \in T_{s-1}^r(T_pM) \qquad \forall \, p \in M$$
+    se define la contracci\'on en $T_pM$, $C_l^k$ en \hyperref[ap2]{Campos de tensores}.
+\end{defi}
+\begin{defi}
+    Si $T \in \mc T_s(M)$ y $X\in \mathfrak{X}(M)$, se llama \textbf{producto interior} de $T$ por $X$, o producto contra\'ido de $T$ por $X$, al campo tensorial $i_XT\in \mc T_{s-1}(M)$ dado por:
+    $$(i_XT)(Y_1, \ldots, Y_{s-1})=T(X,Y_1, \ldots, Y_{s-1})$$
+\end{defi}
+\begin{ejem}
+    Consideremos en $\mathbb R^3$ con las coordenadas usuales, el tensor
+    $$T = x\left(dx\otimes dy\otimes \pd{}{z}\right)  + (xyz)  \left(dy\otimes dx \otimes \pd{}{x}\right) \in \mc T_2^1(\mathbb R^3)$$
+    entonces
+    \[ \begin{split} C_1^1T & =xC_1^1\left(dx\otimes dy\otimes \pd{}{z}\right) + xyzC_1^1 \left(dy\otimes dx \otimes \pd{}{x}\right)=x\cancelto{0}{dx \left( \pd{}{z} \right)}dy + xyz \cancelto{0}{dy\left(\pd{}{x}\right)}dx = \\ & = 0\end{split}\]
+    \[\begin{split} C_2^1T & =xC_2^1\left(dx\otimes dy\otimes \pd{}{z}\right) + xyzC_2^1 \left(dy\otimes dx \otimes \pd{}{x}\right)=x\cancelto{0}{dy \left( \pd{}{z} \right)}dx + xyz \cancelto{1}{dx\left(\pd{}{x}\right)}dy= \\ & = xyz \, dy\end{split}\]
+\end{ejem}
+\begin{ejem}
+    Sea el tensor
+    $$T=(1+z)dx \otimes dy + xy \, dy \otimes dy + (x+z) dy \otimes dz \in \mc T_2(\mathbb R^3)$$
+    y el campo
+    $$X=2\pd{}{x}+x\pd{}{y} \in \mathfrak X(\mathbb R^3)$$
+    entonces
+    \[\begin{split}
+        (i_X \Tilde{X}) & = (1+z)i_X(dx\otimes dy) + xy i_X(dy\otimes dy) + (z+x)i_X(dy\otimes dz) = \\ &= (1+z) \cdot dx(X) \cdot dy + xy dy(X) dy + (x+z) dy(X) dz = \\ & = (1+z) \, 2 \, dy + xy \cdot x \, dy +(x+z) \cdot 1 \cdot dz = \\& = 
+        (2(1+z)+x^2y)dy+(x+z)dz \in \mc T_1^0(\mathbb R^3) = \Lambda_1(\mathbb R^3)
+    \end{split}\]
+\end{ejem}
+
+\begin{defi}
+    Sea $M$ una variedad diferenciable y sea $X \in \mathfrak X(U)$ un campo. La \textbf{derivaci\'on de Lie} en la direcci\'on $X$ es un operador $L_X: \mc T_s^r(M) \longrightarrow \mc T_s^r(M)$ $\mathbb R$-lineal.
+\end{defi}
+Obs\'ervense los siguientes casos:\vspace{-3mm}
+\begin{enumerate}
+    \item Si $r=s=0$, $f\in \mc T_0^0(M) = \mc C^{\infty}(M)$, entonces
+    $$L_Xf=X\,f\in \mc C^{\infty}(M)$$
+    \item Si $Y \in \mathfrak X(M)=\mc T_0^1(M)$ entonces
+    $$L_XY=[X,Y] \in \mathfrak X(M)$$
+    \item Si $\omega \in \Lambda_1(M) =\mc T_1^0(M)$ entonces
+    $$(L_X\omega)(Y)=X(\omega(Y))-\omega(L_XY) = X(\omega(Y))-\omega[X,Y]\qquad \forall \, Y \in \mathfrak X(M)$$
+    \item Si $T\in \mc T_s^r(M)$, entonces
+    \[\begin{split}
+        (L_XT)&(\underbrace{x_1,\ldots,x_s}_{\mathfrak X(M)},\underbrace{\omega_1,\ldots,\omega_r}_{\Lambda_1(M)}) = X\big(T(x_1,\ldots,x_s,\omega_1,\ldots,\omega_r)\big) - \\ & -\sum_{k=1}^s T(x_1,\ldots,L_Xx_i, \ldots, x_s,\omega_1,\ldots,\omega_r) - \\ & - \sum_{j=1}^r T(x_1,\ldots,x_s,\omega_1,\ldots,L_X\omega_j, \ldots, \omega_r)
+    \end{split}\]
+    que se trata de una definici\'on axiom\'atica, en la que hay que comprobar que est\'a bien definido y se verifica $\mathbb R$-linealidad y diferenciabilidad. 
+\end{enumerate}
+\begin{propis}
+    Se verifican las siguientes propiedades \vspace{-3mm}
+    \begin{itemize}
+        \item $L_{\lambda X+\mu Y}=\lambda L_X+\mu L_Y$
+        \item $L$ deriva $\otimes$: $L_X(T\otimes \overline{T})= L_X T \otimes \overline{T} + T \otimes L_X \overline{T}$
+        \item $\omega \in \Lambda_s(M)\Rightarrow L_X\omega \in \Lambda_s(M)$. En particular,
+        \item $L$ deriva $\wedge$: $L_X(\omega_1\wedge \omega_2)=L_X\omega_1\wedge \omega_2 + \omega_1 \wedge L_X\omega_2$.
+        \item $f\in \mc C^{\infty}(M)$, $L_X(df)=d(Xf)=d(L_Xf)$
+    \end{itemize}
+\end{propis}
+\begin{ejem}
+    En $\mathbb R^2$, dado el campo 
+    $$X=y \pd{}{x}-\pd{}{y} \in \mathfrak(\mathbb R^2)$$
+    y los tensores
+    $$T=xydx+(1-x)dy \in \Lambda_1(\mathbb R^2) \qquad \overline{T}=dx\otimes \pd{}{y} + (x^2+y^2)dy \otimes \pd{}{x} \in \mc T_1^1(\mathbb R^2)$$
+    entonces
+    $$L_X(dx)=d(X_x)=d(y)=dy \qquad L_X(dy)=d(Xy)=d(-1)=0$$
+    $$L_X\left(\pd{}{x}\right) = \left[X,\pd{}{x}\right] = \left[y\pd{}{x}-\pd{}{y},\pd{}{x}\right] = 0 $$
+    $$L_X\left(\pd{}{y}\right)=\left[X,\pd{}{y}\right]=\left[y\pd{}{x}-\pd{}{y},\pd{}{y}\right]=\pd{}{x}$$de forma que
+    \[\begin{split} L_XT & =L_X(xy \, dx) + L_X((1-x)dy)=L_X(xy\otimes dx)+ L_X((1-x)\otimes dy) = \\ & = L_X(xy)\otimes dx + xy \otimes L_Xdx + L_X(1-x) \otimes dy + (1-x)\otimes L_X dy = \\ & = (y^2-x) \otimes dx + xy \otimes dy - y\otimes dy =(y^2-x) dx + (xy-y) dy \end{split}\]
+    \[\begin{split}
+        L_X\overline{T} & = L_X\left(dx\otimes \pd{}{y} \right) + L_X\left(x^2+y^2\otimes dy \otimes \pd{}{x}\right) = \cdots = \hspace{28mm} \\ & = dy \otimes \pd{}{y}+2xy-2y dy\otimes \pd{}{x}-dx\otimes \pd{}{x}
+    \end{split}\]
+\end{ejem}\begin{teo}
+    Sea $M$ una variedad diferenciable, entonces existe un \'unico operador \\ $d:\bigwedge_s(M) \longrightarrow \bigwedge_{s+1}(M)$ $\mathbb R$-lineal que cumple: \vspace{-3mm}
+    \begin{enumerate}
+        \item Para $s=0$, $\bigwedge_o(M) = \mc C^{\infty}(M)$ es la diferencial de funciones ya conocida ($f\longmapsto df$)
+        \item $d^2=d\circ d=0$
+        \item Es una antiderivaci\'on de grado 1, es decir, $\forall \omega \in \Lambda_r(M), \theta \in \Lambda_s(M)$,
+        $$d(\omega \wedge \theta)=d\omega \wedge \theta + (-1)^r \omega \wedge d\theta$$
+    \end{enumerate}
+\end{teo}
+\begin{obs}
+    De la (no) demostraci\'on, se ve que si
+    $$\omega|_M = \sum_{1\leq i_1 < \cdots < i_r \leq n} \lambda_{i_1,\ldots,i_r} dx_{i_1}\wedge \cdots \wedge dx_{i_r}$$
+    entonces
+    $$d\omega|_M = \sum_{1\leq i_1 < \cdots < i_r \leq n} d(\lambda_{i_1,\ldots,i_r}) \wedge dx_{i_1}\wedge \cdots \wedge dx_{i_r}$$
+\end{obs}
+
+\section{Conexiones lineales}
+
+\begin{defi}
+Sea $M$ una variedad diferenciable. Una conexión lineal es un operador $\nabla:\mathfrak{X}(M) \times \mathfrak{X}(M) \longrightarrow \mathfrak X(M)$ que cumple:
+\begin{enumerate}
+    \item Es $\mathbb{R}$-lineal en ambos componentes: $\forall \;X, Y,Z \in \mathfrak{X}(M),\lambda \in \mathbb{R}$ $$\nabla_{(X + \lambda\,Y)}Z = \nabla_X X + \lambda\,\nabla_Y Z \qquad \nabla_X(Y + \lambda\,Z) = \nabla_X\,Y + \lambda\,\nabla_X\,Z$$
+    \item Es $\mathcal{C}^{\infty}$-lineal en la primera componente, es decir, para toda $f\in \mathcal{C}^{\infty}$ $$\nabla_{fX}Y = f \,\nabla_X\,Y$$
+    \item Es una derivación en la segunda componente: $$\nabla_X(fY) = (Xf)\cdot Y + f\nabla_X\,Y$$
+\end{enumerate}
+\end{defi}
+
+\begin{ejem}
+En $\mathbb{R}^n$ con las coordenadas usuales $\{x_1,\dots,x_n\}$, sean $X,Y \in \mathfrak{X}(\mathbb{R}^n)$, con $\displaystyle Y = \sum_{i=1}^n \lambda_i \dfrac{\partial}{\partial x_i}$, se define
+$$\nabla_X\,Y = \sum_{i=1}^n X(\lambda_i)\dfrac{\partial}{\partial x_i} \in \mathfrak{X}(\mathbb{R}^n)$$
+Es directo comprobar que se cumplen las condiciones de la definición. Se llamará a esta aplicación conexión usual de $\mathbb{R}^n$.
+\end{ejem}
+
+\begin{ejem}
+El corchete de Lie \textbf{no} es una conexión lineal, pues no es $\mathcal{C}^{\infty}$-lineal en la primera componente.
+\end{ejem}
+
+\begin{teo}
+Sea $M$ una variedad diferenciable y $\nabla$ una conexión. Sean $X_1,X_2,Y_1,Y_2 \in \mathfrak{X}(M)$ de modo que para cierto $p \in M$, $(X_1)_p = (X_2)_p$ y existe $U \subset M$ abierto con $p \in U$ tal que $Y_1|_U = Y_2|_U$. Entonces $$(\nabla_{X_1}\,Y_1)_p = (\nabla_{X_2}\,Y_2)_p$$
+\end{teo}
+\begin{dem}
+Por la $\mathbb{R}$-linealidad, basta probar que si $X_p = 0$ entonces $(\nabla_X\,Y)_p = 0$ y que si $Y|_U = 0$ entonces $(\nabla_X\,Y)_p = 0$.
+
+Veamos que si existe $U \subset M$ abierto con $p \in U$ y $Y|_U = 0$, entonces $(\nabla_X\,Y)_p = 0$. Para $p \in U$, escogeremos una función meseta $h:M\to [0,1]$ diferenciable, de soporte compacto y contenido en $U$, con lo que existe un abierto $V$ con $p \in V \subset \overline{V} \subset U$ tal que $h|_{\overline{V}} \equiv 1$. Generamos $\overline{h} = 1-h$, diferenciable y con $\overline{h}|_{\overline{V}} \equiv 0, \overline{h}|_{M-U} \equiv 1$. Se cumple por tanto que $Y = \overline{h} Y$, pues en $U$ $Y\equiv 0$, y fuera la función meseta es la identidad. Luego
+$$(\nabla_X\,Y)_p = (\nabla_X(\overline{h}Y))_p = ((X\overline{h})\cdot Y + \overline{h}\,\nabla_X Y)_p = (X\overline{h})(p) \cdot Y_p + \overline{h}(p)\cdot (\nabla_X Y) = 0$$
+Análogamente se demuestra que $X = \overline{h}\,X$, con lo que 
+$$(\nabla_X\,Y)_p = (\nabla_{\overline{h}X} Y)_p = (\overline{h}\cdot\nabla_X Y)_p = \overline{h}(p)(\nabla_X Y)_p = 0$$
+Así que si $X|_U \equiv 0$ entonces $\nabla_X Y|_U \equiv 0$.
+
+Veamos ahora que si $X_p = 0$, entonces $(\nabla_X Y)_p = 0$. Sea $(V,\varphi\equiv (x_i))$ una carta de $M$ con $p \in V$. Podemos expresar
+$$X|_V = \sum_{i=1}^n \lambda_i \dfrac{\partial}{\partial x_i} \in \mathfrak{X}(V)$$
+y ya que $X_p = 0, \lambda_i(p) = 0$ para todo $i$. Sea $h:M \to [0,1]$ una función meseta asociada a $p\in V$ diferenciable de soporte compacto y contenido en $V$, y existiendo $\omega \subset V$ abierto con $p \in \omega \subset \overline{\omega} \subset V$ tal que $h|_{\overline{\omega}} \equiv 1$.
+Extendemos $\lambda_i$ a una función global y $\dfrac{\partial}{\partial x_i}$ a campos globales.
+$$\mu_i = \begin{cases}
+h\cdot \lambda_i \quad \text{en } U\\
+0 \qquad \text{en } M-sop(h)
+\end{cases} \qquad Z_i = \begin{cases}
+h \cdot \dfrac{\partial}{\partial x_i}  \quad \text{en } U\\
+0 \qquad \text{en } M-sop(h)
+\end{cases}$$
+Con lo que las $\mu_i$ son funciones globales y $Z_i$ son campos globales, verificando que $$Z = \sum_{i=1}^n \mu_i \,Z_i \in \mathfrak{X}(M) \qquad Z|_\omega = \sum_{i=1}^n \lambda_i \,\dfrac{\partial}{\partial x_i}\Big|_\omega = X|_\omega$$
+con lo que $$(\nabla_X Y)_p = (\nabla_Z Y)_p = \left(\sum_{i=1}^n \mu_i \;\nabla_{Z_i} Y\right)_p = \sum_{i=1}^n \mu_i(p) (\nabla_{Z_i} Y)_p = 0$$
+ya que $\mu_i(p) = \lambda_i(p) = 0$.
+\end{dem}
+\begin{notc}
+    Como $(\nabla_XY)_p$ depende de $X_p$ y $Y|_U$ donde $U\subset M$ abierto, tiene sentido la notaci\'on, para $p\in M$, $v\in T_pM$, $Y \in \mathfrak X(U)$, $U$ abierto con $p\in U$
+    $$\nabla_vY=(\nabla_X Y)_p$$
+    para cualquier campo diferenciable $X$ con $X_p=v$.
+\end{notc}
+
+\begin{teo}
+    Sea $M$ una variedad diferenciable, $\nabla$ una conexión, $p \in M$, $\sigma: I \subset \mathbb{R} \to M$ una curva diferenciable con $\sigma(0) = p$ y $\sigma'(0)=v \in T_pM$. Si $Y,Z \in \mathfrak X(M)$ son tales que $Y_{\sigma(t)} = Z_{\sigma(t)}$ para todo $t \in I$, entonces $$\nabla_v Y = \nabla_v Z$$
+\end{teo}
+\begin{dem}
+    Por la linealidad de $\nabla$ basta probar que si $Y_{\sigma(t)} = 0$ para todo $t \in I$, entonces $\nabla_v Y = 0$.
+    Para $p = \sigma(0)$, consideramos una carta $(U,\varphi\equiv (x_i))$ de $M$ con $p\in U$. Entonces $Y|_U = \sum_{i=1}^n \lambda_i \dfrac{\partial}{\partial x_i}$ con $\lambda_i \in \mathcal{C}^{\infty}(U)$ de modo que $\lambda_i(\sigma(t)) = 0$ para todo $t \in \sigma^{-1}(U) \subset I$. Conocemos $\sigma(t)$, es decir, $\varphi \circ \sigma(t) = (x_1(t),\dots,x_n(t))$ y $\sigma'(t) \in T_{\sigma(t)}M$. Por tanto
+    \[ \begin{split}\nabla_v Y & = (\nabla_{\sigma'(t)} Y)_{t=0} = \nabla_{\sigma'(t)}\left(\sum_{i} \lambda_i \dfrac{\partial}{\partial x_i} \right)\Big|_{t=0}= \\ & =\sum_{i=1}^n \left( \sigma'(0)(\lambda_i) \dfrac{\partial}{\partial x_i}\Big|_p + \lambda_i(\sigma(0)) \nabla_{\sigma'(0)}\dfrac{\partial}{ \partial x_i} \right) = \sum_{i=1}^n \dfrac{\partial (\lambda_i \circ \sigma)}{\partial t}\Big|_{t=0} \dfrac{\partial}{\partial x_i}\Big|_p = 0 \end{split} \] 
+    \hfill $\blacksquare.$
+\end{dem}
+
+Esto recuerda a la definición de campo tangente, o con soporte, a lo largo de una curva. Si $\sigma: I \subset \mathbb{R} \to M$  es una curva diferenciable, denotaremos por $\mathfrak X(\sigma)$ al conjunto de campos diferenciables definidos a lo largo de $\sigma$. Esto es, si $X \in \mathfrak X(\sigma)$, entonces $X(t) \equiv X_{\sigma(t)} \in T_{\sigma(t)}M$ de modo que al escribir $X$ en coordenadas locales $(U, \varphi\equiv (x_i))$ como $\displaystyle X(t) = \sum_{i=1}^n \lambda_i(t) \dfrac{\partial}{\partial x_i}\Big|_{\sigma(t)}$ se tiene que $\lambda_i \in \mathcal{C}^{\infty}(I\cap \sigma^{-1}(U))$.
+\begin{ejem}
+    Dada $\sigma: I \subset \mathbb R \to M$ diferenciable, el campo $\sigma'(t) \in \mathfrak X(\sigma)$ se llama campo de velocidades de $\sigma$.
+\end{ejem}
+\begin{prop}
+    El conjunto $\mathfrak X(\sigma)$ es un $\mathcal{C}^{\infty}(I)$-módulo, es decir, que si $f: I \subset \mathbb R \longrightarrow \mathbb R$, $X\in \mathfrak X(U)$ podemos definir $f\cdot X \in \mathfrak X(U)$.
+\end{prop}
+\begin{dem}
+    \textcolor{red}{Ejercicio}
+\end{dem}
+
+\begin{prop}
+    Sea $M$ una variedad diferenciable, $\nabla$ una conexión y $\sigma: I\subset \mathbb R \to M$ una curva diferenciable. El operador derivada covariante a lo largo de $\sigma$ $$\begin{tikzcd}
+    \nabla_{\sigma'}: \hspace{-10mm} & \mathfrak X(\sigma) \rar & \mathfrak X(\sigma)\\[-5mm]
+    & X \arrow[mapsto]{r} & \nabla_{\sigma'} X
+    \end{tikzcd}$$ está bien definido y es $\mathbb R$-lineal, donde $(\nabla_{\sigma'} X)(t) = \nabla_{\sigma'(t)} X \in T_{\sigma(t)}M$. Además, para todo $f \in \mathcal{C}^{\infty}(I)$ se cumple que $$\nabla_{\sigma'}(fX) = f' X + f\nabla_{\sigma'} X$$
+\end{prop}
+\begin{dem}
+    \textcolor{red}{Ejercicio}
+\end{dem}
+\begin{obs}
+    La notación clásica en teoría de superficies es $\dfrac{D}{dt}$, que no incluye a la curva $\sigma$.
+\end{obs}
+
+
+\begin{defi}
+    Sea $M$ una variedad diferenciable, $\nabla$ una conexión y $(U,\varphi\equiv (x_i))$ una carta de $M$. Se llaman \textbf{coeficientes de la conexión en la carta} $(U,\varphi)$ a las $n^3$ funciones diferenciables $\left\{\Gamma_{ij}^k\right\}_{i,j,k=2}^n$ dadas por $$\nabla_{\frac{\partial}{\partial x_i}} \dfrac{\partial}{\partial x_j} = \sum_{k =1}^n \Gamma_{ij}^k \dfrac{\partial}{\partial x_k}$$
+\end{defi}
+\begin{obs}
+    Estos coeficientes son funciones de $\mathcal{C}^{\infty}(U)$.
+\end{obs}
+\begin{obs}
+    En algunos textos, se denominan símbolos de Christoffel.
+\end{obs}
+\begin{ejem}
+    La conexión usual de $\mathbb R^n$ en las coordenadas usuales, siendo $X, Y \in \mathfrak X(\mathbb R^n)$ con $\displaystyle Y=\sum_{i=1}^n \lambda_i \pd{}{x_i}$
+    $$\nabla_X Y = \sum_i X(\lambda_i) \pd{}{x_i}$$
+    tiene todos sus coeficientes nulos, es decir, $\Gamma_{ij}^k = 0 \, \forall \, i,j,k$. Tal vez no sean nulos en otras coordenadas.
+\end{ejem}
+
+\begin{prop}
+    Sea $M^m$ una variedad diferenciable, $\nabla$ una conexión y $\{\Gamma_{ij}^k\}_{i,j,k=1}^n, \{\overline{\Gamma}_{\alpha \beta}^{\gamma}\}_{\alpha,\beta,\gamma = 1}^n$ son los coeficientes de la conexión en las cartas $(U,\varphi\equiv (x_i))$ y $(V,\psi\equiv (\overline{x}_i))$, respectivamente, entonces en $U \cap V$ se cumple
+    $$\overline{\Gamma}_{\alpha \beta}^{\gamma} = \sum_{i,j,k=1}^n \Gamma_{ij}^k \dfrac{\partial x_i}{\partial \overline{x}_{\alpha}} \dfrac{\partial x_j}{\partial \overline{x}_{\beta}} \dfrac{\partial \overline x_{\gamma}}{\partial x_k} + \sum_{i=1}^n \dfrac{\partial^2 x_i}{\partial \overline x_{\alpha} \partial \overline x_{\beta}} \dfrac{\overline x_{\gamma}}{\partial x_i} \qquad \forall \alpha,\beta,\gamma \in  \{1,\dots,n\}$$
+\end{prop}
+\begin{dem} \textcolor{red}{Ejercicio} \\ Idea:
+$$\nabla_{\frac{\partial}{\partial \overline{x}_{\alpha}}} \pd{}{\overline{x}_{\beta}} = \sum_{\alpha,\beta,\gamma} \overline{\Gamma}_{\alpha\beta}^{\gamma} \pd{}{\overline{x}_{\gamma}}$$
+pudiendo realizar un cambio de coordenadas a $\pd{}{x_i}$ y teni\'endose la f\'ormula.
+\end{dem}
+
+
+\begin{defi}
+    Sea $M$ una variedad diferenciable, $\nabla$ una conexión y $\sigma: I \subset \mathbb R \to M$ una curva diferenciable. Dado un \textbf{campo} $X \in \mathfrak X(\sigma)$, se dice que es \textbf{paralelo} a lo largo de $\sigma$ si $\nabla_{\sigma'(t)} X = 0 \, \forall\, t \in I$.
+\end{defi}
+
+\begin{obs}
+    Por tanto, los campos paralelos ``no varían'' al recorrer $\sigma$.
+\end{obs}
+
+\begin{teo}
+    Sea $M$ una variedad diferenciable, $\nabla$ una conexión y $\sigma: I \subset \mathbb R \to M$ una curva diferenciable con $0 \in I, p = \sigma(0) \in M$ y $v\in T_pM$. Existe un único $X \in \mathfrak X(\sigma)$ que es paralelo a lo largo de $\sigma$ verificando que $X(0) = X_p = v$.
+\end{teo}
+\begin{dem}
+    Para el $p = \sigma(0) \in M$ del enunciado, sea $(U,\varphi\equiv (x_i))$ una carta de $M$ con $p \in U$ y sean $\{\Gamma_{ij}^k\}_{i,j,k=1}^n$ los coeficientes de la conexi\'on y $\left\{ \pd{}{x_i}\big|_q\right\}_{i=1}^n$ una base de $T_qM \, \forall \, \in U$. En particular,
+    $$v = \sum_{i=1}^n v_i \pd{}{x_i}\Big|_p \in T_pM$$
+    y por tanto
+    $$\sigma'(t) = \sum_{i=1}^n \lambda_i(t) \dfrac{\partial}{\partial x_i}\Big|_{\sigma(t)} \in T_{\sigma(t)}M$$    
+    con $\lambda_i \in \mathcal{C}^{\infty}(I)$ funciones conocidas.
+    
+    Supongamos que $\sigma(I) \subset U$, es decir, que la traza de la curva está contenida en este abierto coordenado.
+    
+    Buscamos $$X_{\sigma(t)} = \sum_{i=1}^n \mu_i(t)  \dfrac{\partial}{\partial x_i}\Big|_{\sigma(t)}$$
+    que sea diferenciable y paralelo a lo largo de $\sigma$, es decir, con $\mu_i$ diferenciables, $\mu_i(0) = v_i$ para todo $i = 1,\dots,n$ y $\nabla_{\sigma'} X = 0$.
+
+    Eliminando de la notación la variable $t$ cuando no se produzca confusión, tenemos: \[ \begin{split} \nabla_{\sigma'} X & = \nabla_{\sigma'}\left(\sum_{i=1}^n \mu_i \dfrac{\partial}{\partial x_i}\right) = \sum_{i=1}^n\left(\sigma'(t)(\mu_i) \dfrac{\partial}{\partial x_i} + \mu_i \nabla_{\sigma'}\dfrac{\partial}{\partial x_i}\right) = \\ & = \sum_{i=1}^n \mu'_i \dfrac{\partial}{\partial x_i} + \sum_{i,j=1}^n\mu_i \lambda_j \nabla_{\frac{\partial}{\partial x_j}} \dfrac{\partial}{\partial x_i}  = \sum_{i=1}^n \mu'_i \dfrac{\partial}{\partial x_i} + \sum_{i,j=1}^n \mu_i \lambda_j \left( \sum_k (\Gamma_{ji}^k \circ \sigma) \cdot \dfrac{\partial}{\partial x_k}\right) = \\ & = \sum_{k=1}^n \left(\mu'_k + \sum_{i,j} \mu_i \lambda_j (\Gamma_{ji}^k \circ \sigma) \right) \dfrac{\partial}{\partial x_k}\end{split}\]
+    Junto con la condici\'on inicial $X_{\sigma(0)} = v$, $X$ ser\'a paralelo a lo largo de $\sigma$ si y solo si
+    $$\begin{cases}
+        \displaystyle \mu'_k + \sum_{i,j} \mu_i \lambda_j (\Gamma_{ji}^k \circ \sigma) = 0 \\ \mu_k(0)=v_k
+    \end{cases} \qquad \forall \, k =1, \ldots, n$$
+
+    Tenemos un sistema de ecuaciones diferenciales ordinarias de primer orden. Por el teorema de existencia y unicidad, sabemos que existen $\mu_1(t),ldots, \mu_n(t)$ y son únicas. Además, por ser lineal, la solución está definida para todo $t \in I$. Con esto queda probado el teorema en el caso $\sigma(I) \subset U$.
+
+    Si no hay una carta $(U, \varphi)$ tal que $\sigma(I)\subset U$ procederemos de la siguiente manera: dado $t \in I, t>0$, vamos a definir $X$ en $[0,t]$ para que sea paralelo a lo largo de $\sigma$. Para distintos $t_1,t_2> 0 $, la unicidad del sistema de ecuaciones proporcionaría un único campo en la intersecci\'on de los dominios. An\'alogamente $\forall t< 0$ en $[t,0]$. Tendremoas as\'i definido $X \in \mathfrak X$ que sea paralelo a lo largo de $\sigma \, \forall \, t \in I$. 
+    
+    Como $[0,t]$ es compacto, se tiene que $\sigma([0,t])$ es compacto y existirá una cantidad finita de cartas $(U_i,\varphi_i)$ con $i=1,\ldots, m$ tal que  $\sigma([0,t]) \subset \bigcup U_i$. Si $\sigma^{-1}(U_k)$ no es conexo, tomando las distintas componentes conexas, conseguimos que $\sigma([0,t])$ est\'a recubierto por una cantidad finita de conexos.
+
+    Aplicamos el procedimiento anterior para cada una de estas cartas. Es decir, $\exists \, U_{i_o} \, / \, p \in U_{i_o}$ con $\sigma^{-1}(U_{i_o})\subset I$, y obtenemos soluci\'on. Existir\'a entonces $\sigma(t_1)\subset U_{i_o} \cap U_{i_1}$ y buscamos soluci\'on en $\sigma^{-1}(U_{i_1})$ con la misma condici\'on inicial $X_{\sigma(t_1)}$. La unicidad de la resoluci\'on de las ecuaciones diferenciales me propoeciona un \'unico campo en el dominio intersecci\'on. Así, procederemos recursivamente. El procedimiento tiene fin, pues hay una cantidad finita de estos abiertos. Este argumento final es más detallado de lo que parece, pero no lo abordamos en esta demostración.
+\end{dem}
+
+\begin{defi}
+    Sea $M$ una variedad diferenciable, $\nabla$ una conexión y $\sigma: I \subset \mathbb R \to M$ una curva diferenciable. $\forall \, t_o,t_1 \in I$ se llama \textbf{traslado paralelo} a lo largo de $\sigma$ del punto $\sigma(t_o)$ al $\sigma(t_1)$ a la aplicación $$\begin{tikzcd}
+    \tau_{t_o,t_1}^{\sigma}: \hspace{-10mm} & T_{\sigma(t_o)}M \rar & T_{\sigma(t_1)}M\\[-5mm]
+    & v \arrow[mapsto]{r} & X_{\sigma(t_1)}
+    \end{tikzcd}$$
+    donde $X$ es el único campo paralelo a lo largo de $\sigma$ con $X_{\sigma(t_o)} = v$.
+\end{defi}
+
+\begin{prop}
+    El traslado paralelo $\tau_{t_o,t_1}^{\sigma}$ está bien definido, es un isomorfismo lineal y $(\tau_{t_o,t_1}^{\sigma})^{-1} = \tau_{t_1,t_o}^{\sigma}$.
+\end{prop}
+\begin{dem}
+    \textcolor{red}{Ejercicio (bien definido por el teorema anterior, la aplicación definida es lineal por ser lineal el sistema de ecuaciones diferenciales asociado, la inversa es por la unicidad de la soluci\'on)}
+\end{dem}
+
+\begin{obs}
+    En Geometría Diferencial de subvariedades vectoriales, construíamos la derivación covariante a partir del traslado paralelo, que venía dado por la existencia de un sistema de coordenadas globales. Al generalizar esta teoría para variedades diferenciables arbitrarias, el proceso es inverso, es decir, tenemos que definir una conexión como elemento global para poder hablar de campos paralelos y por tanto, de traslado paralelo.
+\end{obs}
+
+\section{Geodésicas, torsión y curvatura de una conexión}
+
+\begin{defi}
+    Sea $M$ una variedad diferenciable y $\nabla$ una conexión. Una curva diferenciable $\sigma$ se llama \textbf{geodésica} si el campo $\sigma' \in \X(\sigma)$ es paralelo a lo largo de $\sigma$, es decir, $\nabla_{\sigma'}\sigma' = 0$.
+\end{defi}
+\begin{teo}
+    Sea $M$ una variedad diferenciable, $\nabla$ una conexión, $p \in M$ y $v \in T_pM$. Entonces existe una curva diferenciable $\sigma: (-\varepsilon, \varepsilon) \subset \mathbb R \to M$ con $0 \in I$, $\sigma(0) = p$, $\sigma'(0) = v$ que es geodésica. Además, $\sigma$ es única salvo dominio de definición, es decir, si existe $\tau: J \subset \mathbb R \to M$ tal que $\tau(0) = p, \tau'(0) = v$ y geodésica, entonces $\sigma|_{I \cap J} = \tau|_{I \cap J}$.
+\end{teo}
+\begin{dem}
+    Dado el $p \in M$ del enunciado, sea $(U,\varphi\equiv(x_i))$ carta de $M$ con $p \in U$. Sean $\{\Gamma_{ij}^k\}_{i,j,k=1}^n$ los coeficientes de $\nabla$ en estas coordenadas, $\displaystyle v=\sum_{i=1}^n v_i \frac{\partial}{\partial x_i} \big|_p$. Conocer $\sigma(t)$ es conocer sus funciones coordenada, $\varphi \circ \sigma (t) = (x_1(t),\dots,x_n(t))$. A partir de la lectura en coordenadas obtenemos
+    $$\sigma'(t) = \sum_{i=1}^n x'_i(t) \dfrac{\partial}{\partial x_i}\Big|_{\sigma(t)}$$
+    $\sigma$ será geodésica si $\nabla_{\sigma'} \sigma' = 0$, a la vista de las ecuaciones del campo paralelo a lo largo de $\sigma$ queremos que  $$\sigma(0) = p \iff x_i(0) = x_i(p)$$ $$\sigma'(0) = v \iff x'_i(p) = v_i$$
+    Recordamos las ecuaciones del transporte paralelo a lo largo de $\sigma$:
+    $$\begin{cases}
+        \displaystyle \mu'_k+\sum_{i,j=1}^n \mu_i \lambda_j \left( \Gamma_{ji}^k \circ \sigma\right)=0 \\[3mm]  \mu_k(0)=v_k  \end{cases} \qquad \forall k =1,\ldots, n$$
+        siendo $\displaystyle X = \sum \mu_i \pd{}{x_i}$, $\displaystyle \sigma'(t) = \sum\lambda_i \pd{}{x_i}$ y $\displaystyle v = \sum v_i \pd{}{x_i} \big|_p \in T_pM$. 
+        
+        Ahora, $\mu_i(t)$ aquí es $x'_i(t)$, y $\lambda_i(t)$ es $x'_i(t)$. 
+    Entonces tenemos $$\begin{cases}
+        \displaystyle x''_k + \sum_{i,j,k = 1}^n x'_i x'_j \left(\Gamma_{ij}^k \circ \sigma\right) = 0\\[3mm]
+        x'_k(0) = v_i \\
+        x_k(0) = x_k(p)
+    \end{cases} \qquad \forall k =1,\ldots, n$$
+    El sistema anterior es de ecuaciones diferenciales ordinarias de segundo orden, en general no lineal. Por el teorema de existencia y unicidad de estos sistemas, obtenemos las $n$ funciones coordenada de $\sigma$ definidas en un intervalo abierto $I \subset \mathbb R, 0\in I$.
+\end{dem}
+\begin{obs}
+    Por la unicidad del teorema, si $\sigma: I \to M$ y $\tau: J \to M$ son geodésicas con $\sigma(0) = \tau(0) = p, \sigma'(0) = \tau'(0) = v$, entonces está bien definida la curva $$\begin{tikzcd}
+        I \cup J \rar & M\\[-5mm]
+        t \arrow[mapsto]{r} &\begin{cases}
+            \sigma(t) \quad t\in I\\
+            \tau(t) \quad t \in J
+        \end{cases} 
+    \end{tikzcd}$$
+    y es diferenciable y geodésica. Con este procedimiento podemos considerar la geodésica maximal definida en $$\bigcup\{Dom(\sigma) \;/ \; \sigma \text{ geodésica }, \sigma(0) = p, \sigma'(0) = v\}$$
+    que en general no estará contenida en un solo abierto coordenado (como se ha construido en el teorema).
+\end{obs}
+
+\begin{ejem}
+    En $\mathbb R^2$ con la conexión usual en las coordenadas usuales $\{x,y\}$, vimos que $\Gamma_{ij}^k = 0$. Buscamos la geodésica $\sigma$ con las condiciones iniciales $$\sigma(0) = (x_0,y_0) \qquad \sigma'(0) = v_1 \dfrac{\partial}{\partial x}\Big|_{(x_0,y_0)} + v_2 \dfrac{\partial}{\partial y}\Big|_{(x_0,y_0)}$$
+    El sistema de ecuaciones para que $\sigma(t) = (x(t),y(t))$ sea geodésica queda $$\begin{cases}
+        x'' = 0\\
+        y'' = 0\\
+        x(0) = x_0, y(0) = y_0\\
+        x'(0) = v_1, y'(0) = v_2
+    \end{cases} \Rightarrow \sigma(t) = (x_0,y_0) + t(v_1,v_2) = p + t\,v$$
+    Es decir, las geodésicas en $\mathbb R^2$ son las rectas afines. Tan relevante es la traza de la curva como el modo de recorrerla. Basta considerar $\tau(t) =(t^2+t,t^2+t)$, que tiene la misma traza que $\sigma(t)=(t,t)$ pero no es geodésica, pues $$\tau'(t)=(2t+1)\pd{}{x}\Big|_{\tau(t)} + (2t+1)\pd{}{y}\Big|_{\tau(t)}$$
+    y como $v=\pd{}{x} + \pd{}{y}$, $\tau'(0) = v$, pero $\nabla_{\tau'}\tau'\neq 0$. Sin embargo, las reparametrizaciones afines $$\begin{tikzcd}
+        h:J \rar & I\\[-5mm]
+        \, \, s \rar & as + b
+    \end{tikzcd}$$
+    transforman geodésicas en geodésicas, es decir, si $\sigma(t)$ ($\sigma: I \to M$) es geod\'esica, $\tau(t) = \sigma(h(t))$ ($\tau: J \to M$) tambi\'en es geod\'esica (variando la condición inicial).
+\end{ejem}
+
+\begin{defi}
+    Sea $M$ una variedad diferenciable y $\nabla$ una conexión lineal. Se llama \textbf{torsión} de $\nabla$ al operador $T: \mathfrak X(M) \times \mathfrak X(M) \to \mathfrak X(M)$ dado por $$T(X,Y) = \nabla_X Y - \nabla_Y X - [X,Y]\quad \forall \, X,Y \in \X(M)$$
+\end{defi}
+\begin{defi}
+    Se llama \textbf{curvatura} de $\nabla$ al operador $R: \mathfrak X(M) \times \mathfrak X(M) \times \mathfrak X(M) \to \mathfrak X(M)$ dado por $$R(X,Y) Z = \nabla_X \nabla_Y Z - \nabla_Y \nabla_X Z - \nabla_{[X,Y]} Z \quad \forall \, X,Y,Z \in \X(M)$$
+\end{defi}
+\begin{obs}\, \vspace{-2mm}\begin{itemize}
+    \item $T$ y $R$ est\'an bien definidos. 
+    \item En algunos textos se define la curvatura con el signo opuesto al de esta definici\'on. Es el llamado ``convenio de la curvatura''.
+    \end{itemize}
+\end{obs}
+\begin{prop}
+    Sea $M$ una variedad diferenciable y $\nabla$ una conexión. Se cumple: \vspace{-2mm}\begin{enumerate}
+        \item La torsión es $\mathcal C^{\infty}(M)$-bilineal y $T(X,Y) = -T(Y,X)$
+        \item La curvatura es $\mathcal C^{\infty}(M)$-trilineal y $R(X,Y)Z = -R(Y,X)Z$
+    \end{enumerate}
+\end{prop}
+\begin{dem}
+    En ambos casos la $\R$-linealidad en todas sus componentes es clara. Dada $f \in \mathcal{C}^{\infty}(M)$: \[ \begin{split} T(fX,Y) & = \nabla_{fX}Y - \nabla_Y(fX) - [fX,Y] = f\nabla_X Y - f\nabla_Y X - (Yf)X - f[X,Y] + (Yf)X = \\ & = f(\nabla_X Y - \nabla_Y X - [X,Y]) = f\,T(X,Y) \end{split} \]
+    Vemos f\'acilmente que $T(Y,X) =\nabla_Y X - \nabla_X Y - [X,Y] = -T(X,Y)$ y, con esto, $T(X,fY) = -T(fY,X) = -f\,T(Y,X) = f\,T(X,Y)$.
+
+    Sea ahora $f\in \mc C^{\infty}$, $X,Y,Z \in \X(M)$,
+    \[\begin{split}R(fX,Y)Z & =\nabla_{fX}\nabla _Y Z- \nabla_Y \nabla_{fX} Z- \nabla_{[fX,Y]} Z = \\ & = f\nabla_X \nabla_Y Z - \nabla_Y (f\nabla_X Z )- \nabla_{f[X,Y]-(Yf)X} Z =\\ & = f \nabla_X \nabla_Y Z - \cancel{(Yf) (\nabla_X Z)} - f\nabla_Y \nabla_X Z - f \nabla_{[X,Y]} Z + \cancel{(Yf) \nabla_X Z} = \hspace{10mm} \\ & = f (\nabla_X \nabla_Y Z - \nabla_Y \nabla_X Z - \nabla_{[X,Y]} Z) = \\ & = f R(X,Y)Z\end{split}\]
+    \[\begin{split}
+        R(X,fY)Z = -R(fY,X) Z = -fR(Y,X)Z = fR(X,Y)Z \hspace{50mm}
+    \end{split}\]
+    \[\begin{split}
+        R(X,Y)(fZ) & = \nabla_X \nabla_Y (fZ) - \nabla_Y \nabla_X (fZ) - \nabla_{[X,Y]} (fZ) = \\ & = \nabla_X \left( (Yf)Z+f \nabla_YZ \right) - \nabla_Y \left( (Xf) Z + f \nabla_X Z \right) - \left( [X,Y] f\right)Z - f\nabla_{[X,Y]} Z = \\ & = X(Yf)Z + (Yf) \nabla_XZ + (Xf) \nabla_Y Z + f \nabla_X \nabla_Y Z - Y(Xf) Z - (Xf) \nabla_Y Z - \\ & - (Yf) \nabla_XZ - f \nabla_Y\nabla_X Z - ([X,Y]f)Z-f \nabla_{[X,Y]}Z = \\ & = f(\nabla_X \nabla_Y Z - \nabla_Y \nabla_X Z - \nabla_{[X,Y]} Z) + \underbrace{\left( X(Yf) - Y(Xf) - [X,Y]f\right)}_{=0} Z = \\ & = fR(X,Y)Z 
+    \end{split}\]
+\end{dem}
+A partir de esto, con el operador torsi\'on $T: \X(M) \times \X(M) \longrightarrow \X(M)$ podemos construir un nuevo campo tensorial de tipo $(1,2)$ de la siguiente manera:
+$$\bt \X(M)\times \X(M) \times \Lambda_1(M) \rar &  \mc C^{\infty}(M)\\[-5mm]
+(X,Y,\omega) \arrow[mapsto]{r}& \omega (T(X,Y))
+\et$$
+que por las propiedades de $T$, este operador es $\mc C^{\infty}(M)$ lineal en la 3a componente.\\
+Por esta raz\'on, en algunos textos se llama \textbf{tensor torsi\'on} a lo que aqu\'i hemos llamado operador torsi\'on.
+
+De manera an\'aloga se hace para la curvatura.
+\begin{ejem}
+    Si $X,Y \in \X(M)$, $(U, \varphi\equiv(x_i))$ carta de $M$, $\{\Gamma_{ij}^k\}$ coeficientes de $\nabla$ es enta carta, $X|_U=\sum \lambda_i \frac{\partial}{\partial x_i}$,  $Y|_U=\sum \mu_i \frac{\partial}{\partial x_i}$ en coordenadas los campos son
+    $$T(X,Y)|_U = T\left(\sum_i \lambda_i \pd{}{x_i} , \sum_j \mu_j \pd{}{x_j} \right) = \sum_{i,j=1}^n \lambda_i \mu_j T \left(\pd{}{x_i}, \pd{}{x_j}\right)$$
+    y en particular, por la definici\'on, 
+    $$T \left(\pd{}{x_i}, \pd{}{x_j}\right) = \nabla_{\frac{\partial}{\partial x_i}} \pd{}{x_j} -\nabla_{\frac{\partial}{\partial x_j}} \pd{}{x_i} -\cancelto{0}{\left[ \pd{}{x_i}, \pd{}{x_j} \right]} = \sum_{i,j=1}^n \left( \Gamma_{ij}^k - \Gamma_{ji}^k\right) \pd{}{x_k}$$
+\end{ejem}
+\begin{defi}
+    Una conexi\'on se dice que es \textbf{sim\'etrica} si y solo si $T\equiv 0$.
+\end{defi}
+\begin{prop}
+    La conexi\'on es sim\'etrica si y solo si para cualquier carta $(U,\varphi \equiv (x_i))$ y $\{\Gamma_{ij}^k\}$ los coeficientes de $\nabla$ es esa carta, se tiene $\Gamma_{ij}^k = \Gamma_{ji}^k \, \forall \, i,j,k = 1, \ldots, n$. 
+\end{prop}
+\begin{ejem}
+    En $\mathbb R^n$, la conexi\'on usual, tiene por coeficientes en las coordenadas usuales $\Gamma_{ij}^k=0 \, \forall \, i,j,k$, la conexi\'on es sim\'etrica, $T \equiv 0 $. 
+\end{ejem}
+\begin{teo}
+    Sea $M$ una variedad diferenciable y $\nabla$ una conexi\'on sim\'etrica. Entonces $\forall \, X, Y, Z\in \X(M)$,
+    $$R(X,Y)Z + R(Y,Z)X + R(Z,X)Y=0$$
+\end{teo}
+\begin{dem}
+    \textcolor{red}{Ejercicio.}
+\end{dem}
+\vfill

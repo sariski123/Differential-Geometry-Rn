@@ -1,0 +1,390 @@
+\justifying
+\chapter{Espacio tangente}
+Sea $M$ una variedad diferenciable y $p \in M$. Denotaremos por $$\mathcal{C}^{\infty}(p) = \{f:U\to \mathbb{R} \; / \; U \subset M \text{ abierto},\: p \in U, \: f\in \mathcal{C}^{\infty}(U)\}$$ al conjunto de aplicaciones diferenciables definidas en un abierto que contenga a $p$.
+
+Si $f,g \in \mathcal{C}^{\infty}(p)$, entonces $f:U \to \mathbb{R}$, $g:V \to \mathbb{R}$ con $p \in U \cap V$ y , con lo que podemos definir:
+$$\begin{array}{c}
+    f+g: U \cap V \to \mathbb{R}\\
+    f\cdot g: U \cap V \to \mathbb{R}
+\end{array} \;\; \text{ que serán diferenciables}$$
+
+\begin{obs}
+$\mathcal{C}^{\infty}(p)$ no es un anillo (no podemos elegir un elemento 0 definido globalmente, depende de los dominios de cada funci\'on).
+\end{obs}
+
+\begin{defi}
+Sea $M$ una variedad diferenciable y $p \in M$. Se llama \textbf{derivación} de $M$ en $p$ a toda aplicación $v:\mathcal{C}^{\infty}(p) \longrightarrow \mathbb{R}$ tal que:
+\begin{enumerate}
+    \item Es $\mathbb{R}$-lineal, es decir, $\forall \;f,g\in \mathcal{C}^{\infty}(p)$ y $\forall \;\lambda \in \mathbb{R}$:
+    \begin{itemize}
+        \item $v(f+g) = v(f) + v(g)$
+        \item $v(\lambda\,f) = \lambda\,v(f)$
+    \end{itemize}
+    \item \textbf{Regla de Leibniz}: $\forall\; f,g \in \mathcal{C}^{\infty}(p)$: $$v(f\cdot g) = v(f) \cdot g(p) + v(g) \cdot f(p)$$
+\end{enumerate}
+\end{defi}
+
+\begin{prop}
+Sea $M$ una variedad  diferenciable y $p \in M$. El conjunto de todas las derivaciones de $M$ en $p$ tiene estructura de $\mathbb{R}$-espacio vectorial.
+\end{prop}
+\begin{dem}
+Si $v$ y $w$ son derivaciones de $M$ en $p$ y dado $\lambda \in \mathbb{R}$ se definen $$\begin{tikzcd}
+v + w : \mathcal{C}^{\infty}(p) \rar & \mathbb{R}\\[-5mm]
+f \arrow[mapsto]{r} & (v+w)(f) = v(f) + w(f)
+\end{tikzcd} \qquad \begin{tikzcd}
+\lambda\,v : \mathcal{C}^{\infty}(p) \rar & \mathbb{R}\\[-5mm]
+f \arrow[mapsto]{r} & (\lambda v)(f) = \lambda\,v(f)
+\end{tikzcd}$$
+comprobándose que tanto la suma de derivaciones como su producto por escalares son, efectivamente, derivaciones. Esta suma es conmutativa, asociativa, su elemento neutro es la derivación $0(f) = 0$ y el inverso de un $v$ es $(-v)(f)=-v(f)$. Queda como ejercicio \textcolor{red}{(que no voy a hacer yo)} probar que se verifican las propiedades de espacio vectorial:
+\begin{itemize}
+    \item $\lambda (v + w) = \lambda\,v  + \lambda\,w$
+    \item $(\lambda + \mu)\,v = \lambda\,v + \mu\,v$
+    \item $\lambda(\mu\,v) = (\lambda \,\mu)\,v$
+    \item $1\,v = v$
+\end{itemize}
+\end{dem}
+
+Sea $M$ una variedad diferenciable y $p \in M$
+\begin{defi}
+Al conjunto de las derivaciones de $M$ en $p$ se le denomina \textbf{espacio tangente} a $M$ en $p$, y lo denotaremos por $T_pM$.
+\end{defi}
+
+\begin{ejem}
+Sea $M$ una variedad diferenciable y $(U,\varphi\equiv (x_i))$ una carta de $M$. Dado $p\in U$, definimos $\forall i = 1, \ldots, n$
+
+$$\begin{tikzcd}
+\pd{}{x_i} {\Big|_p} \: : \hspace{-12mm} & \mathcal{C}^{\infty}(p) \arrow{r} & \mathbb{R}\\[-6mm]
+& f \arrow{r}& \pd{(f \circ \varphi^{-1})}{r_i}{\Big|_{\varphi(p)}}
+\end{tikzcd}$$
+
+Debemos comprobar que este operador es lineal y cumple la regla de Leibniz, es decir, $${\frac{\partial}{\partial x_i}} {\Big|_p} (f \cdot g) = {\frac{\partial}{\partial x_i}} {\Big|_p} (f) \cdot g(p) + {\frac{\partial}{\partial x_i}} {\Big|_p} (g) \cdot f(p)$$
+De este modo, ${\frac{\partial}{\partial x_i}} {\big|_p} \in T_pM \;\; \forall i = 1, \dots, n$.
+
+Adem\'as, estas dependen de la carta, ya que, recordemos que, $x_i = r_i \circ \varphi$.
+\end{ejem}
+
+\begin{prop}
+Sea $M$ una variedad diferenciable, con $p \in M$ y $v \in T_pM$. Entonces: \begin{enumerate}
+    \item Para todo $\lambda \in \mathbb{R}$, si $c_{\lambda}:\,U \longrightarrow \mathbb{R}$ es la aplicación constante $\lambda$ ($c_{\lambda}(q) = \lambda \:\forall q \in U$, con $U$ abierto y $p \in U$), entonces $v(c_{\lambda})=0$.
+    \item Si $f, g \in \mathcal{C}^{\infty}(p)$ son tales que $f_{|_U} = g_{|_U}$ para algún $U \subset M$ abierto, entonces $v(f) = v(g)$. 
+\end{enumerate}
+\end{prop}
+\begin{dem} \,
+\begin{enumerate}
+    \item Claramente $c_{\lambda} \in \mathcal{C}^{\infty}(p)$. Considerando la función constante $c_1 \, : U \longrightarrow \mathbb{R}$, se tiene que $v(c_{\lambda})= v(c_{\lambda} \cdot c_1) = v(c_{\lambda}) \cdot c_1(p) + v(c_1) \cdot c_{\lambda}(p) = v(c_{\lambda}) + \lambda\,v(c_1)$. Por ello, $\lambda\,v(c_1) = 0 \, \forall \:\lambda \in \mathbb{R}$, luego $v(c_1) = 0$.\\
+    Teniendo en cuenta que $c_{\lambda} = \lambda\,c_1$, concluimos que $v(c_{\lambda}) = \lambda\,v(c_1) = 0$.
+    \item Por la $\mathbb R$-linealidad de $v$, $v(f) = v(g)$ es equivalente a $v(f-g) = 0$. Tenemos que $(f-g)_{|_U} = 0$, por lo que basta probar que si $h \in \mathcal{C}^{\infty}(p)$ y existe $U \subset M$ abierto con $p \in U$ tal que $f_{|_U} \equiv 0$, entonces $v(h) = 0$.\\
+    Sea $W$ el dominio de $f$, es decir, $f:\,W \subset M \longrightarrow \mathbb{R}$ y $f \in \mathcal C^\infty(W)$. Consideremos una función meseta para los datos $p \in U$, es decir, $h:\,M\longrightarrow [0,1]$ diferenciable. Existe $V \ni p$ abierto con $V \subset \overline{V} \subset U$, $\overline{V}$ compacto, de modo que $sop(h) \subset U$ ($h_{|_{M-U}}\equiv 0$) y  $h_{|_{\overline{V}}}\equiv 1$.\\
+    Definimos $h\cdot f: W \longrightarrow \mathbb{R}$, con $h \cdot f \in \mathcal{C}^{\infty}(W)$. Además, $h\cdot f = c_0$, ya que $f_{|_U} \equiv 0$ y $h_{|_{M-U}}\equiv 0$. Por tanto:$$0 = v(c_0) = v(h\cdot f) = v(h) \cdot f(p) + h(p) \cdot v(f) = v(h) \cdot 0 + v(f) = v(f) = 0$$ y hemos terminado.
+\end{enumerate}
+\end{dem}
+
+\begin{defi}
+Se llama \textbf{germen de las funciones diferenciables} en $p$ a $\modulo{\mathcal{C}^{\infty}(p)}{\sim}$, siendo la relación de equivalencia la siguiente:
+$$\forall \; f,g\in \mathcal{C}^{\infty}(p), \quad f\sim g \iff \exists\;U \ni p \text{ abierto } \;/\; f_{|_U} \equiv g_{|_U}$$Esta estructura constituye un \textcolor{red}{anillo y un espacio vectorial.}
+\end{defi}
+
+\begin{obs}
+En algunos textos se definen las derivaciones como aplicaciones de la forma $\modulo{\mathcal{C}^{\infty}(p)}{\sim} \longrightarrow \mathbb{R}$ cumpliendo la $\mathbb{R}$-linealidad y la regla de Leibniz.
+\end{obs}
+
+Introduciremos ahora un lema equivalente al de Hadamard para variedades diferenciables, que será útil para demostrar teoremas posteriores.
+
+\begin{lem}
+Dada una variedad diferenciable $M^n$, $(U,\varphi\equiv(x_i))$ una carta de $M$, $p \in U$ y $f \in \mathcal{C}^{\infty}(p)$. Entonces existen $f_1, \dots, f_n \in \mathcal{C}^{\infty}(p)$ de modo que $$f = f(p) + \mathlarger{\sum}_{i=1}^n (x_i - x_i(p)) \cdot f_i, \qquad \text{con } f_i(p) = \frac{\partial}{\partial \, x_i} {\Big|_p}(f) \;\; \forall i = 1,\dots,n$$
+\end{lem}
+\begin{dem}
+Denotemos por $V$ al abierto en el que está definida $f \in \mathcal{C}^{\infty}(p)$, con $p\in V$. Consideramos $F = f \circ \varphi^{-1}$ inicialmente definida en el abierto $\varphi(U \cap V) \ni \varphi(p)$. Sea $W = B(\varphi(p),\epsilon)$ una bola centrada en $\varphi(p)$ con radio $\epsilon > 0$ suficientemente pequeño para que $W \subset \varphi(U \cap V)$. En verdad basta que $W$ sea estrellado con centro en $\varphi(p)$, es decir, $\forall\; y\in W$, el segmento que une $y$ con $\varphi(p)$ está completamente contenido en $W$. Es claro que $F \in \mathcal{C}^{\infty}(W)$. Fijemos $y \in W$ y consideremos $g(t) = F\big(\varphi(p) + t(y-\varphi(p))\big)$. Existirá un abierto que contenga a $[0,1]$ donde $g$ sea infinitamente diferenciable. En particular, $g(0)=F(\varphi(p)) = f(p)$ y $g(1) = F(y)$. Aplicando la regla de Barrow, vemos que $\int_0^1 g'(t)\,dt = g(1)-g(0) = F(y) - f(p)$. Por otra parte, $$g'(t) = \mathlarger{\sum}_{i=1}^n \frac{\partial F}{\partial r_i}{\Big|_{\varphi(p)+t(y-\varphi(p))}} \cdot r_i(y-\varphi(p))$$por lo que obtenemos
+$$F(y)-F(\varphi(p)) = \int_0^1 g'(t)dt=\int_0^1  \left( \mathlarger{\sum}_{i=1}^n \frac{\partial F}{\partial r_i}{\Big|_{\varphi(p)+t(y-\varphi(p))}} \cdot r_i(y-\varphi(p))\, \right) dt = $$ $$ = \mathlarger{\sum}_{i=1}^n  \big(r_i(y) - (r_i \circ \varphi)(p)\big)\left(\mathlarger{\int}_0^1  \frac{\partial F}{\partial r_i}{|_{\varphi(p)+t(y-\varphi(p))}} \,dt \right) $$
+Denotando $\left(\mathlarger{\int}_0^1 \frac{\partial F}{\partial r_i}{\big|_{\varphi(p)+t(y-\varphi(p))}} \,dt \right) \equiv F_i(y)$, y adem\'as como $f \in \mathcal{C}^{\infty}(W)$, entonces $F_i \in \mathcal{C}^{\infty}(W)$ y teniendo en cuenta que $r_i \circ \varphi = x_i$ podemos simplificar la expresión $$F(y) = F(\varphi(p)) + \mathlarger{\sum}_{i=1}^n F_i(y) \cdot (r_i(y) - x_i(p))$$
+Ya que $y \in W$ y $\varphi$ es biyectiva, podemos escribir $y = \varphi(x)$, $x \in \varphi^{-1}(W) \subset U \cap V$. Así, $F(y) = F(\varphi(x)) = f(x)$, ya que $F = f\circ\varphi^{-1}$. Por último, denotando $f_i = F_i \circ \varphi$, tenemos que $F_i(y) = F_i(\varphi(x)) = f_i(x)$, quedando $$f(x) = f(p) + \mathlarger{\sum}_{i=1}^n f_i(x) \cdot (x_i(x) - x_i(p))$$
+Comprobaremos ahora la propiedad sobre la derivada de $f_i$. Fijando un $j \in \{1,\dots,n\}$:
+
+\[ \begin{split}
+    \frac{\partial}{\partial x_j}{\Big|_p} (f) = &  \frac{\partial}{\partial x_j}{\Big|_p} \left(f(p) + \mathlarger{\sum}_{i=1}^n f_i \cdot (x_i - x_i(p))\right) = \\ & = 0 + \mathlarger{\sum}_{i=1}^n \frac{\partial}{\partial x_j}{\Big|_p} (x_i -x_i(p)) f_i(p) -\cancelto{0}{(x_i(p)-x_i}(p)) \,\frac{\partial}{\partial x_j}{\Big|_p}f_i=\\ & = \mathlarger{\sum}_{i=1}^n f_i(p)\; \frac{\partial}{\partial x_j}{\Big|_p} (x_i) = f_j(p)
+\end{split}\]
+\end{dem}
+\,
+\begin{teo}
+Sea $M^n$ una variedad diferenciable y $(U,\varphi\equiv(x_i))$ una carta de $M$. Entonces, para todo $p\in U$, las derivaciones $\left\{ \pd{}{x_i}{\Big|_p}\right\}_{i=1}^n$ forman una base de $T_pM$
+\end{teo}
+\begin{dem}
+Veamos que la familia considerada es linealmente independiente. Sea la combinación lineal $$\lambda_1\,{\frac{\partial}{\partial x_1}} {\Big|_p} + \dots + \lambda_n\,{\frac{\partial}{\partial x_n}} {\Big|_p} = 0$$
+Aplicaremos estas derivaciones a los $x_i = r_i \circ \varphi : U \rightarrow \mathbb{R}$, $x_i \in \mathcal{C}^{\infty}(p)$. En el lado derecho, $0(x_i) = 0\;\, \forall \; i=1,\dots,n$. En el lado izquierdo, $$\displaystyle{\frac{\partial}{\partial x_j}} {\Big|_p} (x_i) = {\frac{\partial (x_i \circ \varphi^{-1})}{\partial r_j}} {\Big|_{\varphi(p)}} = {\frac{\partial r_i}{\partial r_j}} {\Big|_{\varphi(p)}} = \delta_{ij}$$
+
+Con esto concluimos que  
+$$\left(\lambda_1\,{\frac{\partial}{\partial x_1}} {\Big|_p} + \dots + \lambda_n\,{\frac{\partial}{\partial x_n}} {\Big|_p}\right) (x_i)= \sum_{j=1}^n \lambda_j \, \delta_{ij} = \lambda_i = 0 \qquad \forall\; i=1,\dots,n$$
+Para comprobar el caracter generador de esta familia, usaremos el lema anterior. Dado $v \in T_pM$, queremos expresarla como $v = \left\langle{\pd{}{x_i}} {\Big|_p}\right\rangle_{i=1,\dots,n}$. Sea $f \in \mathcal{C}^{\infty}(p)$. Expresaremos $v(f)$ empleando el lema, como $$v(f) = v\left(f(p) + \mathlarger{\sum}_{i=1}^n f_i \cdot (x_i - x_i(p))\right) = 0 + \mathlarger{\sum}_{i=1}^n \, v(f_i) \cdot (x_i - x_i(p))(p) + f_i(p)\, v(x_i - x_i(p)) =  $$ $$ = \mathlarger{\sum}_{i=1}^n \, f_i(p)\,v(x_i) =  \mathlarger{\sum}_{i=1}^n \, v(x_i) \cdot \frac{\partial}{\partial x_i} {\Big|_p}(f) = \left( \mathlarger{\sum}_{i=1}^n \, v(x_i) \cdot \frac{\partial}{\partial x_i} {\Big|_p}\right) (f) \in \left\langle{\pd{}{x_i}} {\Big|_p}\right\rangle_{i=1,\dots,n}$$
+\end{dem}
+\, 
+\begin{obs} \,
+\begin{enumerate}
+    \item Las coordenadas de $v \in T_pM$ en la base usada son $v(x_1),\dots,v(x_n)$.
+    \item La dimensión de $T_pM$ es la dimensión de $M$.
+    \item En la clase $\mathcal{C}^k$, en general $\left\{{\pd{}{x_i}}{\Big|_p}\right\}_{i=1}^n$ no se puede garantizar que sea sistema generador. En estos casos se redefine $T_pM$ como $\left\langle{\pd{}{x_i}} {\Big|_p}\right\rangle_{i=1,\dots,n}$, que no depende de la carta considerada.
+\end{enumerate}
+\end{obs}
+Si además $(V,\psi\equiv y_i)$ es otra carta de $M$ con $p \in V$, entonces $\left\{{\pd{}{y_i}}{\Big|_p}\right\}_{i=1}^n$ es otra base de $T_pM$. El cambio de base vendrá dado por $\pd{}{ x_i}{\Big|_p} = \mathlarger{\sum}_{j=1}^n \pd{}{x_i}{\Big|_p}(y_j)\; \pd{}{y_j}{\Big|_p}$.
+Para toda $v \in T_pM$, se tiene que
+$$\left(\begin{array}{c}
+    v(y_1) \\
+    \vdots \\
+    v(y_n)
+\end{array}\right) = \left(\begin{array}{ccc}
+    \frac{\partial}{\partial x_1}{\Big|_p}(y_1) & \dots &  \frac{\partial}{\partial x_n}{\Big|_p}(y_1)\\
+    \vdots &  & \vdots\\
+    \frac{\partial}{\partial x_1}{\Big|_p}(y_n) & \dots & \frac{\partial}{\partial x_n}{\Big|_p}(y_n)
+\end{array}\right) \cdot \left(\begin{array}{c}
+    v(x_1) \\
+    \vdots \\
+    v(x_n)
+\end{array}\right)  $$
+siendo $$\pd{}{x_i} \Big|_p (y_j) = \pd{}{r_i} \Big|_p (y_j \circ \varphi^{-1})_{\varphi(p)} = \pd{(r_j \circ \psi \circ \varphi^{-1})}{r_i} \Big|_{\varphi(p)}$$
+es decir, la matriz jacobiana de $\psi \circ \varphi^{-1}$ en $\mathbb R^n$. Esta matriz de cambio de base depende de $\varphi$ y de $\psi$, y está evaluada en $p\in U$. Tendrá determinante no nulo.
+
+\begin{defi}
+Sea $M^n$ una variedad diferenciable, $(U,\varphi\equiv (x_i)), (V,\psi \equiv (y_i))$ dos cartas de $M$ y $p \in U \cap V$. Se dice que las bases $\left\{{\frac{\partial}{\partial x_i}}{\big|_p}\right\}_{i=1}^n$ y $\left\{{\frac{\partial}{\partial y_i}}{\big|_p}\right\}_{i=1}^n$ tienen la \textbf{misma orientación} si el determinante del cambio de base es mayor que $0$, $det\left({\frac{\partial}{\partial x_i}}{\big|_p}(y_j)\right) > 0$. Se dice que las cartas tienen la misma orientación si las cartas tienen la \textbf{misma orientación} para todo $p \in U\cap V$. 
+\end{defi}
+\begin{obs}
+Si en un punto $p \in U\cap V$ las bases tienen la misma orientación, entonces podemos asegurar que si $M$ es conexo las cartas tendrán también la misma orientación, pues un cambio de signo en el determinante implica un punto en que se anula, y esto es incompatible con la condición de base. Si $M$ es no conexo, es posible que el determinante cambie de signo en cada componente conexa, pero no dentro de ellas.
+\end{obs}
+
+\begin{defi}
+Se dice que $M$ es \textbf{orientable} si tiene algún atlas cuyas cartas tengan todas la misma orientación. Esto no implica que cualquier atlas de $M$ deba tener todas sus cartas con la misma orientación aunque $M$ sea orientable.
+\end{defi}
+
+\begin{defi}
+Sea $M$ una variedad diferenciable. Se define el \textbf{fibrado tangente} a $M$ como la unión disjunta de sus espacios tangentes en cada punto. Esto es:
+$$TM = \underset{p \in M}{\bigsqcup} T_pM = \underset{p \in M}{\bigcup} \{p,T_p M\}$$
+Un elemento del fibrado tangente se especificará así como la pareja $(p,v)$, con $p \in M$ y $v \in T_pM$. Esto es posible porque la igualdad de dimensiones de cada $T_pM$ como espacio vectorial $(dim\,T_pM = dim\,M \;\forall p \in M)$ garantiza la isomorfía de todos ellos.
+
+\textcolor{blue}{Veremos más adelante} que al fibrado tangente a una variedad se le puede dotar de forma natural de estructura diferenciable, por lo que constituye una variedad diferenciable en sí mismo.
+\end{defi}
+
+\begin{defi}
+Sea $M$ una variedad diferenciable. Una \textbf{curva diferenciable} es una aplicación diferenciable $\sigma: I\subset \mathbb{R} \longrightarrow M$ donde $I$ es un abierto. Se dice que $\sigma$ pasa por $p \in M$ en $t_0 \in I$ si $\sigma(t_0)=p$. Se llama traza de la curva a $Im\,\sigma \subset M$.
+\end{defi}
+\begin{obs}
+Es habitual exigir que $I$ sea un intervalo, que $0\in I$ e incluso que $I$ sea simétrico, es decir, $I = (-\epsilon, \epsilon)$ con $\epsilon \in \mathbb{R}^+$.
+\end{obs}
+
+\begin{defi}
+Sea $M$ una variedad diferenciable y $\sigma$ una curva diferenciable tal que $\sigma(t_0)=p$. Se llama \textbf{vector tangente} a $\sigma$ en $p$ a la derivación que denotaremos por $\sigma'(t_0)$ que act\'ua sobre $f\in \mathcal{C}^{\infty}(p)$ del siguiente modo 
+$$\sigma'(t_0)(f) = \frac{d (f\circ \sigma)}{dt}{\Big|_{t=t_0}} \qquad \forall\; f\in \mathcal{C}^{\infty}(p)$$
+\end{defi}
+
+\begin{prop}
+En las condiciones de la definición, se cumple que $\sigma'(t_0) \in T_pM$.
+\end{prop}
+\begin{dem} Para todas $f, g \in \mathcal{C}^{\infty}(p)$ y $\lambda \in \mathbb{R}$:
+     \[ \begin{split} \sigma'(t_0)(f+g) & = \dfrac{d ((f+g)\circ \sigma)}{dt}\Big|_{t=t_0} = \dfrac{d \big((f\circ \sigma)+(g\circ \sigma)\big)}{dt}{\Big|_{t=t_0}}  = \\ & = \dfrac{d (f\circ \sigma)}{dt}{\Big|_{t=t_0}} + \dfrac{d (g\circ \sigma)}{dt}{|_{t=t_0}} = \sigma'(t_0)(f) +\sigma'(t_0)(g)\end{split} \hspace{27mm} \]
+     \[ \begin{split}\sigma'(t_0)(\lambda\,f) & = \dfrac{d (\lambda f\circ \sigma)}{dt}{\Big|_{t=t_0}} = \dfrac{d (\lambda(f\circ \sigma))}{dt}{\Big|_{t=t_0}} = \lambda\,\dfrac{d (f\circ \sigma)}{dt}{\Big|_{t=t_0}} = \lambda\,\sigma'(t_0)(f)\end{split}\hspace{5mm}\]
+     \[ \begin{split}\sigma'(t_0)(f\cdot g) & = \dfrac{d ((f\cdot g)\circ \sigma)}{dt}{\Big|_{t=t_0}} = \dfrac{d ((f\circ \sigma) \cdot (g \circ \sigma))}{dt}{\Big|_{t=t_0}} = \\ & = \dfrac{d (f\circ \sigma)}{dt}{\Big|_{t=t_0}} \cdot (g\circ \sigma)(t_0) + \dfrac{d (g\circ \sigma)}{dt}{\Big|_{t=t_0}}\cdot (f\circ \sigma)(t_0) = \\ & = \sigma'(t_0)(f) \cdot g(\sigma(t_0)) + f(\sigma(t_0)) \cdot \sigma'(t_0)(g)\end{split} \hspace{20mm}\]
+\end{dem}
+
+Si $(U,\varphi\equiv (x_i))$ es una carta de $M$, teniendo entonces la base de $T_pM$ $\left\{{\frac{\partial}{\partial x_i}}{\big|_p}\right\}_{i=1}^n$, se comprueba que 
+$$\sigma'(t_0) = \mathlarger{\sum}_{i=1}^n \sigma'(t_0)(x_i)\,{\frac{\partial}{\partial x_i}}{\Big|_p} = \mathlarger{\sum}_{i=1}^n {\frac{d(x_i \circ \sigma)}{dt}} {\Big|_{t_0}}{\frac{\partial}{\partial x_i}}{\Big|_p}$$con $p = \sigma(t_0)$.
+
+\begin{obs}
+Curvas distintas pueden generar la misma derivación. Consideremos por ejemplo en $\mathbb{R}^2$ las curvas $$\sigma(t) \equiv (t,t^2) \qquad  \tau(t) \equiv (t,t^3) \qquad \text{con } \sigma(0) = \tau(0) = (0,0),\quad \sigma'(0), \tau'(0) \in T_{(0,0)}\mathbb{R}^2$$ Denotaremos la base de $T_p\mathbb{R}^2$ $\left\{{\frac{\partial}{\partial x}}{\big|_p}, {\frac{\partial}{\partial y}}{\big|_p}\right\} \equiv \{v_x^p,v_y^p\}$. Se tiene entonces que $$\sigma'(0) = \frac{d(x\circ \sigma)}{dt} \Big|_{(0,0)} v_x^{(0,0)} + \frac{d(y\circ \sigma)}{dt} \Big|_{(0,0)} v_y^{(0,0)} = \frac{d(t)}{dt}\Big|_0 v_x^{(0,0)} + \frac{d(t^2)}{dt}\Big|_0  v_y^{(0,0)} = v_x^{(0,0)}$$  
+$$\tau'(0) = \frac{d(x\circ \tau)}{dt} \Big|_{(0,0)} v_x^{(0,0)} + \frac{d(y\circ \tau)}{dt} \Big|_{(0,0)} v_y^{(0,0)} = \frac{d(t)}{dt}\Big|_0 v_x^{(0,0)} + \frac{d(t^3)}{dt}\Big|_0  v_y^{(0,0)} = v_x^{(0,0)}$$  
+\end{obs}
+
+\begin{prop}
+Sea $M^n$ una variedad diferenciable, $p\in M$ y $(U,\varphi\equiv(x_i))$ una carta de $M$. Entonces para cada $i \in  \{1,\dots,n\}$ la derivación $\frac{\partial}{\partial x_i} \big|_p$ es el vector tangente a cierta curva diferenciable.
+\end{prop}
+\begin{dem}
+Fijado $p \in U$ e $i \in \{1,\dots,n\}$, denotamos por $\{e_1,\dots,e_n\}$ a la base usual de $\mathbb{R}^n$ como $\mathbb R$-espacio vectorial. Sea $\sigma(t) = \varphi^{-1}(\varphi(p)+t(e_i))$. Por ser $\varphi(U)$ abierto, $\sigma$ est\'a definida en algún intervalo $I \subset \mathbb{R}$ abierto y conteniendo al $0$. Adem\'as, $\sigma(0)=p$, luego $\sigma$ es diferenciable por ser la composición de aplicaciones diferenciables. Entonces $\sigma'(0) \in T_pM$ y buscaremos sus coordenadas en la base $\{v_{x_j}^p\}_{j=1}^n$
+$$\sigma'(0)(x_j) = \frac{d(x_j \circ \sigma)}{dt}\Big|_{t=0} = \frac{d}{dt} (x_j \circ \varphi^{-1}(\varphi(p) + t\,e_i))|_{t=0} = $$ 
+$$\displaystyle = \sum_{k=1}^n \frac{\partial (x_j \circ \varphi^{-1})}{\partial r_k}\Big|_{\varphi(p)}\; \frac{d}{dt} r_k(\varphi(p) + t\,e_i) \Big|_{t=0} =  \mathlarger{\sum}_{k=1}^n \frac{\partial r_j}{\partial r_k}\Big|_{\varphi(p)}\;\delta_{ik} = \frac{\partial r_j}{\partial r_i}\Big|_{\varphi(p)} = \delta_{ij}$$
+Así, $\sigma'(0) = \mathlarger{\sum}_{j=1}^n \sigma'(0)(x_j) v_{x_j}^p = v_{x_i}^p=\pd{}{x_i}\Big|_p$.
+\end{dem}
+
+\begin{cor}
+Toda derivación es el vector tangente a cierta curva diferenciable.
+\end{cor}
+\begin{dem}
+\textcolor{red}{Ejercicio:}
+Dada $v \in T_pM$, entonces $v = \displaystyle \sum_{i=1}^n v(x_i) \pd{}{x_i} \Big|_p$ sustituir el vector $e_i$ de la anterior demostración por $e = (v(x_1),\dots,v(x_n)) \in \mathbb{R}^n$.
+\end{dem}
+
+\begin{defi}
+Sean $M$ y $N$ dos variedades diferenciables y $f:\,M \to N$ una aplicación diferenciable entre ellas. Para cada $p\in M$, se llama \textbf{aplicación tangente} a $f$ en $p$ o \textbf{derivada} de $f$ en $p$ a la aplicación $$f_{*,p}:\, T_pM \longrightarrow T_{f(p)}N$$
+Definida porque para todo $v \in T_pM$ y para todo $g\in \mathcal{C}^{\infty}(f(p))$, se tiene que $$\left(f_{*,p}(v)\right)(g) = v\,(g\circ f)$$
+\end{defi}
+
+\begin{prop}
+Con la notación de la definición, $f_{*,p}$ está bien definida y es lineal.
+\end{prop}
+\begin{dem}
+Debemos demostrar en primer lugar que, dado $v \in T_pM$, $f_{*,p}(v)$ es una derivación de $N$ en $f(p)$. Sean $g,h \in \mathcal{C}^{\infty}(f(p))$ y $\lambda\in \mathbb{R}$. Entonces:
+\begin{itemize}
+    \item $f_{*,p}(v)(g + h) = v\,((g+h) \circ f) = v\,((g \circ f) + (h\circ f)) = v(g \circ f) + v(h \circ f) = f_{*,p}(v)(g) + f_{*,p}(v)(h)$
+    \item $f_{*,p}(v)(\lambda\,g) = v\,(\lambda\,g \circ f) = v\,(\lambda(g \circ f)) = \lambda\,v(g \circ f) = \lambda\,f_{*,p}(v)(g)$
+    \item $f_{*,p}(v)(g \cdot h) = v\,((g \cdot h) \circ f) = v\,((g \circ f) \cdot (h\circ f)) = v(g \circ f) \cdot (h \circ f)(p) + v(h \circ f) \cdot (g \circ f)(p) = f_{*,p}(v)(g) \cdot h(f(p)) + f_{*,p}(v)(h) \cdot g(f(p))$
+\end{itemize}
+Por lo que $f_{*,p}(v) \in T_{f(p)}N$. Veamos ahora que $f_{*,p}$ es lineal. Dados $v, w \in T_pM$ y $\lambda \in \mathbb{R}$:
+\begin{itemize}
+    \item $f_{*,p}(v + w) = f_{*,p}(v) + f_{*,p}(w) \iff (\forall\;g\in T_{f(p)}N)\;\; f_{*,p}(v + w)(g) = (v+w)(g\circ f) = v(g\circ f) + w(g \circ f) = f_{*,p}(v)(g) + f_{*,p}(w)(g)$
+    \item $f_{*,p}(\lambda\,v) = \lambda\, f_{*,p}(v) \iff (\forall\;g\in T_{f(p)}N)\;\; f_{*,p}(\lambda\,v)(g) = (\lambda\,v)(g \circ f) = \lambda\,v(g \circ f) = \lambda\, f_{*,p}(v)(g)$
+\end{itemize}
+\end{dem}
+\begin{obs}
+Si $\sigma: I\subset \mathbb{R} \to M$ es una curva diferenciable que en $t=0$ pasa por $p\in M$, entonces $\sigma'(0) \in T_pM$. Es fácil ver que $f_{*,p}(\sigma'(0)) = (f\circ \sigma)'(0)$, es decir, la imagen mediante $f_{*,p}$ del vector tangente a $\sigma$ en $t=0$ es el vector tangente a la curva $(f \circ \sigma):\,I\to N$.
+\end{obs}
+\begin{prop}
+Sean $M,M_1, M_2, M_3$ variedades diferenciables y $f:M_1\to M_2$, $g:M_2 \to M_3$ aplicaciones diferenciables. Entonces:
+\begin{enumerate}
+    \item $(g\circ f)_{*,p} = g_{*,f(p)} \circ f_{*,p} \;\forall\; p \in M_1$.
+    \item Si $Id:M\to M$ es la aplicación identidad, entonces $Id_{*,p} = Id_{T_pM} \;\forall\; p \in M$.
+    \item Si $f$ es un difeomorfismo, entonces para todo $p \in M$, $f_{*,p}$ es un isomorfismo lineal y $(f_{*,p})^{-1} = (f^{-1})_{*,f(p)}$.
+\end{enumerate}
+\end{prop}
+\begin{demx} \, 
+\begin{enumerate}
+    \item Para todo $v \in T_pM$ y $h \in \mathcal{C}^{\infty}(g(f(p))$, se tiene que $(g\circ f)_{*,p}(v)(h) = v(h \circ g \circ f) = f_{*,p}(v)(h \circ g) = g_{*,f(p)}(f_{*,p}(v))(h) =  (g_{*,f(p)} \circ f_{*,p})(v)(h)$
+    \item Para todo $v \in T_pM$ y $f\in \mathcal{C}^{\infty}(p)$: $Id_{*,p}(v)(f) = v(f \circ Id) = v(f) = Id(v)(f)$.
+    \item Si $f$ es un difeomorfismo, $f^{-1}$ existe y es diferenciable. Por la propiedad anterior, $Id_{*,p} = (f^{-1} \circ f)_{*,p} = (f^{-1})_{*,f(p)} \circ f_{*,p} = Id_{T_pM}$, luego $(f^{-1})_{*,f(p)}$ es el inverso de $f_{*,p}$, es decir, $(f_{*,p})^{-1}$. La existencia de inverso implica que $f_{*,p}$ es un isomorfismo lineal.
+\end{enumerate}
+\end{demx}
+
+\begin{obs}
+Consideremos las variedades $M$ y $N$ y sus fibrados tangentes $TM,TN$. Entonces, dada $f:M \to N$, podemos definir la aplicación tangente a $f$ globalmente como
+$$\begin{tikzcd}
+f_*: \hspace{-12mm} & TM \rar & TN\\[-5mm]
+& (p, v) \arrow[mapsto]{r} & (f(p),f_{*,p}(v))
+\end{tikzcd}$$
+
+Con esto, podemos asegurar la existencia de un funtor, denominado funtor tangente, entre las categorías de variedades diferenciables $$\begin{tikzcd}
+F: \hspace{-14mm} & \mathcal{C}_{var} \rar & \mathcal{C}_{var}\\[-3mm]
+& M \arrow[mapsto]{r} & F(M) = TM\\[-5mm]
+& f \arrow[mapsto]{r} & F(f) = f_*\\[-7mm]
+& M \dar & TM \dar\\[-3mm]
+& N & TN
+\end{tikzcd}$$
+Ya que las propiedades de la proposición anterior aseguran que esta asignación es funtorial.
+\end{obs}
+
+Sea $f:M^m \to N^n$ una aplicación diferenciable entre variedades diferenciables, $(U,\varphi\equiv (x_i))$ carta de $M$, $p \in U$, $(V,\psi\equiv(y_j))$ carta de $N$ y $f(p) \in V$. 
+\begin{defi}
+La matriz de la aplicación $f_{*,p}$ asociada a las bases $\left\{\frac{\partial}{\partial x_i}|_p\right\}_{i=1}^n$ de $T_pM$ y $\left\{\frac{\partial}{\partial y_j}|_{f(p)}\right\}_{j=1}^n$ de $T_{f(p)}N$ se denomina \textbf{matriz jacobiana} de $f$ en el punto $p \in M$. Se tiene que
+$$f_{*,p}\left(\frac{\partial}{\partial x_i}\Big|_p\right) = \mathlarger{\sum}_{j=1}^n \left(f_{*,p}\left(\frac{\partial}{\partial x_i}\Big|_p\right)\right) (y_j) \cdot \frac{\partial}{\partial y_j}\Big|_{f(p)} = \mathlarger{\sum}_{j=1}^n \frac{\partial}{\partial x_i}\Big|_p (y_j \circ f) \cdot \frac{\partial}{\partial y_j}\Big|_{f(p)}$$
+con $\frac{\partial}{\partial x_i}|_p (y_j \circ f) = \frac{\partial}{\partial x_i}|_p (r_j \circ \psi \circ f) = \frac{\partial}{\partial r_i}|_{\varphi(p)} (r_j \circ \psi \circ f \circ \varphi^{-1})$. Por tanto, la matriz jacobiana que se obtiene es $$(Jf)_p =  \left(\begin{array}{ccc}
+    \frac{\partial}{\partial x_1}{\Big|_p}(y_1 \circ f) & \dots &  \frac{\partial}{\partial x_m}{\Big|_p}(y_1 \circ f)\\
+    \vdots & \ddots  & \vdots\\
+    \frac{\partial}{\partial x_1}{\Big|_p}(y_n \circ f) & \dots & \frac{\partial}{\partial x_m}{\Big|_p}(y_n \circ f)
+\end{array}\right)  $$
+que es la matriz jacobiana de la lectura de $\psi \circ f \circ \varphi^{-1}$ en el sentido usual de aplicaci\'on $\mathbb R^n \longrightarrow \mathbb R^n$.
+\end{defi}
+
+\begin{defi}
+Sea $M$ una variedad diferenciable y $p \in M$. Se llama \textbf{espacio cotangente} a $M$ en $p$, denotado por $T_p^*M$ al espacio dual de $T_pM$. $$T_p^*M = (T_pM)^* = \{w:\,T_pM\longrightarrow \mathbb{R} \;\; / \; w \text{ es lineal}\}$$
+\end{defi}
+\begin{obs}
+$T_p^*M$ es un $\mathbb R$-espacio vectorial y si $dim\,M = n$, entonces $dim\,T_p^*M = dim\,T_pM = n$.
+\end{obs}
+
+\begin{ejem}
+Si $(U,\varphi\equiv(x_i))$ es una carta de $M$ con $p\in M$, denotaremos la base dual de $\left\{\frac{\partial}{\partial x_i}|_p\right\}_{i=1}^n$ en $T_p^*M$ por $\{d_px_i\}_{i=1}^n$. Por ser bases duales, se tiene que $$(d_px_i)\left(\frac{\partial}{\partial x_j}\Big|_p\right) = \delta_{ij} \qquad (d_px_i)(v) = v(x_i) \;\forall\; v \in T_pM$$
+\end{ejem}
+
+\begin{ejem}
+Si $f:M\to \mathbb{R}$ es diferenciable, para todo punto de $M$ podemos definir $$\begin{tikzcd}
+d_pf: \hspace{-9mm} & T_pM \rar & \mathbb{R}\\[-5mm]
+& v \rar & d_pf(v) \equiv v(f)
+\end{tikzcd}$$
+Se comprueba que esta aplicación es lineal, es decir, $d_pf\in T_p^*M$. La llamaremos diferencial de $f$ en $p$. Si $(U, \varphi\equiv(x_i))$ es carta de $M$ con $p \in U$, $\{d_px_i\}_{i=1}^n$ base de $T_p^*M$, entonces $$d_pf=\mathlarger{\sum}_{i=1}^n (d_pf)\left(\frac{\partial}{\partial x_i}\Big|_p\right) d_px_i =\mathlarger{\sum}_{i=1}^n \frac{\partial}{\partial x_i}\Big|_p (f) d_px_i$$
+Tomando $f = x_i$, se recupera el ejemplo anterior.
+\end{ejem}
+
+\begin{defi}
+Sea $f: M \to N$ una aplicación diferenciable entre variedades diferenciables. Dada $p \in M$, se llama \textbf{aplicación cotangente} de $f$ en $p$ o \textit{pull-back} de $f$ en $p$ a la aplicación transpuesta de $f_{*,p}$, es decir:
+$$\begin{array}{ccccccc}
+  f^*_p : & T^*_{f(p)} N & \longrightarrow & T^*_p M \\
+     & w & \longrightarrow & f^*_p(w): & T_pM & \longrightarrow & \mathbb{R}\\
+     & & & & v & \longrightarrow & w(f_{*,p}(v))
+\end{array}$$
+Sabemos que $f^*_p$ está bien definida y es lineal por los resultados sobre dualidad en espacios vectoriales.
+\end{defi}
+
+\begin{prop}
+Si $f:M\to N$ es una aplicación diferenciable entre variedades diferenciables, $p \in M$ y $g \in \mathcal{C}^{\infty}(f(p))$, se cumplen las siguientes propiedades:
+\begin{itemize}
+    \item $f^*_p(d_{f(p)}g) = d_p(g \circ f)$
+    \item $f^*_p(g(f(p))\cdot w) = (g \circ f)(p) \cdot f_p^*(w) \;\;\forall w \in T^*_{f(p)}N$
+\end{itemize}
+\begin{demx}
+Para todo $v \in T_pM$:
+\begin{itemize}
+    \item $f^*_p(d_{f(p)}g)(v)=d_{f(p)}g\,(f_{*,p}(v)) = (f_{*,p}(v))(g) = v(g \circ f) = d_p(g \circ f)(v)$
+    \item Consecuencia inmediata de la linealidad de $f^*_p$, pues $g(f(p)) \in \mathbb{R}$
+\end{itemize}
+\end{demx}
+\end{prop}
+\begin{nota} Otra forma de construir el espacio tangente es la siguiente.
+
+Podemos definir $I_p$ como el conjunto de g\'ermenes de funciones que se anulan en $p$, de forma que es $I_p \subset \modulo{\mathcal{C}^{\infty}(p)}{\sim}$. De la misma forma, $I_p^2 \subset I_p$ como el ideal de funciones que se anulan doblemente en $p$. De esta forma, se puede definir
+$$T_pM=\left( \modulo{I_p}{I_p^2}\right)^*$$
+que se demuestra que es $\mathbb R$-espacio vectorial y la dimensi\'on se demuestra con el Lema de Hadamard.
+\end{nota}
+
+Veamos ahora algunos resultados de esta secci\'on.
+
+\begin{teo}[\textbf{de la Función Inversa en} $\mathbb{R}^n$] 
+Sea $f: U \subset \mathbb{R}^n \to \mathbb{R}^n$ una aplicación diferenciable donde $U$ es abierto. Si $p \in U$ es tal que la matriz $\left(\dfrac{\partial(r_j \circ f)}{\partial r_i}\Big|_p \right)_{1\leq i,j\leq n}$ es no singular, entonces existe $V$ abierto con $p \in V \subset U$ de modo que $f(V)$ es abierto y $f|_V : V \to f(V)$ es un difeomorfismo.
+\end{teo}
+
+\begin{teo}[\textbf{de la Función Inversa en variedades}]
+Sea $f: M \to N$ una aplicación diferenciable entre espacios diferenciables. Si $p \in M$ es tal que $f_{*,p}$ es un isomorfismo de espacios vectoriales, entonces existe $U \subset M$ abierto con $p \in U$ de forma que $f(U)$ es abierto y $f|_U:U \to f(U)$ es un difeomorfismo.
+\end{teo}
+\begin{dem}
+Como $f$ es diferenciable, si $(V,\varphi\equiv(x_i))$ es una carta de $M$ con $p \in V$ y $(W,\psi\equiv(y_i))$ es carta de $N$ con $f(p) \in W$, sabemos que $\psi \circ f \circ \varphi^{-1}$ es diferenciable en el abierto correspondiente. Podemos considerar $f(V) \subset W$, en caso contrario restringimos $\varphi$ al abierto $V \cap f^{-1}(W)$.
+
+Por ser $f_{*,p}:T_pM \to T_{f(p)}N$ un isomorfismo, se tiene que $m = n$. La matriz jacobiana de $f$ en $p$ en estas coordenadas es la matriz jacobiana de $\psi \circ f \circ \varphi^{-1}$ en $\varphi(p)$, y será por tanto no singular.
+
+Por el Teorema de la Función Inversa en $\mathbb{R}^n$, existirá $\tilde{U} \subset \varphi(V)$ de modo que $\psi \circ f \circ \varphi^{-1}(\tilde{U})$ será abierto y $\psi \circ f \circ \varphi^{-1}|_{\tilde{U}} : \tilde{U} \to \psi \circ f \circ \varphi^{-1}(\tilde{U})$ es un difeomorfismo. Sea $U = \varphi^{-1}(\tilde{U})$. Se comprueba entonces que $f(U) = (f \circ \varphi^{-1})(\tilde{U})$ es abierto, pues $\psi(f \circ \varphi^{-1})(\tilde{U}))$ es abierto y $\psi$ es un difeomorfismo. Por tanto, $f|_U : U \to f(U)$ es difeomorfismo, pues su lectura en estas coordenadas lo es.
+\end{dem} 
+\begin{obs}
+En el abierto $U$ se cumple que para todo $q \in U$, $f_{*,q}$ es isomorfismo. Pero si $f: M \to N$ es tal que para todo $p \in M$ $f_{*,p}$ es isomorfismo, puede darse el caso de que $f$ no sea globalmente inyectiva.
+
+Esto ocurre, por ejemplo, en la función:
+$$\begin{tikzcd}
+f:\hspace{-13mm} & (-1,0) \cup (0,1) \rar & \mathbb{R}\\[-5mm]
+& t \arrow[mapsto]{r} & t^2
+\end{tikzcd}\quad \begin{tikzcd}
+g:\hspace{-13mm} & \mathbb{R} \rar & \bold S^1 \\[-5mm]
+& t \arrow[mapsto]{r} & (\cos t, \sin t)
+\end{tikzcd}$$
+y no es difeomorfismo en ninguna. 
+\end{obs} 
+\begin{obs}
+Se cumple que para $f:M \longrightarrow N$ diferenciable con $f_{*,p}$ isomorfismo $\forall p \in M$. y si $U \subset M$ tal que $f|_U$ es inyectiva entonces $f(U)$ es abierto y $f|_U: U \longrightarrow f(U)$ es difeomorfismo. 
+\end{obs} 
+
+\begin{cor}
+Sea $M^n$ una variedad diferenciable de dimensión $n$ y $p \in M$. Dadas $m$ funciones $\{f_i\}_{i=1}^m \in \mathcal{C}^{\infty}(p)$ se cumple que: \vspace{-3mm}
+\begin{enumerate}[a)]
+\item Si $m \leq n$, si $\{d_pf_i\}_{i=1}^m$ son linealmente independientes en $T^*_pM$, entonces existe una carta $(U,\varphi\equiv(x_i))$ de $M$ donde las primeras funciones coordenadas son las $\{f_i\}_{i=1}^m$, es decir, $x_i = f_i$ para todo $i= 1,\dots,m$.
+\item Si $m\geq n$, si $\{d_pf_i\}_{i=1}^m$ son sistema generador de $T^*_pM$, entonces existe una carta $(U,\varphi\equiv(x_i))$ de $M$ donde las funciones coordenadas son un subconjunto de $\{f_i\}_{i=1}^m$.
+\item Si $m = n$, si $\{d_pf_i\}_{i=1}^m$ son base de $T^*_pM$, entonces existe una carta $(U,\varphi\equiv(x_i))$ de $M$ donde las funciones coordenadas son las $\{f_i\}_{i=1}^m$.
+\end{enumerate}
+\end{cor}
+\begin{dem}\, \vspace{-3mm}
+\begin{enumerate}[a)] 
+\item Sea $(V,\varphi\equiv(y_i))$ una carta de $M$ con $p \in V$. Sabemos que $\{d_py_i\}_{i=1}^n$ es base de $T^*_pM$. Además, $\{d_pf_i\}_{i=1}^m$ son linealmente independientes en $T^*_pM$ por hipótesis, luego por el lema de Steinitz sabemos que podemos sustituir $m$ elementos de $\{d_py_i\}_{i=1}^n$ por elementos de $\{d_pf_i\}_{i=1}^m$ para obtener una nueva base del espacio cotangente.
+
+Sin pérdida de generalidad, podemos suponer que sean las $m$ primeras (reordenando si es necesario). Sea $W$ la intersección de $V$ con los dominios de definición de cada $f_1,\dots,f_m$. Definimos la aplicación de la carta como
+$$\varphi = (f_1,\dots,f_m,y_{m+1},\dots,y_n) :\; W \subset M \longrightarrow \mathbb{R}^n$$
+Su aplicación cotangente $\varphi^*_p:T^*_{\varphi(p)}\mathbb{R}^n \longrightarrow T^*_p M$ es un isomorfismo, pues transforma bases en bases. Para ver esto, consideremos la base $\{d_{\varphi(p)}r_i\}_{i=1}^n$ de $T^*_{\varphi(p)}\mathbb{R}^n$. Por las propiedades vistas: $$\varphi^*_p(d_{\varphi(p)}r_i) = d_p(r_i \circ \varphi) = \begin{cases}
+d_pf_i \quad 1\leq i \leq m\\
+d_py_i \quad m < i \leq n
+\end{cases}$$
+Por lo que $\varphi^*_p$ transforma $\{d_{\varphi(p)}r_i\}_{i=1}^n$ en $\{d_pf_1,\dots,d_pf_m,d_py_{m+1},\dots,d_py_n\}$, que es base de $T^*_pM$. Entonces, $\varphi^*_p$ es un isomorfismo, con lo que $\varphi_{*,p}$ también lo es y podemos aplicar el Teorema de la Función Inversa. Concluimos así que existe $U \subset W$ tal que $\varphi|_U:U \to \varphi(U) \subset \mathbb{R}^n$ es difeomorfismo, es decir, $(U,\varphi)$ es carta de $M$.
+
+\item Tenemos que $\{d_pf_i\}_{i=1}^m$ son sistema generador de $T^*_pM$, por lo que podemos extraer $n$ de ellos para formar una base de $T^*_pM$. Reordenando y sin pérdida de generalidad, supongamos que son las $n$ primeras, con lo que $\{d_pf_i\}_{i=1}^n$ es base de $T^*_pM$. Sea $W$ la intersección de los dominios de definición de cada $f_1,\dots,f_m$. Definiremos la aplicación $\varphi$ como:
+$$\varphi = (f_1,\dots,f_n) :\; W \subset M \longrightarrow \mathbb{R}^n$$
+Su aplicación cotangente $\varphi^*_p:T^*_{\varphi(p)}\mathbb{R}^n \longrightarrow T^*_p M$ es un isomorfismo, pues transforma bases en bases. Análogamente al caso anterior, se tiene que $\varphi^*_p(d_{\varphi(p)}r_i) = d_p(r_i \circ \varphi) = d_pf_i$ para toda $i= 1,\dots,n$, y $\{d_pf_i\}_{i=1}^n$ es base de $T^*_pM$. Por tanto $\varphi_{*,p}$ también es isomorfismo y aplicando de nuevo el TFI, obtenemos que existe $U \subset W$ tal que $\varphi|_U:U \to \varphi(U) \subset \mathbb{R}^n$ es difeomorfismo, es decir, $(U,\varphi)$ es carta de $M$.
+\item Consecuencia de los casos anteriores.
+\end{enumerate}  
+\end{dem}
+\cleardoublepage

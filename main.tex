@@ -1,0 +1,58 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  PREAMBLE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt,a4paper,openany]{book}
+
+\usepackage{preamble}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DOCUMENT  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+% Boldface proof name
+% \let\oldproofname=\proofname
+% \renewcommand{\proofname}{\rm\bf{\oldproofname}}
+
+% PORTADA/PREFACIO/ÍNDICE --------------------------------------------
+\frontmatter
+\pagenumbering{roman}
+
+% Portada
+\input{titlepage}
+
+% Prefacio
+%\include{Chapters/preface}
+\cleardoublepage
+
+% Índice
+\let\cleardoublepage\clearpage %quita la página en blanco
+\tableofcontents
+
+
+
+% CUERPO -------------------------------------------------------------
+\mainmatter
+\pagenumbering{arabic}
+\fancychapterstyle
+
+\include{Chapters/cap1}  
+\include{Chapters/cap2} 
+\include{Chapters/cap3} 
+\include{Chapters/cap4} 
+\include{Chapters/cap5} 
+
+% APÉNDICES ----------------------------------------------------------
+\appendix %estilo apéndices
+
+\include{Appendixes/Ejercicios}
+\cleardoublepage
+
+\include{Appendixes/Seminarios}
+\cleardoublepage
+
+%\includepdf[pages={1-9}]{Chapters/Tema5_tensores_espacios_vectoriales.pdf}\label{ap1} \includepdf[pages={1-7}]{Chapters/Tema5_campos_tensoriales.pdf}\label{ap2} \includepdf[pages={1-11}]{Chapters/studium_Tema5_derivada_Lie.pdf}\label{ap3} \includepdf[pages={1-13}]{Chapters/studium_Tema5_diferencial_exterior.pdf}\label{ap4}
+
+\standardchapterstyle
+
+\end{document}

@@ -1,0 +1,283 @@
+\justifying
+\chapter{Subvariedades e inmersiones}
+
+\begin{defi}
+Sea $f:M\to N$ una aplicación diferenciable
+entre variedades diferenciables. Se dice que $f$ es una \textbf{inmersión} en $p \in M$ si $f_{*,p}$ es inyectiva. Se dice que $f$ es una inmersión si lo es para todo $p \in M$.
+\end{defi}
+\begin{obs}
+Si $f$ es inmersión en algún punto, necesariamente $dim\,M \leq dim\,N$.
+\end{obs}
+
+\begin{defi}
+Una \textbf{subvariedad} es una inmersión $f:M \to N$ que además es inyectiva. Además se dice que $f$ es una \textbf{subvariedad regular} o un \textbf{embebimiento} si $f$ una subvariedad que adem\'as es un homeomorfismo sobre su imagen.
+\end{defi}
+
+\begin{obs}
+Por abuso de lenguaje a veces se dice que $f(M) \subset N$ es la subvariedad, pero tan importante es el conjunto imagen como la propia aplicación $f: M \to N$.
+\end{obs}
+
+\begin{obs}
+En otros textos hay otras denominaciones:
+$$\begin{tikzcd}
+\text{Inmersión en } p  \arrow[squiggly]{r} & \text{Inmersión local}\\[-5mm]
+\text{Subvariedad} \arrow[squiggly]{r} & \text{Inmersión inyectiva o subvariedad inmersa}\\[-5mm]
+\text{Embebimiento} \arrow[squiggly]{r} & \text{Subvariedad}
+\end{tikzcd}$$
+
+Incluso en otros sitios subvariedad es $M \subset N$, $i : M \hookrightarrow N$ la inclusi\'on hace el papel de nuestra $f$.
+\end{obs}
+
+\begin{prop}
+Sea $f:M\to N$ una subvariedad. Al conjunto $f(M)$ se le puede dotar de estructura diferenciable de modo que $f(M)$ y $M$ sean variedades diferenciables difeomorfas y la inclusión $i:f(M)\hookrightarrow N$ sea una subvariedad. Además, la topología inducida en $f(M)$ por esta estructura diferenciable es más fina que la topología como subconjunto de $N$.
+\end{prop}
+\begin{dem}
+Para todo $q \in f(M)$, existirá un único $p \in M$ tal que $f(p) = q$ (por ser $f$ inyectiva) y existirá una carta $(U,\varphi)$ de $M$ con $p\in U$. Consideramos el conjunto $f(U)$ y la aplicaci\'on $\varphi \circ f^{-1}$ y veamos que es carta de $f(M)$ que cubre a $q$. Se verifica que $\varphi \circ f^{-1}(f(U))=\varphi(U)$ (en general $U \subset f^{-1}(f(U))$, pero como $f$ es inyectiva es la identidad). Luego $\varphi(U)$ es abierto de $\mathbb R^m$ por ser $(U,\varphi)$ carta. Adem\'as, por construcci\'on $\varphi \circ f^{-1} : f(U) \to \mathbb{R}^m$ donde $m = dim\,M$, que está bien definida y es inyectiva. 
+
+Para ver que es un atlas, es claro que los dominios recubren a $f(M)$ y veamos que dos casrtas de $f(M)$ son compatibles.
+
+Sea $(f(V), \psi \circ f^{-1})$ otra de esas cartas generada a partir de $(V, \psi)$ carta de $M$ (por la inyectividad de $f$):$$f(U) \cap f(V) = f(U\cap V) \Rightarrow \varphi \circ f^{-1}(f(U)\cap f(V)) = \varphi(f^{-1}(f(U\cap V))) = \varphi(U\cap V)$$ 
+$$\psi \circ f^{-1}(f(U)\cap f(V)) = \psi(f^{-1}(f(U\cap V))) = \psi(U\cap V)$$ que son abiertos de $\mathbb{R}^m$ pues las cartas $(U,\varphi)$ y $(V, \psi)$ son compatibles. Además, la funci\'on de transici\'on
+$$(\psi \circ f^{-1}) \circ (\varphi \circ f^{-1})^{-1} = \psi \circ f^{-1} \circ f \circ \varphi^{-1} = \psi \circ \varphi^{-1}$$
+$$(\varphi \circ f^{-1}) \circ (\psi \circ f^{-1})^{-1} = \varphi \circ \psi^{-1}$$ que son $\mathcal C^{\infty}$ diferenciables por ser cartas de $M$. Por lo tanto, las cartas as\'i construidas forman un atlas de $f(M)$, que es una variedad diferenciable habiendo impuesto que $f$ sea inyectiva y $M$ variedad diferenciable.
+
+Es fácil demostrar (\textcolor{red}{ejercicio}) que $f: M\to f(M)$ es un difeomorfismo y también que la inclusión $i:f(M) \hookrightarrow N$ es subvariedad, inyectiva (por definición), diferenciable y una inmersión por ser $f$ ambas cosas.
+
+Veamos ahora la última parte de la proposición. Tenemos en $f(M)$ dos topologías, la inducida por la estructura diferenciable $\mathcal{T}_f$ y la topología como subconjunto de $N$, $\mathcal{T}_S$.
+
+Sea $W\subset N$ un abierto, entonces $W \cap f(M) \in \mathcal{T}_S$. Veamos que es también un abierto para $\mathcal{T}_f$. Para esto, sea $(f(U),\varphi\circ f^{-1})$ una carta de $f(M)$ como las de antes, entonces 
+$$\varphi\circ f^{-1}((W\cap f(M))\cap f(U)) = \varphi(f^{-1}(W\cap f(U))) = \varphi(f^{-1}(W) \cap f^{-1}(f(U))) = \varphi(f^{-1}(W) \cap U)$$
+Como $f$ continua (es diferenciable) y $W$ abierto, entonces $f^{-1}(W)$ es abierto de $M$. Por tanto, $\varphi(f^{-1}(W) \cap U)$ es abierto también por ser $\varphi$ un homeomorfismo. Por tanto, $W \cap f(M) \in \mathcal{T}_f$ y concluimos que $\mathcal{T}_S \subseteq \mathcal{T}_f$.
+\end{dem} 
+
+\, \\
+
+\begin{ejem} \,
+\begin{enumerate}
+    \item Sea la aplicación $$\begin{array}{rrcl}
+     \sigma: & \mathbb R &\longrightarrow & \mathbb R^2  \\
+     & t &\longmapsto & (\cos(t), \sin(t)) 
+\end{array}$$que induce $$\begin{tikzcd}
+T_t\mathbb{R} \arrow{r}{\sigma_{*,t}} & T_{\sigma(t)}\mathbb{R}^2\\[-5mm]
+\left\langle \frac{\partial}{\partial t}|_t\right\rangle \arrow[equals]{u} & \arrow[equals]{u} \left\langle\frac{\partial}{\partial x}|_{\sigma(t)},\frac{\partial}{\partial y}|_{\sigma(t)}\right\rangle \end{tikzcd}$$
+De forma que $\sigma$ es diferenciable, $\sigma_{*,t}$ es inyectiva para todo $t\in \mathbb{R}$ y por tanto $\sigma$ es inmersión, pero no subvariedad (claramente no es inyectiva).
+\item Sea otra aplicaci\'on
+$$\begin{array}{rrcl}
+     \tau: & \mathbb R &\longrightarrow & \mathbb R^3  \\
+     & t &\longmapsto & (\cos(t), \sin(t), t) 
+\end{array}$$
+donde ahora s\'i $\tau$ es subvariedad.
+\item La aplicaci\'on $i : \bold S^2 \hookrightarrow \mathbb R^3$ es embebimiento. (\textcolor{red}{probar})
+
+Usando las coordenadas estereogr\'aficas ($U=\bold S^2-\{N\}, \varphi_N = (u,v)$) se tiene
+$$i \circ \varphi^{-1} (u,v) = \dfrac{1}{u^2+v^2+1}(2u,2v,u^2+v^2-1)$$
+y la matriz jacobiana de $i$ en estas coordenadas es
+$$\dfrac{2}{(u^2+v^2+1)^2} \begin{pmatrix}
+    1-u^2+v^2 & -2uv & 2u \\ -2uv & 1+u^2-v^2 & 2v
+\end{pmatrix}$$
+y se comprueba que tiene rago 2, es decir, $i_{*,p}$ es inyectiva. 
+
+An\'alogamente con la otra carta. As\'i, $i : \bold S^2 \hookrightarrow \mathbb R^3$ es subvariedad.
+
+Adem\'as, es un embebimiento. La topolog\'ia inducida por este atlas es equivalente al de las ortogonales, ya que son compatibles, y ya vimos que tiene la topolog\'ia de $\bold S^2$ como subconjunto de $\mathbb R^3$. De esta forma, es un embebimiento.
+
+\item La aplicaci\'on
+$$\begin{array}{rrcl}
+     f: & M=(0, 2\pi) & \longrightarrow & \mathbb R^2  \\
+     & t & \longmapsto & (\sin 2t, \cos 2t)
+\end{array}$$
+de forma que $f(M)=\{(x,y) \in \mathbb R^2\, / \, x^2=4y^2-4y^4\}$. Esta aplicaci\'on es diferenciable, una inmersi\'on en todos sus puntos e inyectiva, pero no es embebimiento, ya que la topolog\'ia es m\'as fina estrictamente. Esto se debe a que la imagen de los intervalos $(\varepsilon-\pi, \pi+\varepsilon)$ no son abiertos de la topolg\'ia inducida, pero s\'i de la usual de $\mathbb R^2$.
+\end{enumerate}
+\end{ejem}
+
+\begin{teo} [\textbf{de estructura local de las inmersiones}]
+Sea $f:M^m \to N^n$ una aplicación diferenciable entre variedades diferenciables y $p\in M$ tal que $f$ es inmersión en $p$. Entonces existen cartas $(U,\varphi\equiv(x_i))$ de $M$ con $p\in U$, $(V,\psi\equiv(y_j))$ de $N$ con $f(U)\subset V$ de modo que $\psi \circ f \circ \varphi^{-1} (x_1,\dots,x_m) = (x_1,\ldots, x_m,0,\dots,0)$, es decir, $x_i = y_i \circ f$ con $i=1,\dots,m$ y además $y_j |_{f(U)} \equiv 0$ para todo $j = m+1,\dots, n$.
+\end{teo}
+\begin{dem}
+Dado $q = f(p) \in N$, existirá una carta $(V_1,\psi_1\equiv (y_j))$ de $N$ con $q \in V_1$, Como $f_{*,p}:T_pM\to T_qM$ es inyectiva, entonces $f^*_p$ es epiyectiva y transforma la base $\{d_qy_j\}_{j=1}^n$ en un sistema generador de $T_p^* M$, del que podemos extraer una base.
+
+Sin pérdida de generalidad, supongamos que $\{f^*_p(d_qy_i)\}_{i=1}^m = \{d_p(y_i \circ f)\}_{i=1}^m$ es base de $T^*_p M$. Definimos $x_i = y_i \circ f$ con $i = 1,\dots,m$, con las diferenciales definidas en $f^{-1}(V_1) \subset M$. Como $\{d_px_i\}_{i=1}^m$ es base de $T^*_p M$ por un corolario del Teorema de la Función Inversa, existirá una carta $(U_1,\varphi_1)$ de $M$ con $p\in U_1 \subset f^{-1}(V_1)$ (o equivalentemete $f(U_1) \subset V_1$) de modo que $\varphi_1 \equiv (x_1,\dots,x_m)$. Con estas cartas, la lectura de $f$ en coordenadas es $$\psi_1 \circ f \circ \varphi_1^{-1} (x_1,\dots,x_m) = (x_1,\dots,x_m,y_{m+1} (x_1,\dots,x_m),\dots,y_n (x_1,\dots,x_m))$$
+
+Es claro que $\varphi_1(U_1) \subset \pi_1(\psi_1(V_1))$ donde $\pi_1: \mathbb{R}^m \times \mathbb{R}^{n-m} \to \mathbb{R}^m$ es la proyección en las primeras coordenadas. Tomando $V_2 = \psi_1^{-1}(\varphi_1(U_1) \times \mathbb{R}^{n-m}) \subset V_1 \subset N$, con $V_2$ abierto y $q \in V_2$, y se mantiene $f(U_1) \subset V_2$ y $\psi_2 = \psi_1 |_{V_2}$, además de que se cumple que $\pi_1(\psi_2(V_2)) = \varphi_1(U_1)$. Consideremos la función $$\begin{array}{rrcl}
+     g_j = y_j \circ f \circ \varphi_1^{-1} : &  \varphi_1(U_1) = \pi_1(\psi_2(V_2))&  \longrightarrow &\mathbb{R}  \\
+     & (x_1,\ldots, x_m) & \longmapsto & y_j(x_1, \ldots, x_m)
+\end{array}$$
+con $j= m+1, \dots, n$, comprobándose que esta función es diferenciable. Definamos también 
+$$\begin{tikzcd}
+F:\hspace{-12mm} & \psi_2(V_2) \subset\mathbb{R}^n \arrow{r} & \mathbb{R}^n \\[-5mm]
+& (y_1,\dots,y_n) \arrow[mapsto]{r} & (\overline{y}_1,\dots,\overline{y}_n) \text{ donde } \overline{y}_i=\left\{ \begin{array}{ll}
+y_i \hspace{40mm} i = 1,\dots,m\\
+y_j - g_j(x_1,\dots,x_m) \qquad j = m+1, \dots, n
+\end{array} \right.
+\end{tikzcd}$$
+$F$ será diferenciable, y $\psi_2(q) \in \psi_2(V_2)$. El jacobiano de $F$ será:
+$$\left(\frac{\partial \overline{y}_k}{\partial y_l} \Big|_{\psi_2(q)} \right)_{1 \leq k,l \leq n} = \left(\begin{array}{c|c}
+    Id_m & 0  \\
+   \hline \left(-\dfrac{\partial g_j}{\partial y_i} \Big|_{\psi_2(q)} \right) & Id_{n-m}
+\end{array}\right)$$
+que es no singular y, aplicando el Teorema de la Función Inversa en $\mathbb{R}^n$, se tiene que existe $W \subset \psi_2(V_2)$ abierto con $\psi_2(q) \in W$ de modo que $F(W)$ es abierto y $F|_W:W\to F(W)$ es difeomorfismo.
+
+Sea $V = \psi_2^{-1}(W)\subset V_2$ abierto y $\psi = F \circ \psi_2|_W$, con $(V,\psi)$ carta de $N$ y $q \in V$. Sea $U = f^{-1}(V)$ y $\varphi= \varphi_1|_U$. Entonces $(U,\varphi)$ es carta de $M$, con $p \in U$ y $f(U) \subset V$. Por tanto:
+\[\begin{split} \psi\circ f \circ \varphi^{-1}(x_1,\dots,x_m) & = F \circ \psi_2 \circ f \circ \varphi^{-1}(x_1,\dots,x_m) \\ & = (x_1,\dots,x_m,  y_{m+1} (x_1,\dots,x_m) - g_{m+1}(x_1,\dots,x_m) , \\ & \qquad ,\dots, y_n (x_1,\dots,x_m)-g_{n}(x_1,\dots,x_m)) \\ &  = (x_1,\dots,x_m,0\dots,0) \end{split} \]
+\end{dem}
+\begin{obs}
+Es habitual exigir además que $\varphi(q) = 0\in \mathbb{R}^n$, con lo que $\psi(f(p)) = 0 \in \mathbb{R}^m$.
+
+De la expresi\'on en coordenadas $f|_U:U \longrightarrow V \subset N$ es una inmersi\'on en todos los puntos. Esto nos dice que no existen inmersiones en un solo punto, ya que si lo es en un punto, lo es en un abierto centrado en ese punto. En  este dominio $U$, $f$ es inyectiva y $f_{*,\overline{p}}$ es inyectiva para todo $\overline{p} \in U$, con lo que $f|_U:U\to f(U)$ es subvariedad y $y_{m+j}|_{f(U)} = 0$.
+
+Los puntos $f(U)$ son ceros de funciones diferenciables (las $y_{m+1}, \ldots, y_n$), pero no necesariamente $f(U)=V \cap f(M)$, es decir, no necesariamente $f(U)$ es un abierto de $f(M)$ con la topolog\'ia inducida. 
+\end{obs}
+
+\begin{teo}
+Sea $M^m$ una variedad diferenciable, $\{f_i\}_{i=1}^n$ una familia de funciones diferenciables sobre abiertos de $M$ y $S = \{p \in M \;/\; f_i(p) = 0\;\;\forall\; i = 1,\dots,n\} \neq \o$. Si $\{d_p f_i\}_{i=1}^n$ son linealmente independientes en $T_p^* M$ para todo $p \in S$, entonces $S$ es una subvariedad regular de $M$, de modo que la inclusión $S \hookrightarrow M$ es un embebimiento. Adem\'as, $dim \, S = m-n$.
+\end{teo}
+\begin{dem}
+Se tiene que $n \leq m$. Si $S = \o$, no tiene sentido dotarle de estructura diferenciable. Dado $p \in S$, como $\{d_pf_i\}_{i=1}^n$ son l.i., por un corolario del Teorema de la Función inversa existe una carta de $M$ $(U,\varphi\equiv (x_i))$ tal que $p \in U$, y $x_i = f_i$ para todo $i = 1,\dots,n$.
+
+Definimos $V = U \cap S = \{q \in U \; / \; x_i(q) = 0 \;\forall\;i=1,\dots,n\} \subset S$. Se tiene entonces, dado $q \in V$, la aplicación $\psi:V\subset S \to \mathbb{R}^{m-n}$, donde $\psi(q) = (x_{n+1}(q),\dots,x_m(q)) \in \mathbb{R}^{m-n}$. Esto es, $\psi = \pi \circ \varphi|_V$, donde $\pi:\mathbb{R}^n \times \mathbb{R}^{m-n} \to \mathbb{R}^{m-n}$ es la proyección sobre las últimas $m-n$ coordenadas. Veamos que $\psi$ es inyectiva y $\psi(V)$ es abierto de $\mathbb{R}^{m-n}$.
+
+Si $q_1,q_2 \in V$ (en particular pertenecen a $S$), $$\psi(q_1) = \psi(q_2) \Rightarrow x_{n+1}(q_1) = x_{n+1}(q_2),\dots , x_m(q_1) = x_m(q_2)$$Teniendo en cuenta que $x_i(q_1)=x_i(q_2) = 0$ para $i=1\dots, n$, concluimos que $\varphi(q_1) = \varphi(q_2)$, y la inyectividad de $\varphi$ asegura que $q_1 = q_2$. Por tanto $\psi$ es inyectiva. 
+
+Para demostrar que $\psi(V)$ es abierto, veamos que si $q\in V$, $\psi(q) \in \psi(V)$ es interior a $\psi(V) \subset \mathbb{R}^{m-n}$, por tanto $\varphi(q) \in \varphi(U)$ que como $\varphi(U)$ es abierto, existe $\varepsilon > 0 $ tal que $B(\varphi(q),\varepsilon)\subset \varphi(U)$, luego $\pi(B(\varphi(q),\varepsilon)) \subset \psi(V)$ (por ser $\pi$ una aplicaci\'on abierta), ya que los puntos que no están en $\varphi(V)$ proyectan a puntos que sí están en $\varphi(V)$, por lo que $\pi(B(\varphi(q),\varepsilon))$ es un abierto. Además, $\psi(q) \in \pi(B(\varphi(q),\varepsilon))$, por lo que $\psi(V)$ será abierto. Se cumple que $\psi(V) \subset \pi(\varphi(U))$, pero no la igualdad.
+
+As\'i, $(V, \psi)$ es carta de $S$. Con esto, $\forall p \in S$ construimos una carta de $S$ a partir de una carta $(U, \varphi)$ de $M$. Veamos que todas las cartas así construidas son compatibles. Sean $(V_1,\psi_1\equiv (\overline{x}_i)), (V_2,\psi_2\equiv (\overline{y}_i))$ cartas como las de antes, con $\overline{x}_i = x_{n+i}, \overline{y}_i = y_{n+1}$ para $i = 1,\dots, m-n$, y generadas a partir de las cartas de $M$ $(U_1,\varphi_1\equiv (x_i)), (U_2,\varphi_2\equiv (y_i))$.
+
+Si $V_1\cap V_2 \neq \emptyset$, entonces $U_1 \cap U_2 \neq \emptyset$. Además, $\psi_1(V_1\cap V_2)$ y $\psi_2(V_1\cap V_2)$ son abiertos con la misma demostración de que lo es $\psi(V)$. Como $(U_1,\varphi_1)$ y $(U_2,\varphi_2)$ son compatibles, \[\begin{split}  \varphi_2\circ \varphi_1^{-1}(\underbrace{x_1,\dots,x_n}_{0 \text{ en }S},x_{n+1},\dots,x_m) = \hspace{65mm} & \\   (\underbrace{y_1(x_1,\dots,x_m),\dots,y_n(x_1,\dots,x_m)}_{0 \text{ en }S},y_{n+1}(x_1,\dots,x_n,x_{n+1},\dots,x_m),\dots, & \\ y_m(x_1,\dots,x_n,x_{n+1},\dots,x_m)) & \end{split}\]
+Tenemos que en $S$ $$y_{n+i}(0,\dots,0,x_{n+1},\dots,x_m) = \overline{y}_i(\overline{x}_1,\dots,\overline{x}_{m-n})$$
+Es decir, $\psi_2\circ\psi_1^{-1}(\overline{x}_1,\dots,\overline{x}_{m-n}) = (\overline{y}_1(\overline{x}_1,\dots,\overline{x}_{m-n}), \dots, \overline{y}_{m-n}(\overline{x}_1,\dots,\overline{x}_{m-n}))$, por tanto $\psi_2\circ\psi^{-1}_1$ es diferenciable. An\'alogamente, $\psi_1\circ \psi^{-1}_2$. 
+
+Con esto, las cartas construidas forman un atlas en $S$, por lo que ahora es f\'acil ver que $i:S \hookrightarrow M$ es diferenciable e inmersión en todos sus puntos, es decir, es subvariedad. Veamos que es un embebimiento en $S$. Denotaremos $\mathcal{T}$ a la topología inducida en $S$ por la estructura diferenciable, y $\mathcal{T}_S$ a su topología como subespacio de $M$.
+
+$i$ será un embebimiento si $i:S\to i(S) \subset M$ es un homeomorfismo, es decir, $\mathcal{T} = \mathcal{T}_S$. Por una propiedad del primer tema, esto ocurrirá si y solo si las cartas $\psi:V\subset S \to \mathbb{R}^{m-n}$ son un homeomorfismo sobre su imagen, entre abiertos, considerando en $S$ la topología $\mathcal{T}_S$. Es claro que $V \in \mathcal{T}_S$, pues $V = U \cap S$ y $U$ es abierto en $M$. $\psi:V\subset S \to \mathbb{R}^{m-n}$ es continua, pues $\psi=\pi\circ \varphi|_V$, y $V$ es abierto. También su inversa $\psi^{-1}:\psi(V) \hookrightarrow V \subset S$ es continua, ya que $i\circ \psi^{-1}:\psi(V) \to M$ es diferenciable y por tanto continua, y se cumple que $(i\circ \psi^{-1})(\psi(V))\subset S$. Entonces, al restringir el codominio $i\circ \psi^{-1}:\psi(V) \to S \subset M$ es continua al considerar en $S$ la $\mathcal{T}_S$.
+\end{dem}\begin{cor}
+    Podemos reescribir $F:U\subset M \longmapsto \mathbb R^n$ con $F(p) = (f_1(p),\ldots, f_n(p))$, y la subvariedad es $S=F^{-1}(0)$. Por tanto, si $\{d_pf_i\}$ son l.i. en $T_p^*M$,  entonces $F_{*,p}$ es epiyectiva $\forall p \in S$.
+
+    Podemos generalizarlo a $F: U \subset M^m \longrightarrow N^n$ una aplicaci\'on diferenciable entre variedades diferenciables y $q \in N$ tal que $\forall p \in f^{-1}(q)$ $F_{*,p}$ es epiyectiva, entonces $F^{-1}(q)$ es subvariedad regular de $M$ de dimensi\'on $m-n$. 
+\end{cor}
+
+\section{Espacio tangente a una subvariedad}
+\begin{defi}
+Sea $f:M^m \to N^n$ una subvariedad. Se llama \textbf{espacio tangente a la subvariedad} en un punto $p \in M$ al espacio vectorial $f_{*,p}(T_pM) \subset T_{f(p)}N$
+$$f_{*,p}:T_pM \longrightarrow T_{f(p)}N$$
+\end{defi}
+\begin{obs}
+Como $f_{*,p}$ es inyectiva, identificaremos $T_pM \simeq f_{*,p}(T_pM)$ y por abuso de notación en ocasiones emplearemos $T_pM$ en lugar de $f_{*,p}(T_pM)$.
+\end{obs}
+
+Si tenemos la subvariedad $f:M\to N$, calcular una base de $f_{*,p}(T_pM)$ es sencillo. Dado $p \in M$, sea $(U,\varphi\equiv (x_i))$ carta de $M$, $p\in U$, y $\left\{\frac{\partial}{\partial x_i}\big|_p\right\}_{i=1}^m$ base de $T_pM$. Como $f_{*,p}(T_pM)$ es inyectiva, $\left\{f_{*,p}\left(\frac{\partial}{\partial x_i}\big|_p\right)\right\}_{i=1}^m$ será base de $f_{*,p}(T_pM)$.
+
+\begin{prop}
+Sea $M^m$ una variedad diferenciable, y $\{f_i\}_{i=1}^n$ funciones diferenciables, con $\displaystyle S = \{p\in M\; / \; f_i(p) = 0 \;\forall\; i=1,\dots,n\}= \bigcap_{i=1}^n f_i^{-1}(0) \neq \emptyset$, de modo que para todo $p\in M$, $\{d_pf_i\}_{i=1}^n$ son linealmente independientes en $T_p^*M$. Entonces, para todo $p\in S$, el espacio tangente a la subvariedad $i: S \hookrightarrow M$ es:
+$$T_pS \simeq i_{*,p}(T_pS) = \{v \in T_pM \;/\; v(f_i) = 0,\; i=1,\dots,n\}$$
+\end{prop}
+\begin{dem}
+Con las hipótesis de la proposición, sabemos que la inclusión $i:S \hookrightarrow M$ es un embebimiento. De aquella demostración, para todo $p \in S$ obteníamos cartas $(U,\varphi\equiv(x_i))$ de $M$ con $p\in U$, $(V=U\cap S,\psi\equiv (\overline{x}_j))$ de $S$ con $$x_i = f_i \;\; i=1,\dots,n \qquad \overline{x}_j = x_{n+1} \;\; j=1,\dots,m-n$$
+Ya que $\left\{\dfrac{\partial}{\partial x_i}\Big|_p\right\}_{i=1}^m$ es base de $T_pM$ y $\left\{\dfrac{\partial}{\partial \overline{x}_j}\Big|_p\right\}_{i=1}^{m-n}$ es base de $T_pS$, entonces $\left\{i_{*,p}\left(\dfrac{\partial}{\partial \overline{x}_j}\Big|_p\right)\right\}_{i=1}^{m-n}$\\[3mm] será base de $i_{*,p}(T_pS)  \subset T_{i(p)}M$. Las coordenadas de estas derivaciones son $$\left(i_{*,p}\left(\dfrac{\partial}{\partial \overline{x}_j}\Big|_p\right) \right)(x_k) = \dfrac{\partial}{\partial \overline{x}_j}\Big|_p (x_k\circ i) = \begin{cases}
+\dfrac{\partial}{\partial \overline{x}_j}\Big|_p(f_k \circ i) = 0 \quad k=1,\dots,n\\[3mm]
+\dfrac{\partial}{\partial \overline{x}_j}\Big|_p(\overline{x}_{k-n}) = \delta_{j,k-n} \quad k=n+1,\dots,m 
+\end{cases}$$
+Así que en particular $$i_{*,p}\left(\dfrac{\partial}{\partial \overline{x}_j}\Big|_p\right) =\sum_{i=1}^m  i_{*,p}\left(\dfrac{\partial}{\partial x_j}\Big|_p\right)(x_i) \dfrac{\partial}{\partial \overline{x}_j}\Big|_p= \pd{}{x_j}\Big|_p \qquad j=1,\dots,m-n $$ $$i_{*,p}\left(\dfrac{\partial}{\partial \overline{x}_j}\Big|_p\right) (f_k) = 0\qquad k=1,\dots,n$$
+es decir, $i_{*,p}(T_pS) \subset \{v \in T_pM \;/\;v(f_1) = \dots = v(f_n) = 0\}$. 
+
+Veamos que $\{v \in T_pM \;/\;v(f_1) = \dots = v(f_n) = 0\} \subset i_{*,p}(T_pS)$. Sea $v \in T_pM$ con $v(f_1) = \dots = v(f_n) = 0$. Entonces:
+$$v= \sum_{i=1}^n v(x_i) \dfrac{\partial}{\partial x_i}\Big|_p + \sum_{i=n+1}^m v(x_i)  \dfrac{\partial}{\partial x_i}\Big|_p = \sum_{i=n+1}^m v(x_i)i_{*,p}\left(\dfrac{\partial}{\partial \overline{x}_{i-n}}\Big|_p\right) = $$ $$=\sum_{j=1}^{m-n} v(x_{n+j}) i_{*,p}\left(\dfrac{\partial}{\partial \overline{x}_{j}}\Big|_p\right) \in i_{*,p}(T_pS)$$
+\end{dem}
+\begin{ejem}
+    [Hiperboloide de una hoja] Consideramos $S=\{(x,y,z) \in \mathbb R^3 \, / \, x^2+y^2-z^2=1\} \subset \mathbb R^3$. Consideramos 
+    $$\bt f : \mathbb R^3 \arrow{r} & \mathbb R \\[-5mm] (x,y,z) \arrow[mapsto]{r} & x^2+y^2-z^2-1 \et$$
+    y entonces $S=f^{-1}(0)\neq\emptyset$ con $f$ diferenciable. Usamos la carta global de forma que 
+    \[\begin{split} d_pf=& \pd{}{x}\Big|_p(f) d_px + \pd{}{y}\Big|_p(f) d_py + \pd{}{z}\Big|_p(f) d_pz \\ & = 2x(p)d_px+2y(p)d_py-2zd_pz \in T_p^*\mathbb R^3\end{split}\]
+    y $\{d_pf\}$ es linealmente independiente por ser $\neq 0$, pues $(0,0,0) \nin S$. Concluimos con que $S$ es subvariedad embebida. Calculemos $T_pS = \{v \in T_p\mathbb R^3 \, / \, v(f)=0\}$. En coordenadas, $v = \lambda_1 \frac{\partial}{\partial x}\big|_p+\lambda_2 \frac{\partial}{\partial y}\big|_p+\lambda_3 \frac{\partial}{\partial z}\big|_p$, luego 
+    $$v(f)=0 \iff \lambda_1 2x(p) + \lambda_2 2y(p) + \lambda_3(-2z(p)) = 0$$
+    supongamos que $x(p)\neq 0$, luego 
+    $$\lambda_1 = -\dfrac{y(p)}{x(p)} \lambda_2 + \dfrac{z(p)}{x(p)} \lambda_3$$
+    es decir, 
+    \[ \begin{split} T_pS = & \left\{\lambda_1 \frac{\partial}{\partial x}\Big|_p+\lambda_2 \frac{\partial}{\partial y}\Big|_p+\lambda_3 \frac{\partial}{\partial z}\Big|_p \, \Big/ \, \lambda_1 = -\dfrac{y(p)}{x(p)} \lambda_2 + \dfrac{z(p)}{x(p)} \lambda_3 \right\}= 
+    \\ = & \left\{ \left( -\dfrac{y(p)}{x(p)} \lambda_2 + \dfrac{z(p)}{x(p)} \lambda_3 \right)\frac{\partial}{\partial x}\Big|_p+\lambda_2 \frac{\partial}{\partial y}\Big|_p+\lambda_3 \frac{\partial}{\partial z}\Big|_p \right\} = \\ = & \left\langle -\dfrac{y(p)}{x(p)} \frac{\partial}{\partial x}\Big|_p  +  \frac{\partial}{\partial y}\Big|_p , \dfrac{z(p)}{x(p)} \frac{\partial}{\partial x}\Big|_p  +  \frac{\partial}{\partial z}\Big|_p  \right\rangle \end{split}\]
+\end{ejem}
+\begin{prop}
+Sea $i: M_1\hookrightarrow M_2$ una subvariedad y $f: M_2 \to M_3$ una aplicación diferenciable. Entonces, $f \circ i:M_1 \to M_3$ es diferenciable. 
+\end{prop}
+\begin{dem}
+La composición de aplicaciones diferenciables es diferenciable.
+\end{dem}
+\begin{obs}
+Esto implica que la restricción de una aplicación diferenciable a una subvariedad también es una aplicación diferenciable.
+\end{obs}
+
+\begin{prop}
+Sea $i:M_1 \hookrightarrow M_2$ es una subvariedad y $f: M_3 \to M_2$ una aplicación diferenciable tal que $f(M_3) \subset M_1$. Si $f:M_3 \to f(M_1)$ es continua, entonces es diferenciable. En particular, si $i: M_1 \to M_2$ es un embebimiento, $f:M_3 \to M_2$ es diferenciable.
+\end{prop}
+
+\section{Sumersiones}
+\begin{defi}
+Una aplicación diferenciable $f:M\longrightarrow N$ entre variedades diferenciables es una \textbf{sumersión} en $p \in M$ si $f_{*,p}$ es epiyectiva. Se dice que $f$ es una sumersión si lo es en todos los puntos de $M$. Además, si $f$ es una sumersión epiyectiva, diremos que es una identificación.
+\end{defi}
+
+\begin{obs}
+Si $f$ es sumersión en un punto entonces $dim\,M \geq dim\,N$.
+\end{obs}
+
+\begin{obs}
+Si $f$ es una identificación, entonces $N \simeq \modulo{M}{\sim}$, siendo la relación de equivalencia $p \sim q \iff f(p)=f(q)$ para todo $p,q \in M$.
+\end{obs}
+
+\begin{defi}
+Si $f: M \to N$ es una sumersión, $q \in f(M)$ se llama \textbf{fibra} de $f$ sobre $q$ al conjunto $f^{-1}(q) \subset M$.
+\end{defi}
+
+\begin{ejem} La aplicaci\'on
+$$\begin{array}{rrcl}
+     \pi : & \mathbb R^{n+1}-\{0\} & \longrightarrow & \mathbb RP^{n}  \\
+     & p & \longmapsto & [p]
+\end{array}$$
+es sumersi\'on.
+
+Dadas dos varidades diferenciables $M,N$, las proyecciones
+$$\pi_1: M^m \times N^n \to M^m \qquad \pi_2:M\times N \to N$$
+son sumersiones. Con la lectura en coordenadas es fácil ver que $\pi_{*,(p,q)}:T_{(p,q)}(M\times N)\simeq T_pM \times T_qN \to T_pM$ es epiyectiva. Si $p \in M$, la fibra $\pi^{-1}(p) = \{p\} \times N$.
+\end{ejem}
+
+
+\begin{teo}[\textbf{de estructura local de las sumersiones}]
+Sean $M^m, N^n$ variedades diferenciables y $f:M \to N$ una aplicación diferenciable. Si $f$ es sumersión en $p \in M$, entonces existen cartas $(U,\varphi\equiv (x_i))$ de $M$ con $p \in U$, y $(V,\psi \equiv (y_i))$ de $N$ con $f(U) \subset V$ de modo que:
+$$\psi \circ f \circ \varphi^{-1}(x_1,\dots,x_n,x_{n+1},\dots,x_m) = (x_1,\dots,x_n)$$
+es decir, $x_i = y_i \circ f$ para $i = 1,\dots,n$.
+\end{teo}
+\begin{dem}
+A partir de $p \in M$ consideramos una carta $(V,\psi\equiv(y_i))$ de $N$ con $f(p) \in V$. En particular, $\{d_{f(p)}y_i\}_{i=1}^n$ es base de $T_{f(p)}^* N$. Como $f_{*,p}:T_pM \to T_{f(p)}N$ es epiyectiva por hipótesis, entonces $f^*_p:T^*_{f(p)} \to T^*_p M$ es inyectiva, y transforma $\{d_{f(p)}y_i\}_{i=1}^n$ en un conjunto linealmente independiente en $T_p^*M$ $\{f^*_p(d_{f(p)}y_i)\}_{i=1}^n = \{d_p(y_i \circ f)\}_{i=1}^n$. Definimos $x_i = y_i \circ f : f^{-1}(V) \to \mathbb{R}$, con $i = 1,\dots,n$.
+
+Por un corolario del Teorema de la Función Inversa, existe una carta $(U,\varphi)$ de $M$ con $p \in U \subset f^{-1}(V)$ de modo que las primeras $n$ funciones coordenada son $x_1,\dots,x_n$. La lectura en estas coordenadas es
+$$\psi \circ f \circ \varphi^{-1} (x_1,\dots,x_m) = \left((y_1 \circ f)(\varphi^{-1}(x_1,\dots,x_m), \dots, (y_n\circ f)(\varphi^{-1}(x_1,\dots,x_m)\right) = $$ $$ =(x_1(\varphi^{-1}(x_1,\dots,x_m), \dots, x_n(\varphi^{-1}(x_1,\dots,x_m))=(x_1,\dots,x_n)$$
+\end{dem}
+
+\begin{obs}
+Se cumple que $\pi(\varphi(U)) \subset \psi(V)$, siendo $\pi$ la proyección en las $n$ primeras coordenadas $\pi:\mathbb{R}^n \times \mathbb{R}^{m-n} \to \mathbb{R}^n$.
+
+Para demostrarlo, sea $\tilde{p} \in U$. $\varphi(\tilde{p})= (x_1(\tilde{p}),\dots,x_m(\tilde{p}))$. Entonces:
+$$\pi(\varphi(\tilde{p})) = (x_1(\tilde{p}),\dots,x_n(\tilde{p}))$$
+$$\psi \circ f \circ \varphi^{-1}(x_1,\ldots, x_m) = (x_1(\tilde{p}),\dots,x_n(\tilde{p}))$$
+En particular, como $f(\tilde{p}) \in V$, entonces
+$$\psi(f(\tilde{p})) = (y_1(f(\tilde{p})), \dots, y_n(f(\tilde{p}))) = (x_1(\tilde{p}), \dots, x_n(\tilde{p})) \in \psi(V)$$
+Luego $\pi(\varphi(\tilde{p})) \in \psi(V)$. Puede ocurrir que $\pi(\varphi(U)) \subsetneqq \psi(V)$ si $U \subsetneqq f^{-1}(V)$. Si queremos la igualdad basta reducir $\psi|_{\tilde{V}}$ con $\tilde{V} = \psi^{-1}(\pi(\varphi(U))) \subset V$.
+\end{obs}
+
+\begin{obs}
+A la vista de la lectura en coordenadas, $f$ será sumersión en todo punto de $U$. Es decir, la condici\'on de sumersi\'on es estrictamente local, no puede ser puntual. 
+\end{obs}
+\begin{obs}
+En algunos textos se exige que $\varphi$ esté centrada en el cero ($\varphi(p) = 0 \in \mathbb{R}^n$) y por tanto $\psi$ esté centrada.
+\end{obs}
+
+\begin{prop}
+Toda sumersión es una aplicación abierta.
+\end{prop}
+\begin{dem}
+Sea $f:M^m \to N^n$ una sumersión. Dado $W \subset M$ abierto queremos probar que $f(W)$ es abierto en $N$. Para esto, veamos que todo punto de $f(W)$ es interior. Sea $q \in f(W)$, luego existirá $p \in W$ tal que $f(p) = q$. Como $f$ es sumersión, en particular en $p \in W$ existirán cartas como el Teorema de estructura local $(U,\varphi\equiv (x_i))$ de $M$ con $p \in U$, $(V,\psi \equiv (y_i))$ de $N$ con $f(U)\subset V$ de modo que $\psi \circ f \circ \varphi^{-1}(x_1,\dots,x_m) = (x_1,\dots,x_n)$, para las cuales sabemos que $\pi(\varphi(U))\subset \psi(V)$ donde $\pi$ es la proyecci\'on en las primeras $n$ coordenadas. Tenemos que $\pi(\varphi(U \cap W))$ es abierto y está contenido en $\psi(V)$. Veamos que $\tilde{V} = \psi^{-1}(\pi(\varphi(U \cap W)))$ es el abierto que nos interesa. Es claro que $q \in \tilde{V}$ pues $\psi(q) \in  \pi(\varphi(U \cap W))$ y $p \in U \cap W$.  Veamos que $\tilde{V} \subset f(W)$. 
+
+Sea $\tilde{q} \in \tilde{V}$, entonces $\psi(\tilde{q}) \in \pi(\varphi(U\cap W))$ y existirá $\tilde{p} \in U \cap W$ de modo que $$\varphi(\tilde{p}) = (x_1(\tilde{p}), \dots, x_n(\tilde{p}), \dots, x_m(\tilde{p})), \quad \psi(\tilde{q}) = (x_1(\tilde{p}),\dots,x_n(\tilde{p}))$$
+Por un lado $\psi \circ f \circ \varphi^{-1} (\varphi(\tilde{p})) = \psi(f(\tilde{p}))$. Por otro lado, por el teorema anterior, $\psi \circ f \circ \varphi^{-1} (\varphi(\tilde{p})) = (x_1(\tilde{p}),\dots,x_n(\tilde{p})) = \psi(\tilde{q})$. 
+
+Como $\psi$ es inyectiva, $f(\tilde{p}) = \tilde{q}$, en particular $\tilde{q} \in f(W)$.
+
+\end{dem}
